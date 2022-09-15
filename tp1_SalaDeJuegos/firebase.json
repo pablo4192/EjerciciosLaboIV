@@ -1,6 +1,7 @@
 {
   "hosting": [
     {
+      "target": "tp1_SalaDeJuegos",
       "public": "dist/tp1-sala-de-juegos",
       "ignore": [
         "firebase.json",

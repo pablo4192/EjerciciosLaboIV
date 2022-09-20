@@ -1,0 +1,18 @@
+h1{
+    background-color: rgb(4, 19, 32);
+    color: rgb(247, 238, 238);
+}
+
+a{
+    text-decoration: none;
+    margin: 10px;
+    color: aliceblue;
+}
+
+nav{
+    background-color: darkslategray;
+    height: 30px;
+    border: 1px solid black;
+    
+
+}

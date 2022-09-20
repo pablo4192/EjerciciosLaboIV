@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { isEmpty } from 'rxjs';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(
+    public loginService:LoginService,
+    private router:Router) { 
+      
+    }
 
   ngOnInit(): void {
+  }
+
+  public Logout(){
+    this.loginService.Logout()
+    .then(() => {
+      localStorage.clear();
+      this.router.navigate(['/inicio']);
+    })
+    .catch(error => console.log(error));
+  }
+
+  GetUsuarioActivo(){
+     
+    return localStorage.getItem('activo');
+     
   }
 
 }

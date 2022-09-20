@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     QuienSoyComponent,
     VistaPrincipalComponent,
-    RegistroComponent
+    RegistroComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

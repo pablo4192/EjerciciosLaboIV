@@ -1,25 +1,27 @@
 <div class="container-fluid">
   <main class="form-signin">
-    <form name="Frm">
+    <form name="Frm" autocomplete="off">
       <h1 class="h3 mb-3 fw-normal">Login</h1>
-  
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Usuario</label>
+      <div class="form-floating" *ngIf="!autocompletado">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="mail" name="Frm">
+          <label for="floatingInput">Usuario</label>
+        </div>
+        <div class="form-floating" *ngIf="autocompletado">  <!--Ver!!-->
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="pascual@gmail.com" name="Frm">
+          <label for="floatingInput">Usuario</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="contrasenia" name="Frm">
+          <label for="floatingPassword">Contraseña</label>
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Contraseña</label>
-      </div>
-  
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Recordarme
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="Ingresar()">Ingresar</button>
     </form>
+    <button class="btn btn-info" (click)="IngresarConGoogle()">Ingresar con Google</button>
+    <button class="btn btn-primary" (click)="AutoCompletarLogin()">Ingreso rapido</button>
   </main>
+  <div *ngIf="error">
+    <p>Error en mail o contraseña</p>
+  </div>
 </div>
 
   

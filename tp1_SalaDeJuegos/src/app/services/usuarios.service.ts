@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -18,5 +19,13 @@ export class UsuariosService {
   getUsuarios(): Observable<Usuario[]>{
     const usrRef = collection(this.firestore, 'usuarios');
     return collectionData(usrRef,{idField: 'id'}) as Observable<Usuario[]>;
+  }
+
+  GuardarLogUsuario(mail:string){  
+    
+    let fecha = new Date();
+                          
+    const usrRef = collection(this.firestore, 'log_usuarios');
+    return addDoc(usrRef, {mail, fecha});
   }
 }

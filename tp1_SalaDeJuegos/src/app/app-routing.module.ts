@@ -6,6 +6,7 @@ import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { VistaPrincipalComponent } from './components/vista-principal/vista-principal.component';
 import {canActivate, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {path: 'registro', component:RegistroComponent},
@@ -13,7 +14,9 @@ const routes: Routes = [
   {path: 'quienSoy', component: QuienSoyComponent},
   {path: 'home', component:HomeComponent , ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
   {path: 'inicio', component:VistaPrincipalComponent},
+  {path: 'chat', component:ChatComponent},
   {path: '**', component:VistaPrincipalComponent},
+
 ];
 
 @NgModule({

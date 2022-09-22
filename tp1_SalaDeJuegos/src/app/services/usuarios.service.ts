@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../entidades/usuario';
 
@@ -11,7 +11,7 @@ export class UsuariosService {
 
   constructor(private firestore:Firestore) { }
 
-  addUsuario(usuario:Object){                               //VER POR QUE NO PUEDO GUARDAR OBJETO USUARIO
+  addUsuario(usuario:Object){                               
     const usrRef = collection(this.firestore, 'usuarios');
     return addDoc(usrRef, usuario);
   }

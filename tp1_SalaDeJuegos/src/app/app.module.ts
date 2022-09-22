@@ -14,6 +14,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavComponent } from './components/nav/nav.component';
     QuienSoyComponent,
     VistaPrincipalComponent,
     RegistroComponent,
-    NavComponent
+    NavComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

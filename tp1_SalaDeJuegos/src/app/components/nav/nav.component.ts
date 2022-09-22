@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
    
@@ -16,11 +16,7 @@ export class NavComponent implements OnInit {
 
   GetLogueado(){
     
-    let logueado = localStorage.getItem('logueado');
-    if(logueado == 'true')
-    return true;
-    else
-    return false;
+    return this.loginService.GetUsuarioActivo();
   }
 
 }

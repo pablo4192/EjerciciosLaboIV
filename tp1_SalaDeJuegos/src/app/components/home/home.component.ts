@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   public Logout(){
     this.loginService.Logout()
     .then(() => {
-      localStorage.clear();
+     
       this.router.navigate(['/inicio']);
     })
     .catch(error => console.log(error));
@@ -32,8 +32,7 @@ export class HomeComponent implements OnInit {
 
   GetUsuarioActivo(){
      
-    return localStorage.getItem('activo');
-     
+    return this.loginService.GetUsuarioActivo()?.email;
   }
 
 }

@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngFor="let chat of this.chats">
+        <p>{{chat.texto}}</p>
+        <p>{{chat.fecha}}-{{chat.hora}}</p>
+    </div>
+    <div class="container-fluid">
+        <input type="text" [(ngModel)]="textoMsj">
+        <button (click)="EnviarMsj()">Enviar</button>
+    </div>
+   
+
+
+
+
+
+
+
+
+
+
+
+</div>

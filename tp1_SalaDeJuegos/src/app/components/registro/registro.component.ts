@@ -23,6 +23,7 @@ export class RegistroComponent implements OnInit{
   datosIncompletos:boolean = false;
   errorContrasenia:boolean = false;
 
+  
   constructor(
     private usuariosService:UsuariosService, 
     private loginService:LoginService,
@@ -32,7 +33,8 @@ export class RegistroComponent implements OnInit{
   } 
 
   ngOnInit(): void {
-     this.GetDatos();
+      this.GetDatos();
+      
     
    
   }
@@ -102,7 +104,11 @@ export class RegistroComponent implements OnInit{
   }
 
   private GetDatos(){
-      this.usuariosService.getUsuarios().subscribe(usuarios => {this.usuariosRegistrados = usuarios});
+     
+    this.usuariosService.getUsuarios().subscribe(usuarios => {this.usuariosRegistrados = usuarios});
+      
   }
+
+  
 
 }

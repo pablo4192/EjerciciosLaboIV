@@ -28,9 +28,6 @@ export class LoginComponent implements OnInit {
   public Ingresar(){
     this.loginService.Login(this.mail, this.contrasenia)
     .then(response => {
-      
-      localStorage.setItem('logueado','true');
-      localStorage.setItem('activo', this.mail);
       this.error = false;
       
       console.log(response);
@@ -48,8 +45,6 @@ export class LoginComponent implements OnInit {
     this.loginService.LoginWithGoogle()
     .then((response) => {
       
-      localStorage.setItem('logueado','true');
-      localStorage.setItem('activo', this.mail);
       this.error = false;
       
       console.log(response);

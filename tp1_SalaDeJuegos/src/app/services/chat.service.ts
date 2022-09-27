@@ -15,7 +15,7 @@ export class ChatService {
     
   }
 
-  AgregarMsj(chat:Object){                               
+  AgregarMsj(chat:Chat){                               
     const usrRef = collection(this.firestore, 'chat');
     return addDoc(usrRef, chat);
   }

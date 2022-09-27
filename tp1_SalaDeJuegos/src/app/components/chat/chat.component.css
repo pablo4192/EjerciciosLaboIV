@@ -1,10 +1,92 @@
-.container{
-    background-color: aliceblue;
-    height: 300px;
-    overflow-y: scroll;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.container-fluid{
-    bottom: 0;
+#divChat{
+    background-color: aliceblue;
+    height: 79vh;
+    overflow-y: scroll;
+    border: 1px solid black;
    
 }
+
+#divContenedorChat{
+    padding: 0;
+}
+
+#divRow{
+    background-color: rgba(255, 165, 0, 0.9);;
+}
+
+
+input{
+    width: 100%;
+    border: 1px solid black;
+    
+}
+
+#divTxtMsj{
+    padding: 0;
+}
+
+#divBtnEnviar{
+    background-color: rgb(255, 165, 0);
+    border-radius: 10px;
+    
+}
+
+
+button{
+    
+    background-color:transparent;
+    border: none;
+    color: white;
+    font-style: italic;
+    
+   
+}
+
+#divAside{
+    background-color:rgb(130, 243, 226);
+    border: 1px solid black;
+}
+
+#divBajoAside{
+    background-color: darkslategrey;
+    display: flex;
+    justify-content:center;
+    
+   
+}
+
+#pChat{
+  
+    color: white;
+    font-style: italic;
+}
+
+#mensaje{
+    
+    border: 1px solid black;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 5px;
+    padding: 0 20px 0 5px;
+}
+
+#mensaje p{
+    display: flex;
+}
+
+
+
+#pFecha{
+    font-size: small;
+    
+    
+}
+
+
+

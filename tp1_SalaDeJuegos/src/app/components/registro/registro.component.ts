@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/entidades/usuario';
 import { LoginService } from 'src/app/services/login.service';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+
 
 
 
@@ -14,7 +14,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class RegistroComponent implements OnInit{
 
-  usuario:Usuario = new Usuario();
+  usuario:Usuario;
   verContrasenia:string = '';
   
   usuariosRegistrados: Usuario[]; 
@@ -24,12 +24,12 @@ export class RegistroComponent implements OnInit{
   errorContrasenia:boolean = false;
 
   
-  constructor(
-    private usuariosService:UsuariosService, 
+  constructor( 
     private loginService:LoginService,
     private router:Router)  //Inyeccion de dependencias
   {
     this.usuariosRegistrados = [];
+    this.usuario = new Usuario();
   } 
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class RegistroComponent implements OnInit{
           if(this.verContrasenia == this.usuario.contrasenia)
           {
             this.noExiste = true;
-            this.GuardarDatos();
+            this.GuardarUsuario();
           }
           else
           {
@@ -83,21 +83,22 @@ export class RegistroComponent implements OnInit{
         }
     }
   }
+ 
+  private async GuardarUsuario(){
 
-  private async GuardarDatos(){
-
-    const usr = {
-      nombre: this.usuario.nombre,
-      apellido: this.usuario.apellido,
-      mail: this.usuario.mail,
-      contrasenia: this.usuario.contrasenia
-    };
-
-    this.loginService.Registro(usr.mail,usr.contrasenia)  //Uso Auth de firebase
+    this.loginService.Registro(this.usuario)  //Uso Auth de firebase
     .then(response => {
       console.log(response);
-      this.usuariosService.addUsuario(usr); //Guarda en firestore datos del usuario registrado
-      this.usuariosService.GuardarLogUsuario(usr.mail); //Guardo el log del usuario registrado
+      
+      //CREACION DE USUARIO ACTIVO, REGISTRADO
+      this.loginService.usuario = this.usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
+      this.loginService.usuario.nombre = this.usuario.nombre;
+      this.loginService.usuario.apellido = this.usuario.apellido;
+
+      this.loginService.addUsuario(this.usuario); //Guarda en firestore datos del usuario registrado
+
+      this.loginService.GuardarLogUsuario(this.usuario); //Guardo el log del usuario registrado
+
       this.router.navigate(["/home"]);
     })
     .catch(error => console.log(error));
@@ -105,7 +106,7 @@ export class RegistroComponent implements OnInit{
 
   private GetDatos(){
      
-    this.usuariosService.getUsuarios().subscribe(usuarios => {this.usuariosRegistrados = usuarios});
+    this.loginService.getUsuarios().subscribe(usuarios => {this.usuariosRegistrados = usuarios});
       
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { isEmpty } from 'rxjs';
+
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
   public Logout(){
     this.loginService.Logout()
     .then(() => {
-     
+      console.log(this.loginService.usuario);
+      this.loginService.usuario = undefined;
       this.router.navigate(['/inicio']);
     })
     .catch(error => console.log(error));

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/entidades/usuario';
 import { LoginService } from 'src/app/services/login.service';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+
 
 
 @Component({
@@ -11,28 +12,39 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class LoginComponent implements OnInit {
 
-  mail:string = '';
-  contrasenia:string = '';
+  usuario:Usuario;
+  
   error:boolean = false;
   autocompletado:boolean = false; //Ver!
 
   constructor(
     private loginService:LoginService,
     private router:Router,
-    private usuariosService:UsuariosService) { }
+    ) {
+      this.usuario = new Usuario();
+     }
 
   ngOnInit(): void {
     
   }
 
   public Ingresar(){
-    this.loginService.Login(this.mail, this.contrasenia)
+    
+    this.loginService.Login(this.usuario)
     .then(response => {
       this.error = false;
       
-      console.log(response);
-      this.usuariosService.GuardarLogUsuario(this.mail);
+      //TENER EN LOGINSERVICE UNA FUNCION QUE ME TRAIGA LOS DATOS COMPLETOS DEL USUARIO QUE SE LOGUEA!!!!!!!
+
+      //CREACION DE USUARIO ACTIVO, REGISTRADO
+      this.loginService.usuario = this.usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
+      //this.loginService.usuario.nombre = this.usuario.nombre;
+      //this.loginService.usuario.apellido = this.usuario.apellido;
       
+     console.log(this.usuario);
+     console.log(this.loginService.usuario);
+
+      this.loginService.GuardarLogUsuario(this.usuario);
       this.router.navigate(['/home']);
     })
     .catch(error => {
@@ -41,6 +53,7 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  /*
   public IngresarConGoogle(){
     this.loginService.LoginWithGoogle()
     .then((response) => {
@@ -48,7 +61,7 @@ export class LoginComponent implements OnInit {
       this.error = false;
       
       console.log(response);
-      this.usuariosService.GuardarLogUsuario(this.mail);
+      this.loginService.GuardarLogUsuario(this.mail);
       
       this.router.navigate(['/home']);
     })
@@ -57,13 +70,14 @@ export class LoginComponent implements OnInit {
       console.log(error)}
       );
   }
+  */
 
   public AutoCompletarLogin(){  //Ver!!
     
     this.autocompletado = true;
 
-    this.mail = 'pascual@gmail.com';
-    this.contrasenia = 'asd123';
+    this.usuario.mail = 'pascual@gmail.com';
+    this.usuario.contrasenia = 'asd123';
     
   }
 

@@ -1,19 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
-import { Firestore, collection, addDoc, collectionData} from '@angular/fire/firestore';
+import { Firestore, collection, addDoc,collectionData, doc, deleteDoc} from '@angular/fire/firestore';
+
 import { Observable } from 'rxjs';
 import { Usuario } from '../entidades/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService{
 
   usuario:Usuario|undefined;
+  usuariosActivos:Usuario[];
+  
 
   constructor(private auth:Auth, private firestore:Firestore) {
     this.usuario = new Usuario();
+    this.usuariosActivos = [];
    }
+  
+ 
 
   Registro(usuario:Usuario){
     
@@ -29,6 +35,7 @@ export class LoginService {
 
   Login(usuario:Usuario){
 
+    
     return signInWithEmailAndPassword(this.auth, usuario.mail, usuario.contrasenia);
   }
 
@@ -47,7 +54,7 @@ export class LoginService {
     return this.auth.currentUser; //Retorno el usuario activo
   }
 
-  //Metodos traidos de ususario.service
+  
 
   addUsuario(usuario:Usuario){  
     
@@ -62,10 +69,36 @@ export class LoginService {
     return addDoc(usrRef, usr);
   }
 
+  
+  agregarUsuarioActivo(usuario:Usuario){
+
+    const usr = {
+      mail: usuario.mail,
+    };
+    
+    const usrRef = collection(this.firestore, 'usuarios_activos');
+    return addDoc(usrRef, usr);
+  }
+
+  eliminarRegistroUsrActivo(usuario:Usuario|undefined){
+
+      const ref = doc(this.firestore, 'usuarios_activos/' + usuario?.id);
+      return deleteDoc(ref);
+        
+  }
+
+
+  getUsuariosActivos(): Observable<Usuario[]>{
+    const usrRef = collection(this.firestore, 'usuarios_activos');
+    return collectionData(usrRef,{idField: 'id'}) as Observable<Usuario[]>;
+  }
+
   getUsuarios(): Observable<Usuario[]>{
     const usrRef = collection(this.firestore, 'usuarios');
     return collectionData(usrRef,{idField: 'id'}) as Observable<Usuario[]>;
   }
+
+  
 
   GuardarLogUsuario(usuario:Usuario){  
     
@@ -75,6 +108,8 @@ export class LoginService {
     const usrRef = collection(this.firestore, 'log_usuarios');
     return addDoc(usrRef, {mail, fecha});
   }
+
+
 
 
 }

@@ -3,6 +3,7 @@ import { Chat } from 'src/app/entidades/chat';
 import { Usuario } from 'src/app/entidades/usuario';
 import { ChatService } from 'src/app/services/chat.service';
 import { LoginService } from 'src/app/services/login.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-chat',
@@ -12,19 +13,27 @@ import { LoginService } from 'src/app/services/login.service';
 export class ChatComponent implements OnInit {
 
   chats:Chat[];
-  usuario:Usuario|undefined;
+  usuarioActivo:Usuario|undefined;
+  arrayUsuariosActivos:Usuario[];
 
   textoMsj:string = '';
+  
+  
+  
 
   constructor(private chatService:ChatService, private loginService:LoginService) { 
     this.chats = [];
+    this.usuarioActivo = new Usuario();
+    this.arrayUsuariosActivos = [];
     
-    this.ObtenerMensajes();
   }
 
   ngOnInit(): void {
-    
-    this.usuario = this.loginService.usuario;
+    this.usuarioActivo = this.loginService.usuario;
+    this.ObtenerMensajes();
+    this.loginService.getUsuariosActivos().subscribe(data => this.arrayUsuariosActivos = data);
+
+    //console.log(this.arrayUsuariosActivos);
     
   }
 
@@ -34,19 +43,47 @@ export class ChatComponent implements OnInit {
     let fecha = date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
     let hora = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
-    let chat = new Chat(this.textoMsj, fecha, hora, this.usuario);
+    let mailUsr = this.usuarioActivo?.mail;
+    
+    let chat = new Chat(this.textoMsj, fecha, hora, mailUsr);
     
     this.chatService.AgregarMsj(chat);
+
+    this.textoMsj = '';
+
+    
   }
 
   public ObtenerMensajes(){
+
     this.chatService.getMsjs().subscribe((data) => {
       this.chats = data;
-      if(this.chats.length > 1)
+      
+      let div = document.getElementById("divChat"); //Ver performance? Cuando Carga por primera vez no scrolea
+
+      if(div)
+      div.scrollTop = div.scrollHeight;
+
+      this.chats.forEach((c) => {
+        if(c.mailUsr == this.usuarioActivo?.mail)
+        {
+          c.color = 'green';
+        }
+        else
+        {
+          c.color = 'darkslateblue';
+        }
+      });
+      
+      if(this.chats.length > 1) 
       {
         this.chats.sort((a,b) => this.OrdenarMsjs(a,b));
       }
+
+      
     });
+
+
   }
 
   
@@ -92,7 +129,23 @@ export class ChatComponent implements OnInit {
     return 1;
   }
 
- 
+
+  /*
+  private generarColorRandom():string{
+    let simbolos, color;
+	  simbolos = "0123456789ABCDEF";
+	  color = "#";
+
+	  for(var i = 0; i < 6; i++){
+		  color = color + simbolos[Math.floor(Math.random() * 16)];
+	  }
+
+    return color;
+  }
+  */
+  
+
+  
 
 
 

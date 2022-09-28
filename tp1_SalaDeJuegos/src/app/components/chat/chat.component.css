@@ -9,7 +9,7 @@
     height: 79vh;
     overflow-y: scroll;
     border: 1px solid black;
-   
+    
 }
 
 #divContenedorChat{
@@ -73,17 +73,21 @@ button{
     border-radius: 10px;
     width: fit-content;
     margin: 5px;
-    padding: 0 20px 0 5px;
+    
 }
 
-#mensaje p{
+#mensaje>p{
     display: flex;
+    padding: 0 20px 0 5px;
 }
 
 
 
 #pFecha{
     font-size: small;
+    color: whitesmoke;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
     
     
 }

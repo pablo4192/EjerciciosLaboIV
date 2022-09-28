@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
 
   usuario:Usuario;
   
+  //Array donde me traigo los usuarios guardados en la base para luego comparar mail y obtener datos completos del usuario 
+  usuariosRegistrados:Usuario[];
+  usuariosActivos:Usuario[];
+  
   error:boolean = false;
   autocompletado:boolean = false; //Ver!
 
@@ -22,10 +26,15 @@ export class LoginComponent implements OnInit {
     private router:Router,
     ) {
       this.usuario = new Usuario();
+      this.usuariosRegistrados = [];
+      this.usuariosActivos = [];
      }
 
   ngOnInit(): void {
-    
+    //Llamo al metodo que me asigna los usuarios registrados al array de usuarios registrados del componente
+    this.GetDatos();
+
+
   }
 
   public Ingresar(){
@@ -33,19 +42,24 @@ export class LoginComponent implements OnInit {
     this.loginService.Login(this.usuario)
     .then(response => {
       this.error = false;
-      
-      //TENER EN LOGINSERVICE UNA FUNCION QUE ME TRAIGA LOS DATOS COMPLETOS DEL USUARIO QUE SE LOGUEA!!!!!!!
 
-      //CREACION DE USUARIO ACTIVO, REGISTRADO
-      this.loginService.usuario = this.usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
-      //this.loginService.usuario.nombre = this.usuario.nombre;
-      //this.loginService.usuario.apellido = this.usuario.apellido;
+      //Me traigo utilizando mail y contraseña introducidos en el login los datos completos del usuario desde la base
+      this.loginService.usuario = this.retornarDatosUsuario(); 
       
-     console.log(this.usuario);
-     console.log(this.loginService.usuario);
 
       this.loginService.GuardarLogUsuario(this.usuario);
-      this.router.navigate(['/home']);
+      
+      //Guardo en la base los usuarios activos
+      this.loginService.agregarUsuarioActivo(this.usuario)
+      .then(() => {
+        //Asigno los usuarios activos a variable en service para ser visible una vez que el metodo de login service agrego a la base el usuario activo
+        this.loginService.usuariosActivos = this.usuariosActivos;
+
+        this.router.navigate(['/home']);
+      });
+
+      
+      
     })
     .catch(error => {
       this.error = true;
@@ -80,6 +94,22 @@ export class LoginComponent implements OnInit {
     this.usuario.contrasenia = 'asd123';
     
   }
+
+  //Metodo del componente que llama al metodo del servicio login al que me subscribo y me actualiza los usuarios registrados
+  private GetDatos(){
+     
+    this.loginService.getUsuarios().subscribe(usuarios => {this.usuariosRegistrados = usuarios});
+    this.loginService.getUsuariosActivos().subscribe(usuarios_act => this.usuariosActivos = usuarios_act);
+      
+  }
+
+  //Metodo para comparar y encontrar el usuario segun su mail (campo unico) y retornarlo con todos sus datos
+  private retornarDatosUsuario(){
+    
+    return this.usuariosRegistrados.find((u) => u.mail == this.usuario.mail);
+  }
+
+  
 
   
 

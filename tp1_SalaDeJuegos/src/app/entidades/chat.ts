@@ -1,4 +1,3 @@
-import { Usuario } from "./usuario";
 
 export class Chat {
     
@@ -6,14 +5,16 @@ export class Chat {
     texto:string;
     fecha:string;
     hora:string;
-    usuario:Usuario|undefined;
+    mailUsr:string|undefined;
+    color:string;
 
-    constructor(texto:string, fecha:string, hora:string, usuario:Usuario|undefined){
+    constructor(texto:string, fecha:string, hora:string, mailUsr:string|undefined){
        
         this.texto = texto;
         this.fecha = fecha;
         this.hora = hora
-        this.usuario = usuario;
+        this.mailUsr = mailUsr;
+        this.color = '';
 
     }
 

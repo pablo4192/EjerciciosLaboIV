@@ -3,6 +3,9 @@ export class Usuario {
     apellido:string = '';
     mail:string = '';
     contrasenia:string = '';
+    id:string = '';
+   
+   
 
     /* 
     public constructor(nombre:string, apellido:string, mail:string, contrasenia:string)
@@ -16,7 +19,10 @@ export class Usuario {
 
     public Mostrar()
     {
-        console.log(this.nombre + ", " + this.apellido + ", " + this.mail + ", " + this.contrasenia);
+        return this.nombre + ", " + this.apellido + ", " + this.mail + ", " + this.contrasenia;
     }
+
+    
+  
    
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, collectionData} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Chat } from '../entidades/chat';
-import { Usuario } from '../entidades/usuario';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,17 @@ export class ChatService {
     
   }
 
-  AgregarMsj(chat:Chat){                               
+  AgregarMsj(chat:Chat){    
+    
+    const chatObj = {
+      texto: chat.texto,
+      fecha: chat.fecha,
+      hora: chat.hora,
+      mailUsr: chat.mailUsr
+    }
+    
     const usrRef = collection(this.firestore, 'chat');
-    return addDoc(usrRef, chat);
+    return addDoc(usrRef, chatObj);
   }
 
   getMsjs(): Observable<Chat[]>{

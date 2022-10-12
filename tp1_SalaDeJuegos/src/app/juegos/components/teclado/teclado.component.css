@@ -1,0 +1,14 @@
+.container{
+    
+   
+    font-size: large;
+
+}
+
+input{
+    margin: 0 1px 0 1px;
+    width: 3em;
+    background-color: #aaa;
+    color: whitesmoke;
+    border: 1px solid grey;
+}

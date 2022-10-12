@@ -1,0 +1,42 @@
+.container{
+    background-color:rgb(237, 208, 170);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.col-8{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+    
+}
+
+#divInfoPalabra{
+    background-color: rgb(99, 219, 225);
+    
+}
+
+#divPalabra{
+    height: 30%;
+    font-size: 5em;
+    font-weight: bold;
+    letter-spacing: .3em;
+    background-color:blanchedalmond;
+    
+    
+}
+
+#divControles{
+    background-color: darksalmon;
+    height: 100px;
+}
+
+.col{
+    border: 1px solid black;
+    height: 100px;
+}
+
+

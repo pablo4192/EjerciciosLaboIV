@@ -1,0 +1,40 @@
+.row{
+    border: 4px solid darkorchid;
+    border-radius: 10px;
+    height: 250px;
+    margin: 5px;
+    width: 80vw;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+#divAhorcado{
+    background-image: url('./../../assets/img/ahorcado.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
+
+#divMayorMenor{
+    background-image: url('./../../assets/img/naipes.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+}
+
+#divPreguntados{
+    background-image: url('./../../assets/img/preguntados.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+}
+
+#divJuegoPropio{
+    background-image: url('./../../assets/img/juegoPropio.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+}

@@ -7,6 +7,8 @@ export class Chat {
     hora:string;
     mailUsr:string|undefined;
     color:string;
+    position:string;
+    left:string;
 
     constructor(texto:string, fecha:string, hora:string, mailUsr:string|undefined){
        
@@ -15,6 +17,8 @@ export class Chat {
         this.hora = hora
         this.mailUsr = mailUsr;
         this.color = '';
+        this.position = '';
+        this.left = '';
 
     }
 

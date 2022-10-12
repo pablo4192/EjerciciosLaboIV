@@ -7,14 +7,16 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { VistaPrincipalComponent } from './components/vista-principal/vista-principal.component';
 import {canActivate, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 import { ChatComponent } from './components/chat/chat.component';
+import { JuegosComponent } from './juegos/juegos.component';
 
 const routes: Routes = [
   {path: 'registro', component:RegistroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'quienSoy', component: QuienSoyComponent},
-  {path: 'home', component:HomeComponent , ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
+  {path: 'home', component:HomeComponent , ...canActivate(() => redirectUnauthorizedTo(['/registro']))}, //Hacer con guard, visto en clase
   {path: 'inicio', component:VistaPrincipalComponent},
-  {path: 'chat', component:ChatComponent},
+  {path: 'chat', component:ChatComponent, ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
+  { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) },  //Cargado con lazy loading (lo trae solo cuando lo llama) Hacer con guard, visto en clase
   {path: '**', component:VistaPrincipalComponent},
 
 ];

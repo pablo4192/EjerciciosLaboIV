@@ -1,14 +1,20 @@
 <div class="container-fluid row" id="divContenedorChat">
-    <div class="col-4" id="divAside">
-        <p>Usuarios conectados</p>
+    <div class="col-2" id="divAside">
+        <p>Usuarios conectados:</p>
         <div *ngFor="let usrAct of this.arrayUsuariosActivos">
             <p>{{usrAct.mail}}</p>
         </div>
     </div>
+    <div class="col-2" id="divDatosUser">
+        <p>Datos usuario activo</p>
+        <p>Nombre: {{usuarioActivo?.nombre}}</p>
+        <p>Apellido: {{usuarioActivo?.apellido}}</p>
+        <p>Usuario: {{usuarioActivo?.mail}}</p>
+    </div>
     <div class="col-8" id="divChat">
         <div *ngFor="let chat of this.chats">
-            <div class="container" id="mensaje">
-                <p [ngStyle]="{'background-color': chat.color}" id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p>
+            <div class="container" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
+                <p [ngStyle]="{'background-color': chat.color}" id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p> 
                 <p>{{chat.texto}}</p>
             </div>
         </div>
@@ -20,7 +26,7 @@
             <p id="pChat">Escribe algo...</p>
         </div>
         <div class="col-7" id="divTxtMsj">
-            <input type="text" [(ngModel)]="textoMsj">
+            <input type="text" [(ngModel)]="textoMsj" placeholder="Escribe tu mensaje">
         </div>
         <div class="col-1" id="divBtnEnviar">
             <button (click)="EnviarMsj()">Enviar</button>

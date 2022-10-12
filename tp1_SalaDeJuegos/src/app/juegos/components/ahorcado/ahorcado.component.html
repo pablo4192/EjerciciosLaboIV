@@ -1,0 +1,27 @@
+<div class="container" id="divAhorcado">
+    <div class="row">
+        <div class="col-4" >
+            <img src={{rutaImgAhorcado}} class="img-fluid" alt="ahorcado0.jpg">
+        </div>
+        <div class="col-8">
+            <p>Una ayuda no viene mal...</p>
+            <div *ngFor="let pista of this.pistas" id="divInfoPalabra">
+                <p>Pista: {{pista}}</p>
+            </div>
+            <div id="divPalabra">
+                <p>{{incognita}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="divControles">
+    <div class="row">
+        <div class="col">
+            <app-teclado (valorBoton)="controlarEventoTeclado($event)"></app-teclado>
+        </div>
+        <div *ngIf="flagBtnReiniciar" class="col">
+           <input type="button" value="Reiniciar" (click)="reiniciarJuego()">
+           <p>{{txtFinalPartida}}</p>
+        </div>
+    </div>
+</div>

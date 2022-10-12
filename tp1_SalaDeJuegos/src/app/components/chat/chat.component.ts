@@ -30,6 +30,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioActivo = this.loginService.usuario;
+    
     this.ObtenerMensajes();
     this.loginService.getUsuariosActivos().subscribe(data => this.arrayUsuariosActivos = data);
 
@@ -67,11 +68,15 @@ export class ChatComponent implements OnInit {
       this.chats.forEach((c) => {
         if(c.mailUsr == this.usuarioActivo?.mail)
         {
-          c.color = 'green';
+          c.color = 'green'; 
+          c.position = 'relative';
+          c.left = '500px';
+          
         }
         else
         {
           c.color = 'darkslateblue';
+          
         }
       });
       

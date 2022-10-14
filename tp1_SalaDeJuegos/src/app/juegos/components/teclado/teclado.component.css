@@ -6,9 +6,16 @@
 }
 
 input{
-    margin: 0 1px 0 1px;
+    margin: 3px;
     width: 3em;
-    background-color: #aaa;
-    color: whitesmoke;
-    border: 1px solid grey;
+    background-color: #ECEFF1 ;
+    color: black;
+    border: 3px solid white;
+    border-radius: 5px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+input:hover{
+    background-color: #FAFAFA;
 }

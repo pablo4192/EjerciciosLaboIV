@@ -1,42 +1,99 @@
 .container{
-    background-color:rgb(237, 208, 170);
+margin-top: 10px;
+}
+
+.container-fluid{
+    background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
     
 }
+
+.col-3{
+    background-color: #FAFAFA ;
+}
+
+
 
 .col-8{
     background-color: aliceblue;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
     padding: 0;
+    
     
 }
 
+#divDatosJugador{
+    background-color: #4FC3F7;
+    border: 2px solid white;
+    color:#F5F5F5 ;
+    font-weight: lighter;
+    padding: 10px;
+}
+
+#divDatosJugador>p{
+    width: fit-content;
+}
+
 #divInfoPalabra{
-    background-color: rgb(99, 219, 225);
+    height: 130px;
+    border: 2px solid white;
+    margin-top: 0;
+    padding: 10px;
+    background-color: #455A64 ;
+    color: white;
+}
+
+#divInfoPalabra>p{
+    width: fit-content;
     
 }
 
 #divPalabra{
-    height: 30%;
+    height: 120px;
     font-size: 5em;
     font-weight: bold;
     letter-spacing: .3em;
-    background-color:blanchedalmond;
-    
+    background-color: #FFFDE7;
+    border: 2px solid white;
+    margin: 5px 0 5px 0;
     
 }
 
 #divControles{
-    background-color: darksalmon;
-    height: 100px;
+    background-color: #8E44AD;
+    height: 140px;
+    padding: 10px;
 }
 
 .col{
-    border: 1px solid black;
+    
     height: 100px;
 }
+
+#divReiniciar>input{
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    font-weight: bold;
+    border: #E1BEE7 solid 3px;
+    border-radius: 10px;
+    background-color: #566573 ;
+    color: white;
+    
+}
+
+#divReiniciar>input:hover{
+    background-color: #F5F5F5;
+    color: orangered;
+}
+
+#divReiniciar>p{
+    margin: 10px;
+    font-size: x-large;
+    font-weight: lighter;
+    color: #FAFAFA;
+}
+
+
 
 

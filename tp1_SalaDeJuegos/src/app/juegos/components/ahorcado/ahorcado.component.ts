@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Palabra } from 'src/app/entidades/palabra';
+import { Usuario } from 'src/app/entidades/usuario';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -25,7 +27,11 @@ export class AhorcadoComponent implements OnInit {
     new Palabra('BIBLIOTECA', ['Grandes aventuras viviras o cosas utiles aprenderas', 'La tecnologia reemplazo este lugar'])
   ];
 
-  constructor() { }
+  usuarioActivo:Usuario|undefined;
+
+  constructor(private loginService:LoginService) {
+    this.usuarioActivo = loginService.usuario;
+  }
 
   ngOnInit(): void {
     this.escogerPalabra();

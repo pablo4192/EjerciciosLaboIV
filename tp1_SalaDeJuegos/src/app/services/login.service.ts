@@ -27,7 +27,8 @@ export class LoginService{
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       mail: usuario.mail,
-      contrasenia: usuario.contrasenia
+      contrasenia: usuario.contrasenia,
+      puntajeTotal: usuario.puntajeTotal
     };
 
     return createUserWithEmailAndPassword(this.auth, usr.mail, usr.contrasenia);

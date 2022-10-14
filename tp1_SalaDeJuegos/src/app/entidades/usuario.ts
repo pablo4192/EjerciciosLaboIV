@@ -4,6 +4,7 @@ export class Usuario {
     mail:string = '';
     contrasenia:string = '';
     id:string = '';
+    puntajeTotal:number = 0;
    
    
 
@@ -19,7 +20,7 @@ export class Usuario {
 
     public Mostrar()
     {
-        return this.nombre + ", " + this.apellido + ", " + this.mail + ", " + this.contrasenia;
+        console.log(this.nombre + ", " + this.apellido + ", " + this.mail + ", " + this.contrasenia);
     }
 
     

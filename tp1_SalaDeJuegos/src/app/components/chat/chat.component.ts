@@ -68,14 +68,14 @@ export class ChatComponent implements OnInit {
       this.chats.forEach((c) => {
         if(c.mailUsr == this.usuarioActivo?.mail)
         {
-          c.color = 'green'; 
+          c.color = '#48C9B0'; 
           c.position = 'relative';
           c.left = '500px';
           
         }
         else
         {
-          c.color = 'darkslateblue';
+          c.color = '#F9A825';
           
         }
       });

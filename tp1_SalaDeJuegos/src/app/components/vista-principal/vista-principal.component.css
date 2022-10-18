@@ -1,64 +1,80 @@
-/*
-body{
-    background-image: url("./../../../assets/img/fondo2.jpg");
-    
-    
-}
-*/
-.col{
-    height: 200px;
-    margin: 10px;
-}
+
+
+
 
 ul{
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
+    padding: 5px;
 }
 
-#subtitulo{
-    background-color: rgba(104, 128, 49, 0.5);
-   
+#vistaJuegos{
+    margin: 30px 0 5px 0;
+    height: 500px;
+    background-image: url("./../../../assets/img/fondo1.png");
+    display: flex;
+    flex-direction: column;
     
 }
 
+#subtitulo{
+    background-color: #455A64;
+    margin-top: 30px;
+    height: 150px;
+    padding: 0;
+    font-weight: lighter;
+}
+
 #subtitulo>h3{
-    color:aqua;
-    font-weight: bolder;
+    margin: 0;
+    padding: 10px;
+    color:white;
+    background-color: #4DD0E1;
+    height: 60px;
+    font-weight: bold;
 }
 
-
-
-img{
-    height: 200px;
-    width: 400px;
+.col{
+    position: relative;
+    top: 50px;
+    margin: 20px;
+    height: 100px;
+    
+    background-color: rgba(142, 36, 170,.9);   
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
+   
+    
+    
 }
 
-img:hover{
-    filter: drop-shadow(16px 16px 10px rgb(201, 198, 198));
-    transition: 1s;
-}
-
-h1{
-    background-color: rgb(4, 19, 32);
-    color: rgb(247, 238, 238);
+.col:hover{
+    background-color: #E91E63;
+    transition: 2s;
+    
 }
 
 a{
     text-decoration: none;
-    margin: 10px;
-    color: aliceblue;
-}
-
-nav{
-    background-color: darkslategray;
-    height: 30px;
-    border: 1px solid black;
+    color: white;
+    font-size: xx-large;
+    font-weight: lighter;
     
-
+    
 }
+
+
+
+
+
+
+
+
+
 
 
 

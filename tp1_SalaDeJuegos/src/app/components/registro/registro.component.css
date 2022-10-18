@@ -1,8 +1,25 @@
+.container-fluid{
+  background-image: url("./../../../assets/img/fondo1.png");
+  height: 600px;
+}
+
 .form-signin {
     max-width: 330px;
     padding: 15px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
+    background-color: rgba(93, 109, 126,.2);
+    position: relative;
+    top: 40px;
+  }
+
+  h1{
+    height: 50px;
+  font-size: xx-large;
+  
+  color: white;
+  background-color: rgba(93, 109, 126,.9);
+  border-radius: 5px;
   }
   
   .form-signin .form-floating:focus-within {

@@ -5,10 +5,10 @@
 }
 
 #divChat{
-    background-color: aliceblue;
+    background-color: #283747;
     height: 79vh;
     overflow-y: scroll;
-    border: 1px solid black;
+    border: 2px solid #FFFDE7;
     
 }
 
@@ -16,82 +16,74 @@
     padding: 0;
 }
 
-#divRow{
-    background-color: rgba(255, 165, 0, 0.9);;
-}
 
 
 input{
     width: 100%;
     border: 2px solid black;
+    padding-left: 5px;
     
     
 }
 
 #divTxtMsj{
-    padding: 0;
+    padding-left: 0;
 }
 
 #divBtnEnviar{
-    background-color: rgb(255, 165, 0);
-    border-radius: 10px;
+    background-color: #8E44AD;
+} 
+
+#divBtnEnviar:hover{
+    background-color: #CE93D8;
     
 }
 
-
 button{
-    
     background-color:transparent;
     border: none;
     color: white;
     font-style: italic;
-    
-   
 }
 
+
 #divAside{
-    background-color: rgb(255, 196, 0);
-    font-weight: bold;
-    font-style: italic;
+    background-color: #B2DFDB;
+    font-weight: lighter;
     
-    border: 2px solid yellow;
+    color: white;
+    border: 2px solid #FFFDE7;
 }
 
 #divDatosUser{
-    background-color:rgb(239, 243, 130);
-    border: 2px solid yellow;
-    font-style: italic;
+    background-color: #E1F5FE;
+    border: 2px solid #FFFDE7;
+    font-weight: lighter;
+    color: white;
 }
 
 #divBajoAside{
-    background-color: darkslategrey;
-    display: flex;
-    justify-content:center;
+    background-color: darkblue;
     
-   
 }
 
 #pChat{
-  
     color: white;
     font-style: italic;
 }
 
 #mensaje{
-    
-    border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
     width: fit-content;
     margin: 5px;
-    
-    
-    
+    background-color: #F2F3F4;
 }
 
 #mensaje>p{
     display: flex;
     padding: 0 20px 0 5px;
     
+    font-weight: bold;
 }
 
 
@@ -99,7 +91,7 @@ button{
 #pFecha{
     font-size: small;
     color: whitesmoke;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     width: 100%;
     
     

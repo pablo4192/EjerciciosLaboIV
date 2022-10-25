@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
 import { VistaPrincipalComponent } from './components/vista-principal/vista-principal.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -15,17 +14,18 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     QuienSoyComponent,
     VistaPrincipalComponent,
     RegistroComponent,
     NavComponent,
-    ChatComponent
+    ChatComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

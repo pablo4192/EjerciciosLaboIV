@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+    
+}
+
+.container-fluid{
+    margin-top: 10px;
+    height: 550px;
+
+    
+}
+
+img{
+    width: 15%;
+    height: 200px;
+    padding: 0;
+}
+
+#divMazo{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border: 1px violet solid;
+    
+}
+
+#divControles{
+    height: 100px;
+   
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background-image: url("./../../../../assets/img_mayor-menor/fondoFieltroverde.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+input{
+    width: 150px;
+    height: 50px;
+    border: 2px rgb(220, 220, 220) solid;
+    background: linear-gradient(black, rgb(200, 0, 0));
+    font-size: large;
+    font-weight: lighter;
+    color: white;
+}
+
+input:hover{
+    background: linear-gradient(black, rgb(250, 0, 0));
+    
+}
+
+#divCartas{
+    height: 250px;
+
+    background-image: url("./../../../../assets/img_mayor-menor/fondoFieltroverde.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+#imgCarta{
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    margin: 5px;
+}

@@ -6,7 +6,7 @@
 
 #divChat{
     background-color: #283747;
-    height: 79vh;
+    
     overflow-y: scroll;
     border: 2px solid #FFFDE7;
     
@@ -14,6 +14,9 @@
 
 #divContenedorChat{
     padding: 0;
+    width: 100%;
+    height: 500px;
+    
 }
 
 
@@ -50,17 +53,11 @@ button{
 #divAside{
     background-color: #B2DFDB;
     font-weight: lighter;
-    
     color: white;
     border: 2px solid #FFFDE7;
 }
 
-#divDatosUser{
-    background-color: #E1F5FE;
-    border: 2px solid #FFFDE7;
-    font-weight: lighter;
-    color: white;
-}
+
 
 #divBajoAside{
     background-color: darkblue;

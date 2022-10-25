@@ -1,30 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/entidades/usuario';
 
-import { LoginService } from 'src/app/services/login.service';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
-export class HomeComponent implements OnInit {
+export class LogoutComponent implements OnInit {
 
   usuarioActivo:Usuario|undefined;
 
-  constructor(
-    private loginService:LoginService,
-    private router:Router) { 
-
+  constructor(private loginService:LoginService, private router:Router) 
+    {
       this.usuarioActivo = new Usuario();
     }
 
   ngOnInit(): void {
+    
     this.usuarioActivo = this.loginService.usuario;
   }
 
-  public Logout(){
+  logout(){
     this.loginService.Logout()
     .then(() => {
       
@@ -38,7 +36,5 @@ export class HomeComponent implements OnInit {
     })
     .catch(error => console.log(error));
   }
-
- 
 
 }

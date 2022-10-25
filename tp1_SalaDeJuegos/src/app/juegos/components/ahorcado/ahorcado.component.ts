@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Palabra } from 'src/app/entidades/palabra';
 import { Usuario } from 'src/app/entidades/usuario';
@@ -18,6 +19,8 @@ export class AhorcadoComponent implements OnInit {
   flagBtnReiniciar = false;
   txtFinalPartida:string = '';
   pistas:string[] = [];
+  timer:number = 60;
+  idInterval:any;
 
   palabras:string[] = ['SOMBRILLA', 'AUTOPISTA', 'BIBLIOTECA', 'ABROCHADORA', 'ESCALERA'];
   
@@ -35,6 +38,24 @@ export class AhorcadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.escogerPalabra();
+    
+  }
+
+  ejecutarTimer(){
+   
+    this.idInterval = setInterval(() => {
+    if(this.timer > 0)
+    {
+      this.timer--;
+    }
+    else
+    {
+      this.avisarDerrota();
+      clearInterval(this.idInterval);
+    }
+
+   }, 1000);
+   
   }
 
   escogerPalabra(){
@@ -49,6 +70,7 @@ export class AhorcadoComponent implements OnInit {
       this.incognita += '-';
     }
 
+    this.ejecutarTimer();
   }
 
   numeroRandom(min:number, max:number) {
@@ -135,15 +157,18 @@ export class AhorcadoComponent implements OnInit {
     this.escogerPalabra();
     this.intentos = 6;
     this.flagBtnReiniciar = false;
+    this.timer = 60;
 
   }
 
   avisarVictoria(){
+    clearInterval(this.idInterval);
     this.txtFinalPartida = 'GANASTE BEBOTE!!!'
     this.flagBtnReiniciar = true;
   }
 
   avisarDerrota(){
+    clearInterval(this.idInterval);
     this.txtFinalPartida = 'PERDISTE REY, INTENTA DE NUEVO!!!'
     this.flagBtnReiniciar = true;
   }

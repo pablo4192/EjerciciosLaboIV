@@ -109,7 +109,7 @@ export class RegistroComponent implements OnInit{
        //Asigno los usuarios activos a variable en service para ser visible
        this.loginService.usuariosActivos = this.usuariosActivos;
 
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/juegos"]);
     })
     .catch(error => console.log(error));
   }

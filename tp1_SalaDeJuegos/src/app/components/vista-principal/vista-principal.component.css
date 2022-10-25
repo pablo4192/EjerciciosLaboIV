@@ -6,21 +6,22 @@ ul{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.5));
     color: white;
     padding: 5px;
+    font-size: large;
 }
 
 #vistaJuegos{
     margin: 30px 0 5px 0;
-    height: 500px;
+    height: 530px;
     background-image: url("./../../../assets/img/fondo1.png");
     display: flex;
     flex-direction: column;
     
 }
 
-#subtitulo{
-    background-color: #455A64;
+#subtitulo{ 
     margin-top: 30px;
     height: 150px;
     padding: 0;
@@ -31,7 +32,8 @@ ul{
     margin: 0;
     padding: 10px;
     color:white;
-    background-color: #4DD0E1;
+    background: linear-gradient(rgb(77, 208, 225), rgba(77, 208, 225, .8));
+    border-radius: 10px 10px 0 0;
     height: 60px;
     font-weight: bold;
 }
@@ -41,8 +43,7 @@ ul{
     top: 50px;
     margin: 20px;
     height: 100px;
-    
-    background-color: rgba(142, 36, 170,.9);   
+    background: linear-gradient(rgb(142, 36, 170), rgba(142, 36, 170, .4));   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,9 +63,13 @@ a{
     text-decoration: none;
     color: white;
     font-size: xx-large;
-    font-weight: lighter;
-    
-    
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+a:hover{
+    text-shadow: 5px 5px purple;
+    transition: 1s;
 }
 
 

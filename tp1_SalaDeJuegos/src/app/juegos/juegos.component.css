@@ -1,40 +1,77 @@
-.row{
-    border: 4px solid darkorchid;
-    border-radius: 10px;
-    height: 250px;
-    margin: 5px;
-    width: 80vw;
+*{
+    box-sizing: border-box;
     
 }
 
-a{
-    text-decoration: none;
+.container{
+    padding: 0;
+    border: 2px black solid;
+    margin: 10px 0 5px 0;
+    transition: 1s;
+}
+
+.container:hover{
+    transform: translate(20px,0);
+    transition: 1s;
+}
+
+#imgMayorMenor{
+    width: 90%;
+    height: 200px;
+}
+
+#imgAhorcado{
+    width: 100%;
+    height: 200px;
+}
+
+#imgPreguntados{
+    width: 90%;
+    height: 200px;
 }
 
 #divAhorcado{
-    background-image: url('./../../assets/img/ahorcado.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    
+    background-image: url("./../../assets/img_ahorcado/fondoPizarra.webp");
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 #divMayorMenor{
-    background-image: url('./../../assets/img/naipes.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
    
 }
 
 #divPreguntados{
-    background-image: url('./../../assets/img/preguntados.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-   
+    color: black;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 #divJuegoPropio{
-    background-image: url('./../../assets/img/juegoPropio.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-   
+    color: black;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.col-8{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+

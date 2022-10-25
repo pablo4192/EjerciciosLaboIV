@@ -5,13 +5,7 @@
             <p>{{usrAct.mail}}</p>
         </div>
     </div> 
-    <div class="col-2" id="divDatosUser">
-        <p>Datos usuario activo</p>
-        <p>Nombre: {{usuarioActivo?.nombre}}</p>
-        <p>Apellido: {{usuarioActivo?.apellido}}</p>
-        <p>Usuario: {{usuarioActivo?.mail}}</p>
-    </div>
-    <div class="col-8" id="divChat">
+    <div class="col-10" id="divChat">
         <div *ngFor="let chat of this.chats">
             <div class="container" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
                 <p [ngStyle]="{'background-color': chat.color}" id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p> 
@@ -22,10 +16,10 @@
 </div>
 <div class="container-fluid">
     <div class="container-fluid row" id="divRow">
-        <div class="col-4" id="divBajoAside">
+        <div class="col-2" id="divBajoAside">
             <p id="pChat">Escribe algo...</p>
         </div>
-        <div class="col-7" id="divTxtMsj">
+        <div class="col-9" id="divTxtMsj">
             <input type="text" [(ngModel)]="textoMsj" placeholder="Escribe tu mensaje">
         </div>
         <div class="col-1" id="divBtnEnviar">

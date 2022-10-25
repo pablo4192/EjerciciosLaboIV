@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         //Asigno los usuarios activos a variable en service para ser visible una vez que el metodo de login service agrego a la base el usuario activo
         this.loginService.usuariosActivos = this.usuariosActivos;
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/juegos']);
       });
 
       

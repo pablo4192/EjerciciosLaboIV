@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/entidades/usuario';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -7,71 +9,143 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MayorMenorComponent implements OnInit {
 
-  //Cambiar esta bizarreada
-  arrayCartas:string[] = [
-    "./../../../../assets/img_mayor-menor/oro/1.png",
-    "./../../../../assets/img_mayor-menor/oro/2.png",
-    "./../../../../assets/img_mayor-menor/oro/3.png",
-    "./../../../../assets/img_mayor-menor/oro/4.png",
-    "./../../../../assets/img_mayor-menor/oro/5.png",
-    "./../../../../assets/img_mayor-menor/oro/6.png",
-    "./../../../../assets/img_mayor-menor/oro/7.png",
-    "./../../../../assets/img_mayor-menor/oro/10.png",
-    "./../../../../assets/img_mayor-menor/oro/11.png",
-    "./../../../../assets/img_mayor-menor/oro/12.png",
+  puntaje:number = 0;
+  numeroAnterior: number = 0;
+  paloAnterior:string = "";
 
-    "./../../../../assets/img_mayor-menor/espada/1.png",
-    "./../../../../assets/img_mayor-menor/espada/2.png",
-    "./../../../../assets/img_mayor-menor/espada/3.png",
-    "./../../../../assets/img_mayor-menor/espada/4.png",
-    "./../../../../assets/img_mayor-menor/espada/5.png",
-    "./../../../../assets/img_mayor-menor/espada/6.png",
-    "./../../../../assets/img_mayor-menor/espada/7.png",
-    "./../../../../assets/img_mayor-menor/espada/10.png",
-    "./../../../../assets/img_mayor-menor/espada/11.png",
-    "./../../../../assets/img_mayor-menor/espada/12.png",
+  flagDerrota = false;
 
-    "./../../../../assets/img_mayor-menor/basto/1.png",
-    "./../../../../assets/img_mayor-menor/basto/2.png",
-    "./../../../../assets/img_mayor-menor/basto/3.png",
-    "./../../../../assets/img_mayor-menor/basto/4.png",
-    "./../../../../assets/img_mayor-menor/basto/5.png",
-    "./../../../../assets/img_mayor-menor/basto/6.png",
-    "./../../../../assets/img_mayor-menor/basto/7.png",
-    "./../../../../assets/img_mayor-menor/basto/10.png",
-    "./../../../../assets/img_mayor-menor/basto/11.png",
-    "./../../../../assets/img_mayor-menor/basto/12.png",
+  arrayPalos:string[] = [
+    "oro", "espada", "basto", "copa"
+  ];
 
-    "./../../../../assets/img_mayor-menor/copa/1.png",
-    "./../../../../assets/img_mayor-menor/copa/2.png",
-    "./../../../../assets/img_mayor-menor/copa/3.png",
-    "./../../../../assets/img_mayor-menor/copa/4.png",
-    "./../../../../assets/img_mayor-menor/copa/5.png",
-    "./../../../../assets/img_mayor-menor/copa/6.png",
-    "./../../../../assets/img_mayor-menor/copa/7.png",
-    "./../../../../assets/img_mayor-menor/copa/10.png",
-    "./../../../../assets/img_mayor-menor/copa/11.png",
-    "./../../../../assets/img_mayor-menor/copa/12.png",
+  arrayNumeros:string[] = [
+    "1", "2", "3", "4", "5", "6", "7", "10", "11", "12"
   ];
 
   cartas:string[] = [];
 
-  constructor() {
-    
+  constructor(private loginService:LoginService) {
+
    }
 
   ngOnInit(): void {
+    //Doy la primer carta al entrar al juego
+    this.darCarta("");
+    
   }
 
-  darCarta(value:string){
-    let i = this.numeroRandom(0,36);
-    
-    this.cartas.push(this.arrayCartas[i]);
+  darCarta(seleccionUsr:string){
 
+    if(!this.flagDerrota) //Todo esto pasa mientras el jugador este jugando, si perdio tiene que reiniciar
+    {
+      let ruta:string;
+      let numero:number;
+      let palo:string;
+
+      if(this.cartas.length < 40)
+      {
+        do{
+          let iPalo = this.numeroRandom(0,3);
+          let iNumero = this.numeroRandom(0,9);
+    
+          palo = this.arrayPalos[iPalo];
+          numero = parseInt(this.arrayNumeros[iNumero]);
+
+          ruta = "./../../../../assets/img_mayor-menor/" + palo + "/" + numero + ".png";
+          
+        }while(this.cartas.includes(ruta));
+
+        //Me fijo si el usuario acerto
+        this.verificarCarta(seleccionUsr, numero);
+        
+        //Piso el numero anterior con el nuevo para proxima comparacion
+        this.numeroAnterior = numero;
+
+        //Agrego la carta al array a mostrar
+        this.cartas.push(ruta);
+      }
+    }
+  }
+
+  private verificarCarta(seleccionUsr:string , numero:number){
+    
+    console.log(this.numeroAnterior);
+    console.log(numero);
+    console.log("--------------");
+
+    switch(seleccionUsr)
+    {
+      case "Mayor":
+        if(numero > this.numeroAnterior)
+        {
+          this.puntaje++;
+          
+          if(this.cartas.length == 40)
+          {
+            this.avisarVictoria();
+          }
+        }
+        else if(numero < this.numeroAnterior)
+        {
+          this.avisarDerrota();
+        }
+        break;
+        case "Menor":
+          if(numero < this.numeroAnterior)
+          {
+            this.puntaje++;
+
+            if(this.cartas.length == 40)
+            {
+              this.avisarVictoria();
+            }
+          }
+          else if(numero > this.numeroAnterior)
+          {
+            this.avisarDerrota();
+          }
+          break;
+          default:
+            break;
+    }
+  }
+
+  avisarDerrota(){
+    this.flagDerrota = true;
+  }
+
+  avisarVictoria(){
+    //Sumar 100 puntos extras por llegar al final habiendo adivinado todas las cartas
+     //Que aparesca un div preguntando si quiere reiniciar
+    //En caso de que si reiniciar valores de numAnterior, paloAnterior, cartas, puntaje y dar carta
+    //En caso de que no redirigir a juegos
   }
 
   reiniciar(){
     this.cartas.splice(0);
+    this.numeroAnterior = 0;
+    this.paloAnterior = "";
+    this.flagDerrota = false;
+
+    this.darCarta("");
+    
+  }
+
+  retirarse(){
+
+    //Sumar el puntaje obtenido en este juego al puntaje general del usuario
+    if(this.loginService.usuario != null)
+    {
+      this.loginService.usuario.puntaje_acumulado += this.puntaje;
+      //Actualizarlo en la base de datos
+    }
+
+
+    
+    //Que aparesca un div preguntando si quiere reiniciar
+    //En caso de que si reiniciar valores de numAnterior, paloAnterior, cartas, puntaje y dar carta
+    //En caso de que no redirigir a juegos
   }
 
   numeroRandom(min:number, max:number) {

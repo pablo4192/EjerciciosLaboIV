@@ -4,7 +4,7 @@ export class Usuario {
     mail:string = '';
     contrasenia:string = '';
     id:string = '';
-    puntajeTotal:number = 0;
+    puntaje_acumulado:number = 0;
    
    
 

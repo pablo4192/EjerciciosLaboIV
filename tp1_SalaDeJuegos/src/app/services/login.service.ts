@@ -24,11 +24,8 @@ export class LoginService{
   Registro(usuario:Usuario){
     
     const usr = {
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
       mail: usuario.mail,
       contrasenia: usuario.contrasenia,
-      puntajeTotal: usuario.puntajeTotal
     };
 
     return createUserWithEmailAndPassword(this.auth, usr.mail, usr.contrasenia);
@@ -63,7 +60,8 @@ export class LoginService{
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       mail: usuario.mail,
-      contrasenia: usuario.contrasenia
+      contrasenia: usuario.contrasenia,
+      puntaje_acumulado: 0
     };
     
     const usrRef = collection(this.firestore, 'usuarios');

@@ -1,13 +1,18 @@
 <div class="container-fluid">
     <div class="row" id="divMazo">
-        <img class="img-fluid" src="./../../../../assets/img_mayor-menor/mazoCartas.webp" alt="mazoCartas">
+        <p>Puntaje: {{puntaje}}</p>
+        <div *ngIf="flagDerrota" id="divDerrota">
+            <p>Perdiste</p>
+            <input type="button" value="Reiniciar" (click)="reiniciar()">
+        </div>
     </div>
     <div class="row" id="divControles">
         <input type="button" value="Mayor" (click)="darCarta('Mayor')">
         <input type="button" value="Menor" (click)="darCarta('Menor')">
-        <input type="button" value="Retirarse" (click)="reiniciar()">
+        <input type="button" value="Retirarse" (click)="retirarse()">
     </div>
     <div class="row" id="divCartas">
         <img *ngFor="let card of cartas" src="{{card}}" alt="imgCarta" id="imgCarta">
     </div>
 </div>
+

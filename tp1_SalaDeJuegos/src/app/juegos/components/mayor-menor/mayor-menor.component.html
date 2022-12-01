@@ -5,6 +5,10 @@
             <p>Perdiste</p>
             <input type="button" value="Reiniciar" (click)="reiniciar()">
         </div>
+        <div *ngIf="flagFinJuego" id="divDerrota">
+            <p>Cambiar esto por un Modal</p>
+            <input type="button" value="Reiniciar" (click)="reiniciar()">
+        </div>
     </div>
     <div class="row" id="divControles">
         <input type="button" value="Mayor" (click)="darCarta('Mayor')">

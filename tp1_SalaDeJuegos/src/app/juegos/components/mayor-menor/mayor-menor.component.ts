@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/entidades/usuario';
+import { takeUntil } from 'rxjs';
+import { FirestoreService } from 'src/app/services/firestore.service';
+
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -14,6 +16,7 @@ export class MayorMenorComponent implements OnInit {
   paloAnterior:string = "";
 
   flagDerrota = false;
+  flagFinJuego = false;
 
   arrayPalos:string[] = [
     "oro", "espada", "basto", "copa"
@@ -25,12 +28,13 @@ export class MayorMenorComponent implements OnInit {
 
   cartas:string[] = [];
 
-  constructor(private loginService:LoginService) {
+  constructor(private loginService:LoginService,
+              private firestoreService:FirestoreService) {
 
    }
 
   ngOnInit(): void {
-    //Doy la primer carta al entrar al juego
+   
     this.darCarta("");
     
   }
@@ -70,10 +74,6 @@ export class MayorMenorComponent implements OnInit {
 
   private verificarCarta(seleccionUsr:string , numero:number){
     
-    console.log(this.numeroAnterior);
-    console.log(numero);
-    console.log("--------------");
-
     switch(seleccionUsr)
     {
       case "Mayor":
@@ -117,6 +117,14 @@ export class MayorMenorComponent implements OnInit {
 
   avisarVictoria(){
     //Sumar 100 puntos extras por llegar al final habiendo adivinado todas las cartas
+    if(this.loginService.usuario != null && !this.flagDerrota)
+    {
+      this.loginService.usuario.puntaje_acumulado += 100;
+      this.firestoreService.updateScoreUsr(this.loginService.usuario);
+
+      this.flagFinJuego = true; //HACER UN MODAL QUE PREGUNTE SI QUIERE REINICIAR EL JUEGO O SALIR
+    }
+
      //Que aparesca un div preguntando si quiere reiniciar
     //En caso de que si reiniciar valores de numAnterior, paloAnterior, cartas, puntaje y dar carta
     //En caso de que no redirigir a juegos
@@ -127,6 +135,8 @@ export class MayorMenorComponent implements OnInit {
     this.numeroAnterior = 0;
     this.paloAnterior = "";
     this.flagDerrota = false;
+    this.flagFinJuego = false;
+    this.puntaje = 0;
 
     this.darCarta("");
     
@@ -135,10 +145,13 @@ export class MayorMenorComponent implements OnInit {
   retirarse(){
 
     //Sumar el puntaje obtenido en este juego al puntaje general del usuario
-    if(this.loginService.usuario != null)
+    if(this.loginService.usuario != null && !this.flagDerrota && !this.flagFinJuego)
     {
       this.loginService.usuario.puntaje_acumulado += this.puntaje;
-      //Actualizarlo en la base de datos
+      
+      this.firestoreService.updateScoreUsr(this.loginService.usuario);
+      
+      this.flagFinJuego = true; //HACER UN MODAL QUE PREGUNTE SI QUIERE REINICIAR EL JUEGO O SALIR
     }
 
 

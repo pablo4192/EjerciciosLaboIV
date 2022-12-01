@@ -17,9 +17,6 @@ export class RegistroComponent implements OnInit{
   usuario:Usuario;
   verContrasenia:string = '';
   
-  usuariosRegistrados: Usuario[]; 
-  usuariosActivos:Usuario[];
-
   noExiste:boolean = false;
   existe:boolean = false;
   datosIncompletos:boolean = false;
@@ -30,16 +27,11 @@ export class RegistroComponent implements OnInit{
     private loginService:LoginService,
     private router:Router)  //Inyeccion de dependencias
   {
-    this.usuariosRegistrados = [];
-    this.usuariosActivos = [];
     this.usuario = new Usuario();
   } 
 
   ngOnInit(): void {
       this.GetDatos();
-      
-    
-   
   }
 
   private ReiniciarVariables(){
@@ -61,7 +53,7 @@ export class RegistroComponent implements OnInit{
     {
         this.ReiniciarVariables();
 
-        this.usuariosRegistrados.forEach((u) => {
+        this.loginService.usuariosRegistrados.forEach((u) => {
           if(u.mail == this.usuario.mail || u.contrasenia == this.usuario.contrasenia)
           {
             this.existe = true;
@@ -90,35 +82,35 @@ export class RegistroComponent implements OnInit{
   private async GuardarUsuario(){
 
     this.loginService.Registro(this.usuario)  //Uso Auth de firebase
-    .then(response => {
-      console.log(response);
+    .then(() => {
       
-      //CREACION DE USUARIO ACTIVO, REGISTRADO
-      this.loginService.usuario = this.usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
-      this.loginService.usuario.nombre = this.usuario.nombre;
-      this.loginService.usuario.apellido = this.usuario.apellido;
+      //Guarda en firestore datos del usuario registrado
+      this.loginService.addUsuario(this.usuario); 
       
-
-      this.loginService.addUsuario(this.usuario); //Guarda en firestore datos del usuario registrado
-
-      this.loginService.GuardarLogUsuario(this.usuario); //Guardo el log del usuario registrado
+      //Guardo el log del usuario registrado
+      this.loginService.GuardarLogUsuario(this.usuario); 
 
       //Guardo en la base los usuarios activos
       this.loginService.agregarUsuarioActivo(this.usuario);
 
-       //Asigno los usuarios activos a variable en service para ser visible
-       this.loginService.usuariosActivos = this.usuariosActivos;
-
       this.router.navigate(["/juegos"]);
+     
     })
     .catch(error => console.log(error));
+    
   }
 
   private GetDatos(){
      
-    this.loginService.getUsuarios().subscribe(usuarios => {this.usuariosRegistrados = usuarios});
-    this.loginService.getUsuariosActivos().subscribe(usuarios_act => this.usuariosActivos = usuarios_act);
+    this.loginService.getUsuarios().subscribe(usuarios => {
+      this.loginService.usuariosRegistrados = usuarios;
+      this.loginService.usuario = this.loginService.retornarDatosUsuario(this.usuario);
+    });
+
+    this.loginService.getUsuariosActivos().subscribe(usuarios_act => this.loginService.usuariosActivos = usuarios_act);
   }
+
+ 
 
   
 

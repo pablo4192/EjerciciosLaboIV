@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
 import { Firestore, collection, addDoc,collectionData, doc, deleteDoc} from '@angular/fire/firestore';
 
@@ -12,11 +12,13 @@ export class LoginService{
 
   usuario:Usuario|undefined;
   usuariosActivos:Usuario[];
+  usuariosRegistrados:Usuario[];
   
 
   constructor(private auth:Auth, private firestore:Firestore) {
     this.usuario = new Usuario();
     this.usuariosActivos = [];
+    this.usuariosRegistrados = [];
    }
   
  
@@ -28,12 +30,18 @@ export class LoginService{
       contrasenia: usuario.contrasenia,
     };
 
+     //CREACION DE USUARIO ACTIVO, REGISTRADO
+     this.usuario = usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
+     this.usuario.nombre = usuario.nombre;
+     this.usuario.apellido = usuario.apellido;
+
+     
+
     return createUserWithEmailAndPassword(this.auth, usr.mail, usr.contrasenia);
   }
 
   Login(usuario:Usuario){
 
-    
     return signInWithEmailAndPassword(this.auth, usuario.mail, usuario.contrasenia);
   }
 
@@ -81,8 +89,8 @@ export class LoginService{
 
   eliminarRegistroUsrActivo(usuario:Usuario|undefined){
 
-      const ref = doc(this.firestore, 'usuarios_activos/' + usuario?.id);
-      return deleteDoc(ref);
+    const ref = doc(this.firestore, 'usuarios_activos/' + usuario?.id);
+    return deleteDoc(ref);
         
   }
 
@@ -109,6 +117,9 @@ export class LoginService{
   }
 
 
-
+  retornarDatosUsuario(usuario:Usuario){
+    
+    return this.usuariosRegistrados.find((u) => u.mail == usuario.mail); //Retorno usuario con id de firebase
+  }
 
 }

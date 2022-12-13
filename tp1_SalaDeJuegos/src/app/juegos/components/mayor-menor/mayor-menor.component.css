@@ -20,11 +20,11 @@ img{
     height: 200px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     color: white;
     background-image: url("./../../../../assets/img_mayor-menor/fondoFieltroverde.jpg");
     
 }
+
 
 #divControles{
     height: 100px;
@@ -66,11 +66,4 @@ input:hover{
     width: 150px;
     height: 200px;
     margin: 5px;
-}
-
-#divDerrota{
-    background-color: rgb(229, 229, 154);
-    border: 1px solid black;
-    width: 600px;
-    height: 100px;
 }

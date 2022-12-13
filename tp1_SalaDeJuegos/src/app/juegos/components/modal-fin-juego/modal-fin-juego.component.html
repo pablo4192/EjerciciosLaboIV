@@ -1,0 +1,12 @@
+<dialog #divDialog>
+  <div id="close" (click)="cancelar()">X</div>
+    <div class="text">
+      <h2>Jugamos otra partida?</h2>
+      <p>El puntaje obtenido hasta el momento se sumara a tu puntaje acumulado.</p>
+      <p>Para cancelar y seguir jugando la misma partida presiona la X en la esquina superior derecha.</p>
+    </div>
+    <div class="buttons">
+      <input type="button" value="Salir" (click)="salir()">
+      <input type="button" value="Nueva partida" (click)="reiniciar()"> 
+    </div>
+</dialog>

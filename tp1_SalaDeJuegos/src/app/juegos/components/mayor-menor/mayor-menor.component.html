@@ -5,10 +5,7 @@
             <p>Perdiste</p>
             <input type="button" value="Reiniciar" (click)="reiniciar()">
         </div>
-        <div *ngIf="flagFinJuego" id="divDerrota">
-            <p>Cambiar esto por un Modal</p>
-            <input type="button" value="Reiniciar" (click)="reiniciar()">
-        </div>
+        <app-modal-fin-juego *ngIf="flagFinJuego" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)" (cambiarFlag)="eventoCancelarModal($event)" id="modal"></app-modal-fin-juego>
     </div>
     <div class="row" id="divControles">
         <input type="button" value="Mayor" (click)="darCarta('Mayor')">
@@ -17,6 +14,8 @@
     </div>
     <div class="row" id="divCartas">
         <img *ngFor="let card of cartas" src="{{card}}" alt="imgCarta" id="imgCarta">
+   
+
     </div>
 </div>
 

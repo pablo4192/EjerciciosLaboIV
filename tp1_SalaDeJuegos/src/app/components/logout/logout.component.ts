@@ -10,16 +10,13 @@ import { Usuario } from 'src/app/entidades/usuario';
 })
 export class LogoutComponent implements OnInit {
 
-  usuarioActivo:Usuario|undefined;
-
-  constructor(private loginService:LoginService, private router:Router) 
-    {
-      this.usuarioActivo = new Usuario();
-    }
+  constructor(public loginService:LoginService, private router:Router) 
+  {
+      
+  }
 
   ngOnInit(): void {
     
-    this.usuarioActivo = this.loginService.usuario;
   }
 
   logout(){
@@ -27,7 +24,7 @@ export class LogoutComponent implements OnInit {
     .then(() => {
       
       //Consigo datos desde la base, que incluye el id generado por firebase para asi eliminar el registro
-      let usuariosAEliminar = this.loginService.usuariosActivos.filter((u) => u.mail == this.usuarioActivo?.mail);
+      let usuariosAEliminar = this.loginService.usuariosActivos.filter((u) => u.mail == this.loginService.usuario?.mail);
   
       //Array con todas las coincidencias de mail, si lo hago con find me elimina la primer coincidencia solamente. 
       //Al actualizar la pagina tengo que loguearme nuevamente y el usuario_activo logueado anteriormente no se elimina

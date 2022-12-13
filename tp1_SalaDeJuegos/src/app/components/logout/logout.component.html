@@ -1,10 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-10">
-            <p><em>Usuario en sesion: </em>{{usuarioActivo?.mail}}</p>
-            <p>Otro dato: pepepepe</p>
-            <p>Otro dato: pepepepe</p>
-            <p>Otro dato: pepepep</p>
+            <p><em>Usuario en sesion: </em>{{loginService.usuario?.mail}}</p>
+            <p>Nombre: {{loginService.usuario?.nombre}}</p>
+            <p>Puntaje acumulado: {{loginService.usuario?.puntaje_acumulado}}</p>
         </div>
         <div class="col-2" id="divLogout">
             <input type="button" value="Logout" (click)="logout()">

@@ -7,6 +7,7 @@ import { AhorcadoComponent } from './components/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
 import { TecladoComponent } from './components/teclado/teclado.component';
+import { ModalFinJuegoComponent } from './components/modal-fin-juego/modal-fin-juego.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TecladoComponent } from './components/teclado/teclado.component';
     AhorcadoComponent,
     MayorMenorComponent,
     PreguntadosComponent,
-    TecladoComponent
+    TecladoComponent,
+    ModalFinJuegoComponent
   ],
   imports: [
     CommonModule,

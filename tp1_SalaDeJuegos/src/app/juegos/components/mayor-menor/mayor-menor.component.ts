@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 import { LoginService } from 'src/app/services/login.service';
+
 
 @Component({
   selector: 'app-mayor-menor',
@@ -37,6 +38,15 @@ export class MayorMenorComponent implements OnInit {
    
     this.darCarta("");
     
+  }
+
+  //Capturo el evento del componente modal para reiniciar el juego
+  eventoReiniciarModal($event:any){
+    this.reiniciar();
+  }
+
+  eventoCancelarModal($event:any){
+    this.flagFinJuego = $event;
   }
 
   darCarta(seleccionUsr:string){
@@ -122,12 +132,8 @@ export class MayorMenorComponent implements OnInit {
       this.loginService.usuario.puntaje_acumulado += 100;
       this.firestoreService.updateScoreUsr(this.loginService.usuario);
 
-      this.flagFinJuego = true; //HACER UN MODAL QUE PREGUNTE SI QUIERE REINICIAR EL JUEGO O SALIR
+      this.flagFinJuego = true; //Utilizar otra flag para abrir otro modal para la victoria
     }
-
-     //Que aparesca un div preguntando si quiere reiniciar
-    //En caso de que si reiniciar valores de numAnterior, paloAnterior, cartas, puntaje y dar carta
-    //En caso de que no redirigir a juegos
   }
 
   reiniciar(){
@@ -142,23 +148,12 @@ export class MayorMenorComponent implements OnInit {
     
   }
 
-  retirarse(){
+  retirarse(){ 
 
-    //Sumar el puntaje obtenido en este juego al puntaje general del usuario
-    if(this.loginService.usuario != null && !this.flagDerrota && !this.flagFinJuego)
+    if(this.loginService.usuario != null && !this.flagDerrota && !this.flagFinJuego) 
     {
-      this.loginService.usuario.puntaje_acumulado += this.puntaje;
-      
-      this.firestoreService.updateScoreUsr(this.loginService.usuario);
-      
-      this.flagFinJuego = true; //HACER UN MODAL QUE PREGUNTE SI QUIERE REINICIAR EL JUEGO O SALIR
+      this.flagFinJuego = true; 
     }
-
-
-    
-    //Que aparesca un div preguntando si quiere reiniciar
-    //En caso de que si reiniciar valores de numAnterior, paloAnterior, cartas, puntaje y dar carta
-    //En caso de que no redirigir a juegos
   }
 
   numeroRandom(min:number, max:number) {

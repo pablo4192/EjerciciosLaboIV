@@ -2,16 +2,12 @@
     box-sizing: border-box;
 }
 
-.divModal{
-    width: 600px;
-    height: 400px;
-}
 
 dialog{
+
     width: 500px;
     height: 250px;
-    top: 35%;
-    left: 36%;
+    margin: auto;
     border: none;
     border-radius: 7px;
     position: relative;
@@ -20,7 +16,7 @@ dialog{
 }
 
 dialog::backdrop{
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .4);
 }
 
 #close{
@@ -76,3 +72,18 @@ input{
     color: white;
     font-weight: bold;
 }
+
+#divImagen{
+    position: absolute;
+    bottom: -120px;
+    left: 25%;
+    
+    
+ }
+ 
+ img{
+     width: 240px;
+     height: 130px;
+     border: 2px solid white;
+     border-radius: 7px;
+ }

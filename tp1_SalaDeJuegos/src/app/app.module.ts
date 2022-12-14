@@ -16,6 +16,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

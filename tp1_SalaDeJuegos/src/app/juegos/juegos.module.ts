@@ -8,6 +8,8 @@ import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.compon
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
 import { TecladoComponent } from './components/teclado/teclado.component';
 import { ModalFinJuegoComponent } from './components/modal-fin-juego/modal-fin-juego.component';
+import { ModalDerrotaComponent } from './components/modal-derrota/modal-derrota.component';
+import { ModalVictoriaComponent } from './components/modal-victoria/modal-victoria.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ModalFinJuegoComponent } from './components/modal-fin-juego/modal-fin-j
     MayorMenorComponent,
     PreguntadosComponent,
     TecladoComponent,
-    ModalFinJuegoComponent
+    ModalFinJuegoComponent,
+    ModalDerrotaComponent,
+    ModalVictoriaComponent
   ],
   imports: [
     CommonModule,

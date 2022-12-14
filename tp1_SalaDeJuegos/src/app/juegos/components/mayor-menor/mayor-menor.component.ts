@@ -16,6 +16,8 @@ export class MayorMenorComponent implements OnInit {
   numeroAnterior: number = 0;
   paloAnterior:string = "";
 
+
+  flagVictoria = false;
   flagDerrota = false;
   flagFinJuego = false;
 
@@ -126,13 +128,11 @@ export class MayorMenorComponent implements OnInit {
   }
 
   avisarVictoria(){
-    //Sumar 100 puntos extras por llegar al final habiendo adivinado todas las cartas
-    if(this.loginService.usuario != null && !this.flagDerrota)
+   
+    if(this.loginService.usuario != null && !this.flagDerrota && !this.flagFinJuego)
     {
-      this.loginService.usuario.puntaje_acumulado += 100;
-      this.firestoreService.updateScoreUsr(this.loginService.usuario);
-
-      this.flagFinJuego = true; //Utilizar otra flag para abrir otro modal para la victoria
+      this.puntaje += 50;
+      this.flagVictoria = true;
     }
   }
 
@@ -140,6 +140,7 @@ export class MayorMenorComponent implements OnInit {
     this.cartas.splice(0);
     this.numeroAnterior = 0;
     this.paloAnterior = "";
+    this.flagVictoria = false;
     this.flagDerrota = false;
     this.flagFinJuego = false;
     this.puntaje = 0;

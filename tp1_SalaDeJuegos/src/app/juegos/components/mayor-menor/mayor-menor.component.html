@@ -1,10 +1,8 @@
 <div class="container-fluid">
     <div class="row" id="divMazo">
         <p>Puntaje: {{puntaje}}</p>
-        <div *ngIf="flagDerrota" id="divDerrota">
-            <p>Perdiste</p>
-            <input type="button" value="Reiniciar" (click)="reiniciar()">
-        </div>
+        <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-derrota>
+        <app-modal-victoria *ngIf="flagVictoria" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-victoria>
         <app-modal-fin-juego *ngIf="flagFinJuego" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)" (cambiarFlag)="eventoCancelarModal($event)" id="modal"></app-modal-fin-juego>
     </div>
     <div class="row" id="divControles">

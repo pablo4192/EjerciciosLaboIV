@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Palabra } from 'src/app/entidades/palabra';
 import { Usuario } from 'src/app/entidades/usuario';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -11,34 +12,41 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class AhorcadoComponent implements OnInit {
 
+  puntaje:number = 10;
+
   valorTecla:string = '';
   palabra:Palabra|any;
   incognita:string = '';
   rutaImgAhorcado = "./../../../../assets/img_ahorcado/ahorcado0.jpg";
   intentos = 6;
-  flagBtnReiniciar = false;
-  txtFinalPartida:string = '';
-  pistas:string[] = [];
+
+  flagDerrota = false;
+  flagVictoria = false;
+
   timer:number = 60;
   idInterval:any;
 
-  palabras:string[] = ['SOMBRILLA', 'AUTOPISTA', 'BIBLIOTECA', 'ABROCHADORA', 'ESCALERA'];
+  arrayPalabras:Palabra[] = [];
+  pistas:string[] = [];
   
-  arrayPalabras:Palabra[] = [
-    new Palabra('SOMBRILLA', ['Se usa en la playa', 'Nos proteje sel sol']), 
-    new Palabra('AUTOPISTA', ['A veces agiliza el viaje, a veces no', 'Se paga peaje']),
-    new Palabra('BIBLIOTECA', ['Grandes aventuras viviras o cosas utiles aprenderas', 'La tecnologia reemplazo este lugar'])
-  ];
-
   usuarioActivo:Usuario|undefined;
 
-  constructor(private loginService:LoginService) {
+  constructor(private loginService:LoginService,
+              private firestoreService:FirestoreService) {
     this.usuarioActivo = loginService.usuario;
   }
 
   ngOnInit(): void {
-    this.escogerPalabra();
+    this.firestoreService.getPalabras().subscribe(data => this.arrayPalabras = data); //Me retorna 20 paalabras en vez de 10
     
+    setTimeout(() => {
+      console.log(this.arrayPalabras);
+      this.escogerPalabra();
+    }, 500);
+  }
+
+  controlarEventoReinicio():void{
+    this.reiniciarJuego();
   }
 
   ejecutarTimer(){
@@ -62,7 +70,7 @@ export class AhorcadoComponent implements OnInit {
     
     console.log(this.arrayPalabras);
 
-    let i = this.numeroRandom(0,2);
+    let i = this.numeroRandom(0, this.arrayPalabras.length - 1);
     this.palabra = this.arrayPalabras[i];
 
     for(let i = 0; i < this.palabra.nombre.length; i++)
@@ -80,7 +88,7 @@ export class AhorcadoComponent implements OnInit {
   controlarEventoTeclado($event:any){
     this.valorTecla = $event;
 
-    if(!this.flagBtnReiniciar)
+    if(!this.flagDerrota)
     this.verificarLetraIngresada();
 
   }
@@ -138,7 +146,7 @@ export class AhorcadoComponent implements OnInit {
                 break;
                 default:
                   this.rutaImgAhorcado = "./../../../../assets/img_ahorcado/ahorcado6.jpg";
-                  this.flagBtnReiniciar = true;
+                  this.flagDerrota = true;
                   this.avisarDerrota();
 
     }
@@ -152,24 +160,22 @@ export class AhorcadoComponent implements OnInit {
   reiniciarJuego(){
     this.rutaImgAhorcado = "./../../../../assets/img_ahorcado/ahorcado0.jpg";
     this.incognita = '';
-    this.txtFinalPartida = '';
     this.pistas.splice(0);
     this.escogerPalabra();
     this.intentos = 6;
-    this.flagBtnReiniciar = false;
+    this.flagDerrota = false;
+    this.flagVictoria = false;
     this.timer = 60;
-
   }
 
   avisarVictoria(){
     clearInterval(this.idInterval);
-    this.txtFinalPartida = 'GANASTE BEBOTE!!!'
-    this.flagBtnReiniciar = true;
+    this.flagVictoria = true;
   }
 
   avisarDerrota(){
     clearInterval(this.idInterval);
-    this.txtFinalPartida = 'PERDISTE REY, INTENTA DE NUEVO!!!'
-    this.flagBtnReiniciar = true;
+    
+    this.flagDerrota = true;
   }
 }

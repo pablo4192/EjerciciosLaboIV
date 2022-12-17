@@ -23,10 +23,8 @@
         <div class="col">
             <app-teclado (valorBoton)="controlarEventoTeclado($event)"></app-teclado>
         </div>
-        <div *ngIf="flagBtnReiniciar" class="col" id="divReiniciar">
-           <input type="button" value="Reiniciar" (click)="reiniciarJuego()">
-           <p>{{txtFinalPartida}}</p>
-        </div>
+        <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="controlarEventoReinicio()"></app-modal-derrota>
+        <app-modal-victoria *ngIf="flagVictoria" (reiniciarJuego)="controlarEventoReinicio()" [puntajeUsuario]="puntaje"></app-modal-victoria>
     </div>
 </div>
 

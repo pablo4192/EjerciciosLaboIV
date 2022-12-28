@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Chat } from 'src/app/entidades/chat';
 import { Usuario } from 'src/app/entidades/usuario';
 import { ChatService } from 'src/app/services/chat.service';

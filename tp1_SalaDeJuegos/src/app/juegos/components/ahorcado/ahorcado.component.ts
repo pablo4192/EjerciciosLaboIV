@@ -40,7 +40,6 @@ export class AhorcadoComponent implements OnInit {
     this.firestoreService.getPalabras().subscribe(data => this.arrayPalabras = data); //Me retorna 20 paalabras en vez de 10
     
     setTimeout(() => {
-      console.log(this.arrayPalabras);
       this.escogerPalabra();
     }, 500);
   }
@@ -68,8 +67,6 @@ export class AhorcadoComponent implements OnInit {
 
   escogerPalabra(){
     
-    console.log(this.arrayPalabras);
-
     let i = this.numeroRandom(0, this.arrayPalabras.length - 1);
     this.palabra = this.arrayPalabras[i];
 

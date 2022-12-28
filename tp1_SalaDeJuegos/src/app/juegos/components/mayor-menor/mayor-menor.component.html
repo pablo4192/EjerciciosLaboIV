@@ -1,19 +1,19 @@
-<div class="container-fluid">
-    <div class="row" id="divMazo">
-        <p>Puntaje: {{puntaje}}</p>
-        <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-derrota>
-        <app-modal-victoria *ngIf="flagVictoria" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-victoria>
-        <app-modal-fin-juego *ngIf="flagFinJuego" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)" (cambiarFlag)="eventoCancelarModal($event)" id="modal"></app-modal-fin-juego>
-    </div>
-    <div class="row" id="divControles">
-        <input type="button" value="Mayor" (click)="darCarta('Mayor')">
-        <input type="button" value="Menor" (click)="darCarta('Menor')">
-        <input type="button" value="Retirarse" (click)="retirarse()">
-    </div>
-    <div class="row" id="divCartas">
+<div class="container-fluid" >
+    <div id="puntaje">Puntaje parcial: {{puntaje}}</div> 
+    <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-derrota>
+    <app-modal-victoria *ngIf="flagVictoria" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-victoria>
+    <app-modal-fin-juego *ngIf="flagFinJuego" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)" (cambiarFlag)="eventoCancelarModal($event)" id="modal"></app-modal-fin-juego>
+    <div class="row" id="divCartas" #divCartasRef>
         <img *ngFor="let card of cartas" src="{{card}}" alt="imgCarta" id="imgCarta">
-   
-
     </div>
+    <div class="controles">
+        <p>Escoge una opción</p>
+        <div id="divControles">
+            <input type="button" value="Mayor" (click)="darCarta('Mayor')">
+            <input type="button" value="Menor" (click)="darCarta('Menor')">
+            <input type="button" value="Retirarse" (click)="retirarse()">
+        </div>
+    </div>
+    
 </div>
 

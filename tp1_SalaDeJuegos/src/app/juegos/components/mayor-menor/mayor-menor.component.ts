@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ViewChild, Renderer2, ElementRef} from '@angular/core';
 
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -11,6 +12,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./mayor-menor.component.css']
 })
 export class MayorMenorComponent implements OnInit {
+
+  @ViewChild('divCartasRef') divCartasRef:ElementRef|undefined;
 
   puntaje:number = 0;
   numeroAnterior: number = 0;
@@ -32,14 +35,17 @@ export class MayorMenorComponent implements OnInit {
   cartas:string[] = [];
 
   constructor(private loginService:LoginService,
-              private firestoreService:FirestoreService) {
+              private firestoreService:FirestoreService,
+              private renderer2:Renderer2) {
 
    }
 
   ngOnInit(): void {
-   
+      
+  }
+
+  ngAfterViewInit(){
     this.darCarta("");
-    
   }
 
   //Capturo el evento del componente modal para reiniciar el juego
@@ -81,6 +87,13 @@ export class MayorMenorComponent implements OnInit {
         //Agrego la carta al array a mostrar
         this.cartas.push(ruta);
       }
+
+      setTimeout(() => {
+        if(this.divCartasRef != null)
+        {
+          this.renderer2.setProperty(this.divCartasRef.nativeElement, 'scrollTop', this.divCartasRef.nativeElement.scrollHeight);
+        }
+      },);
     }
   }
 

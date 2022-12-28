@@ -1,11 +1,11 @@
-<div class="container-fluid row" id="divContenedorChat">
+<div class="container-fluid row" id="divContenedorChat"> 
     <div class="col-2" id="divAside">
         <p>Usuarios conectados:</p>
         <div *ngFor="let usrAct of this.arrayUsuariosActivos">
             <p>{{usrAct.mail}}</p>
         </div>
     </div> 
-    <div class="col-10" id="divChat">
+    <div class="col-10" id="divChat"> 
         <div *ngFor="let chat of this.chats">
             <div class="container" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
                 <p [ngStyle]="{'background-color': chat.color}" id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p> 

@@ -15,6 +15,7 @@ export class ModalFinJuegoComponent implements OnInit {
   @Output() reiniciarJuego = new EventEmitter<boolean>();
   @Output() cambiarFlag = new EventEmitter<boolean>();
   
+  
   @Input() puntajeUsuario:number = 0;
 
   constructor(private renderer2:Renderer2,
@@ -27,8 +28,8 @@ export class ModalFinJuegoComponent implements OnInit {
   ngOnInit(): void {
 
     this.mostrarModal();
-
   }
+
 
   mostrarModal(){
 

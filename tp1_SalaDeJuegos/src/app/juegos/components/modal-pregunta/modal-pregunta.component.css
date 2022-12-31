@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+}
+
+dialog{
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(100, 110, 110);
+    animation: 1s ease efectoOpacidad;
+}
+
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, .2);
+    
+}
+
+@keyframes efectoOpacidad{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.categoria{
+   
+    height: 10%;
+    background-color: orange;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pregunta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    border-radius: 10px;
+    height: 30%;
+    margin: 20px;
+    background-color: #fff;
+}
+
+.opciones{
+    display: flex;
+    flex-direction: column;
+
+    height: 60%;
+    justify-content: space-evenly;
+    align-items: center;
+   
+}
+
+input{
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: none;
+    font-weight: lighter;
+}

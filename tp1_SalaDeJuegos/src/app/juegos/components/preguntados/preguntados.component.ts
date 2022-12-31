@@ -8,6 +8,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 export class PreguntadosComponent implements OnInit {
 
   detenerMano:boolean = false;
+  abrirModal:boolean = false;
 
   @ViewChild('ruleta') ruletaRef:ElementRef|undefined;
 
@@ -58,7 +59,7 @@ export class PreguntadosComponent implements OnInit {
                     this.renderer2.addClass(this.ruletaRef?.nativeElement, 'ciencia');
                     break;
     }
-
+    this.abrirModal = true;
   }
 
   numeroRandom(min:number, max:number):number {

@@ -13,7 +13,8 @@ export const environment = {
     authDomain: 'sala-de-juegos-c1619.firebaseapp.com',
     messagingSenderId: '720824693540',
   },
-  production: false
+  production: false,
+  apiPexels: '563492ad6f91700001000001b486ff9009234330a3818eb019b10e1b'
 };
 
 /*

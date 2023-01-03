@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal-pregunta',
@@ -8,6 +8,8 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 export class ModalPreguntaComponent implements OnInit {
 
   @ViewChild('dialogRef') dialogRef:ElementRef|undefined;
+  @Input() categoria:string|undefined;
+  @Input() urlImg:string|undefined;
 
   constructor(private renderer2:Renderer2) { }
 

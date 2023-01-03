@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, updateDoc, doc, collection, collectionData, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Palabra } from '../entidades/palabra';
+import { Pregunta } from '../entidades/pregunta';
 import { Usuario } from '../entidades/usuario';
 
 @Injectable({
@@ -35,5 +36,19 @@ export class FirestoreService {
     return collectionData(pRef,{idField: 'id'}) as Observable<Palabra[]>;
   }
 
+  addPregunta(pregunta:Pregunta){  
+    
+    const p = {
+      categoria: pregunta.categoria,
+      texto: pregunta.texto,
+      opciones:pregunta.opciones,
+      respuesta: pregunta.respuesta,
+      url: pregunta.url
+
+    };
+    
+    const usrRef = collection(this.firestore, 'preguntas');
+    return addDoc(usrRef, p);
+  }
   
 }

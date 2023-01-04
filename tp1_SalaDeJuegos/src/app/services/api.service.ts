@@ -3,6 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+interface photos{
+  src:any;
+  medium:any;
+}
+
+export interface imagen{
+  photos:photos[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,9 +27,9 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  //De que tipo tendria que ser el observable??
-  getImage(url:string):Observable<any>{
-    return this.http.get(url, this.h); 
+  //Casteo el observable a tipo imagen, que es una interfaz que exporto desde este servicio
+  getImage(url:string):Observable<imagen>{
+    return this.http.get(url, this.h) as Observable<imagen>; 
 
   }
 }

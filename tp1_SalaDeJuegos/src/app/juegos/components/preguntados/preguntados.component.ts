@@ -12,6 +12,7 @@ export class PreguntadosComponent implements OnInit {
 
   detenerMano:boolean = false;
   abrirModal:boolean = false;
+  abrirModalCategoria:boolean = false;
 
   categoriaPregunta:string = '';
   pexelsCat:string = '';
@@ -116,7 +117,7 @@ export class PreguntadosComponent implements OnInit {
       this.renderer2.setStyle(this.ruletaRef.nativeElement, 'animation', '0.25s linear 8 rotate');
 
       setTimeout(() => {
-        this.seleccionarCategoria(numeroRandom);  
+        this.seleccionarCategoria(numeroRandom); 
       }, 2000);
 
     }
@@ -162,38 +163,66 @@ export class PreguntadosComponent implements OnInit {
                     break;
     }
 
-    this.getImgApi();
-    this.seleccionarPregunta(this.categoriaPregunta.toLowerCase());
-
-    this.abrirModal = true;
+    if(this.seleccionarPregunta(this.categoriaPregunta.toLowerCase()))
+    {
+      this.getImgApi();
+      this.abrirModal = true;
+    }    
+    
   }
 
   private getImgApi():void{
 
     let i_random = this.numeroRandom(1,10);
 
-    this.apiService.getImage(`https://api.pexels.com/v1/search?query=${this.pexelsCat}`).subscribe(data => this.urlImagen = data['photos'][i_random]['src']['medium']);
-  }
+    this.apiService.getImage(`https://api.pexels.com/v1/search?query=${this.pexelsCat}`).subscribe(data => {this.urlImagen = data.photos[i_random].src.medium});
+  } 
 
-  private seleccionarPregunta(categoria:string):void{
+  private seleccionarPregunta(categoria:string):boolean{
 
-    let pregunta:Pregunta; 
+    let pregunta:Pregunta|undefined; 
     let arrayCategoria:Pregunta[] = [];
     let i_random:number;
 
-    if(categoria == 'selección libre') //Hacer que el usuario decida la categoria, puedo abrir un modal con las categorias y luego llamar recursivamente a esta funcion con la categoria seleccionada por el usuario
+    if(categoria == 'selección libre') 
     {
-      i_random = this.numeroRandom(0, 29);
-      pregunta = this.preguntas[i_random];
-      
+      this.abrirModalCategoria = true;
+      return false;
     }
-    else{
-      arrayCategoria = this.preguntas.filter((p) => p.categoria == categoria);
-      i_random = this.numeroRandom(0, 4);
-      pregunta = arrayCategoria[i_random];
-    }
+    
+    this.abrirModalCategoria = false;
 
+    arrayCategoria = this.preguntas.filter((p) => p.categoria == categoria);
+    i_random = this.numeroRandom(0, 4);
+    pregunta = arrayCategoria[i_random];
+    
     this.preguntaSeleccionada = pregunta;
+
+    return true;
+  }
+
+  manejarEventoCategoria($event:any){
+    switch($event)
+    {
+      case 'Historia':
+          this.seleccionarCategoria(1);
+          break;
+          case 'Arte':
+          this.seleccionarCategoria(3);
+            break;
+            case 'Deportes':
+            this.seleccionarCategoria(2);
+              break;
+              case 'Cine':
+              this.seleccionarCategoria(4);
+                break;
+                case 'Ciencia':
+                this.seleccionarCategoria(7);
+                break;
+                  case 'Geografia':
+                  this.seleccionarCategoria(6);
+                  break;
+    }
   }
 
   numeroRandom(min:number, max:number):number {

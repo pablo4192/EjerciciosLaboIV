@@ -18,6 +18,7 @@ export class ModalPreguntaComponent implements OnInit {
   opcion3:string = '';
   opcion4:string = '';
 
+  
 
   constructor(private renderer2:Renderer2) { }
 
@@ -28,11 +29,15 @@ export class ModalPreguntaComponent implements OnInit {
       this.opcion3 = this.pregunta.opciones[2];
       this.opcion4 = this.pregunta.opciones[3];
     }
+
+  
   }
 
   ngAfterViewInit():void{
       //this.renderer2.selectRootElement(this.dialogRef?.nativeElement).showModal(); //Por que lo abre sin contenido???
       this.dialogRef?.nativeElement.showModal();
   }
+
+  
 
 }

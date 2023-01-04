@@ -11,6 +11,9 @@ import { ModalFinJuegoComponent } from './components/modal-fin-juego/modal-fin-j
 import { ModalDerrotaComponent } from './components/modal-derrota/modal-derrota.component';
 import { ModalVictoriaComponent } from './components/modal-victoria/modal-victoria.component';
 import { ModalPreguntaComponent } from './components/modal-pregunta/modal-pregunta.component';
+import { ModalCategoriaComponent } from './components/modal-categoria/modal-categoria.component';
+import { ColorCategoriaDirective } from './directives/color-categoria.directive';
+
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { ModalPreguntaComponent } from './components/modal-pregunta/modal-pregun
     ModalFinJuegoComponent,
     ModalDerrotaComponent,
     ModalVictoriaComponent,
-    ModalPreguntaComponent
+    ModalPreguntaComponent,
+    ModalCategoriaComponent,
+    ColorCategoriaDirective
+    
   ],
   imports: [
     CommonModule,

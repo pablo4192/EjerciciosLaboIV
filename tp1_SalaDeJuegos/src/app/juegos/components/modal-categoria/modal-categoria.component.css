@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+
+dialog{
+    width: 450px; 
+    height: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    
+    border-radius: 5px;
+}
+
+.titulo{
+    background-color: orange;
+    color: #fff;
+    height: 10%;
+}
+
+.parrafo{
+    height: 10%;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.categorias{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    padding: 10px;
+}
+
+.categorias input{
+    height: 50px;
+    font-size: large;
+}

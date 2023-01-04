@@ -50,5 +50,10 @@ export class FirestoreService {
     const usrRef = collection(this.firestore, 'preguntas');
     return addDoc(usrRef, p);
   }
+
+  getPreguntas(): Observable<Pregunta[]>{
+    const pRef = collection(this.firestore, 'preguntas');
+    return collectionData(pRef,{idField: 'id'}) as Observable<Pregunta[]>;
+  }
   
 }

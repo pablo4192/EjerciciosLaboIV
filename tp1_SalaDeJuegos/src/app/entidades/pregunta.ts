@@ -1,4 +1,5 @@
 export class Pregunta {
+    id:string|undefined;
     categoria:string|undefined;
     url:string|undefined;
     texto:string|undefined;

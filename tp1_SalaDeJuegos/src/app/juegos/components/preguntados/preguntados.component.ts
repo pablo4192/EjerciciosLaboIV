@@ -19,7 +19,10 @@ export class PreguntadosComponent implements OnInit {
 
   @ViewChild('ruleta') ruletaRef:ElementRef|undefined;
 
-  preguntas:Pregunta[] = [
+  preguntas:Pregunta[] = [];
+  preguntaSeleccionada:Pregunta|undefined;
+  /*Preguntas
+
     //Historia
     new Pregunta('historia', '¿El periodo en el que aparecieron la agricultura y los asentamientos sedentarios se llama?', 
     ['Neolítico', 'Edad Media', 'Paleolítico', 'Actualidad'], 'Neolítico'),
@@ -87,8 +90,7 @@ export class PreguntadosComponent implements OnInit {
     ['Tibia', 'Perone', 'Rotula', 'Femur'], 'Femur'),
     new Pregunta('ciencia', '¿Quién escribió el libro “Breve historia del tiempo”?', 
     ['Elon Musk', 'Neil deGrasse Tyson', 'Carl Sagan', 'Stephen Hawking'], 'Stephen Hawking')
-
-  ];
+  */
 
   constructor(private renderer2:Renderer2,
               private apiService:ApiService,
@@ -96,10 +98,12 @@ export class PreguntadosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.preguntas.forEach((p) => this.firestoreService.addPregunta(p));
+    this.obtenerPreguntas();
+  
+  }
 
-    
-    
+  private obtenerPreguntas():void{
+    this.firestoreService.getPreguntas().subscribe(p => this.preguntas = p);
   }
 
   girarRuleta():void{
@@ -159,6 +163,7 @@ export class PreguntadosComponent implements OnInit {
     }
 
     this.getImgApi();
+    this.seleccionarPregunta(this.categoriaPregunta.toLowerCase());
 
     this.abrirModal = true;
   }
@@ -168,6 +173,27 @@ export class PreguntadosComponent implements OnInit {
     let i_random = this.numeroRandom(1,10);
 
     this.apiService.getImage(`https://api.pexels.com/v1/search?query=${this.pexelsCat}`).subscribe(data => this.urlImagen = data['photos'][i_random]['src']['medium']);
+  }
+
+  private seleccionarPregunta(categoria:string):void{
+
+    let pregunta:Pregunta; 
+    let arrayCategoria:Pregunta[] = [];
+    let i_random:number;
+
+    if(categoria == 'selección libre') //Hacer que el usuario decida la categoria, puedo abrir un modal con las categorias y luego llamar recursivamente a esta funcion con la categoria seleccionada por el usuario
+    {
+      i_random = this.numeroRandom(0, 29);
+      pregunta = this.preguntas[i_random];
+      
+    }
+    else{
+      arrayCategoria = this.preguntas.filter((p) => p.categoria == categoria);
+      i_random = this.numeroRandom(0, 4);
+      pregunta = arrayCategoria[i_random];
+    }
+
+    this.preguntaSeleccionada = pregunta;
   }
 
   numeroRandom(min:number, max:number):number {

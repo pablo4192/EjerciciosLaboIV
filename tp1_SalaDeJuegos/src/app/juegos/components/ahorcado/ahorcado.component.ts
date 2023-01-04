@@ -37,11 +37,12 @@ export class AhorcadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firestoreService.getPalabras().subscribe(data => this.arrayPalabras = data); //Me retorna 20 paalabras en vez de 10
-    
-    setTimeout(() => {
+    this.firestoreService.getPalabras().subscribe(data => {
+      this.arrayPalabras = data;
       this.escogerPalabra();
-    }, 500);
+    }); 
+    
+    
   }
 
   controlarEventoReinicio():void{

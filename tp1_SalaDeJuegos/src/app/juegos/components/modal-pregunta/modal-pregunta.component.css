@@ -12,6 +12,9 @@ dialog{
     justify-content: space-around;
     background-color: rgb(100, 110, 110);
     animation: 1s ease efectoOpacidad;
+    position: relative;
+
+    overflow: visible;
 }
 
 dialog::backdrop{
@@ -63,7 +66,7 @@ dialog::backdrop{
    
 }
 
-input{
+.opciones input{
     width: 95%;
     padding: 10px;
     border-radius: 5px;
@@ -75,4 +78,67 @@ input{
 img{
     width: 100%;
     height: 100%
+}
+
+.resultado{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 650px;
+    background-color: transparent;
+    animation: 1s ease 1 mostrarResultado;
+    top: -15%;
+    
+}
+
+.resultado div{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: x-large;
+    font-weight: bolder;
+    
+    color: #fff;
+    width: 300px;
+    height: 60px;
+}
+
+@keyframes mostrarResultado{
+    0%{
+        transform: scale(0.7);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.botones{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    height: 50px;
+    bottom: -5%;
+    left: -10%;
+    
+}
+
+.botones input{
+    width: 180px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1E88E5;
+    color: #fff;
 }

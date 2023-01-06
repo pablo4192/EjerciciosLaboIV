@@ -9,9 +9,16 @@
         <p>{{pregunta?.texto}}</p>
     </div>
     <div class="opciones">
-        <input type="button" value="{{opcion1}}">
-        <input type="button" value="{{opcion2}}">
-        <input type="button" value="{{opcion3}}">
-        <input type="button" value="{{opcion4}}">
+        <input type="button" value="{{opcion1}}" (click)="verificarRespuesta($event)">
+        <input type="button" value="{{opcion2}}" (click)="verificarRespuesta($event)">
+        <input type="button" value="{{opcion3}}" (click)="verificarRespuesta($event)">
+        <input type="button" value="{{opcion4}}" (click)="verificarRespuesta($event)">
+    </div>
+    <div class="resultado" *ngIf="mostrarResultado" >
+        <div #divResultado>{{resultado}}</div>
+    </div>
+    <div class="botones" *ngIf="mostrarResultado">
+        <input type="button" value="Terminar partida">
+        <input type="button" value="Siguiente pregunta">
     </div>
 </dialog>

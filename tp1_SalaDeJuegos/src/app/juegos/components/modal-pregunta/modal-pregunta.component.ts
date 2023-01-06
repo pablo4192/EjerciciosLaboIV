@@ -18,7 +18,9 @@ export class ModalPreguntaComponent implements OnInit {
   opcion3:string = '';
   opcion4:string = '';
 
-  
+  @ViewChild('divResultado') resultadoRef:ElementRef|undefined;
+  resultado:string = 'Respuesta incorrecta';
+  mostrarResultado:boolean = false;
 
   constructor(private renderer2:Renderer2) { }
 
@@ -29,13 +31,54 @@ export class ModalPreguntaComponent implements OnInit {
       this.opcion3 = this.pregunta.opciones[2];
       this.opcion4 = this.pregunta.opciones[3];
     }
-
-  
   }
 
   ngAfterViewInit():void{
       //this.renderer2.selectRootElement(this.dialogRef?.nativeElement).showModal(); //Por que lo abre sin contenido???
       this.dialogRef?.nativeElement.showModal();
+      
+      
+  }
+
+  verificarRespuesta($event:any):void{
+
+    this.mostrarResultado = true;
+
+    if(this.pregunta?.respuesta == $event.target.value){
+      this.resultado = 'Respuesta correcta';
+      this.renderer2.setStyle($event.target, 'backgroundColor', 'lime');
+      
+      setTimeout(() => {
+        this.renderer2.setStyle(this.resultadoRef?.nativeElement, 'backgroundColor', 'lime')
+      });
+    }
+    else{
+      this.renderer2.setStyle($event.target, 'backgroundColor', '#F44336');
+
+      setTimeout(() => {
+        this.renderer2.setStyle(this.resultadoRef?.nativeElement, 'backgroundColor', '#F44336')
+      });
+
+      this.mostrarRespuesta($event.target);
+    }
+    
+  }
+
+  private mostrarRespuesta(target:any):void{
+    const nodoPadre = this.renderer2.parentNode(target);
+
+      //Esta bien utilizar childNodes? (no encuentro en angular como acceder a los nodos hijos), unica forma de iterarlos con for o while?
+      for(let i = 0; i < 4; i++)
+      {
+        if(nodoPadre.childNodes[i].value == this.pregunta?.respuesta)
+        {
+          setTimeout(() => {
+            this.renderer2.setStyle(nodoPadre.childNodes[i], 'backgroundColor', '#ABEBC6');
+          });
+          break;
+        }
+      }
+
   }
 
   

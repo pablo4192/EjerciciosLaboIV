@@ -13,15 +13,26 @@ export class PreguntadosComponent implements OnInit {
   detenerMano:boolean = false;
   abrirModal:boolean = false;
   abrirModalCategoria:boolean = false;
+  modalDerrota:boolean = false;
+  modalVictoria:boolean = false;
 
   categoriaPregunta:string = '';
   pexelsCat:string = '';
   urlImagen:string = '';
+  claseRuleta:string = '';
 
   @ViewChild('ruleta') ruletaRef:ElementRef|undefined;
+  @ViewChild('divProgreso') divProgresoRef:ElementRef|undefined;
 
   preguntas:Pregunta[] = [];
+  preguntasAux:Pregunta[] = [];
   preguntaSeleccionada:Pregunta|undefined;
+
+  ruletaGirando:boolean = false;
+  divsBarraProgreso:HTMLDivElement[] = [];
+  intentos:number = 3;
+  puntajePorVictoria:number = 50;
+  
   /*Preguntas
 
     //Historia
@@ -69,7 +80,7 @@ export class PreguntadosComponent implements OnInit {
     new Pregunta('geografia', '¿Qué país es el más grande del mundo?',
     ['Rusia', 'EE.UU', 'China', 'Brasil'], 'Rusia'),
     //Cine
-    new Pregunta('Cine', '¿Quién dirigió la película Origen en el 2010?',
+    new Pregunta('cine', '¿Quién dirigió la película Origen en el 2010?',
     ['Steven Spielberg', 'Christopher Nolan', 'Quentin Tarantino', 'Pepe Cibrian'], 'Christopher Nolan'),
     new Pregunta('cine',' ¿Cuántas películas conforman la saga cinematográfica Harry Potter?',
     ['2', '5', '4', '8'], '8'),
@@ -100,7 +111,6 @@ export class PreguntadosComponent implements OnInit {
   ngOnInit(): void {
 
     this.obtenerPreguntas();
-  
   }
 
   private obtenerPreguntas():void{
@@ -108,57 +118,73 @@ export class PreguntadosComponent implements OnInit {
   }
 
   girarRuleta():void{
-    this.detenerMano = true;
 
-    let numeroRandom = this.numeroRandom(1,7);    
-
-    if(this.ruletaRef != null)
+    if(!this.ruletaGirando)
     {
-      this.renderer2.setStyle(this.ruletaRef.nativeElement, 'animation', '0.25s linear 8 rotate');
+      this.detenerMano = true;
+      let numeroRandom = this.numeroRandom(1,7);    
 
-      setTimeout(() => {
-        this.seleccionarCategoria(numeroRandom); 
-      }, 2000);
+      if(this.ruletaRef != null)
+      {
+        this.renderer2.setStyle(this.ruletaRef.nativeElement, 'animation', '0.25s linear 8 rotate');
+        this.ruletaGirando = true;
 
+        setTimeout(() => {
+          this.seleccionarCategoria(numeroRandom); 
+          this.ruletaGirando = false;
+        }, 2000);
+
+      }
     }
   }
 
   seleccionarCategoria(numeroCategoria:number):void{
+    
+    if(this.claseRuleta != '')
+      this.renderer2.removeClass(this.ruletaRef?.nativeElement, this.claseRuleta);
+    
+    
     switch(numeroCategoria)
     {
       case 1:
         this.renderer2.addClass(this.ruletaRef?.nativeElement, 'historia');
         this.categoriaPregunta = 'Historia';
+        this.claseRuleta = 'historia';
         this.pexelsCat = 'history';
         break;
         case 2:
           this.renderer2.addClass(this.ruletaRef?.nativeElement, 'deportes');
           this.categoriaPregunta = 'Deportes';
+          this.claseRuleta = 'deportes';
           this.pexelsCat = 'sports';
           break;
           case 3:
             this.renderer2.addClass(this.ruletaRef?.nativeElement, 'arte');
             this.categoriaPregunta = 'Arte';
+            this.claseRuleta = 'arte';
             this.pexelsCat = 'art';
             break;
             case 4:
               this.renderer2.addClass(this.ruletaRef?.nativeElement, 'cine');
               this.categoriaPregunta = 'Cine';
+              this.claseRuleta = 'cine';
               this.pexelsCat = 'movies';
               break;
               case 5:
                 this.renderer2.addClass(this.ruletaRef?.nativeElement, 'eleccionUsr');
                 this.categoriaPregunta = 'Selección libre';
-                this.pexelsCat = 'question';
+                this.claseRuleta = 'eleccionUsr';
                 break;
                 case 6:
                   this.renderer2.addClass(this.ruletaRef?.nativeElement, 'geografia');
                   this.categoriaPregunta = 'Geografia';
+                  this.claseRuleta = 'geografia';
                   this.pexelsCat = 'geography';
                   break;
                   case 7:
                     this.renderer2.addClass(this.ruletaRef?.nativeElement, 'ciencia');
                     this.categoriaPregunta = 'Ciencia';
+                    this.claseRuleta = 'ciencia';
                     this.pexelsCat = 'science';
                     break;
     }
@@ -180,9 +206,9 @@ export class PreguntadosComponent implements OnInit {
 
   private seleccionarPregunta(categoria:string):boolean{
 
-    let pregunta:Pregunta|undefined; 
     let arrayCategoria:Pregunta[] = [];
     let i_random:number;
+    let indiceAEliminar:number;
 
     if(categoria == 'selección libre') 
     {
@@ -193,11 +219,13 @@ export class PreguntadosComponent implements OnInit {
     this.abrirModalCategoria = false;
 
     arrayCategoria = this.preguntas.filter((p) => p.categoria == categoria);
-    i_random = this.numeroRandom(0, 4);
-    pregunta = arrayCategoria[i_random];
-    
-    this.preguntaSeleccionada = pregunta;
+    i_random = this.numeroRandom(0, arrayCategoria.length -1);
+    this.preguntaSeleccionada = arrayCategoria[i_random];
 
+    //Busco la pregunta seleccionada para eliminarla del array de preguntas y evitar que reaparezca, actualizando se reestablecen todas las preguntas
+    indiceAEliminar = this.preguntas.indexOf(this.preguntaSeleccionada);
+    this.preguntas.splice(indiceAEliminar, 1);
+    
     return true;
   }
 
@@ -225,6 +253,55 @@ export class PreguntadosComponent implements OnInit {
     }
   }
 
+  manejarEventoModal($event:string){
+    this.abrirModal = false;
+    this.renderer2.setStyle(this.ruletaRef?.nativeElement, 'animation', 'none');
+
+    if($event == 'Respuesta correcta')
+    {
+      this.crearBarraProgreso();
+
+      if(this.divsBarraProgreso.length == 10)
+      this.avisarVictoria();
+    }
+    else
+    {
+      this.intentos--;
+
+      if(this.intentos == 0)
+      this.modalDerrota = true;
+    }
+  }
+
+  crearBarraProgreso():void{
+      let divCreado = this.renderer2.createElement('div');
+
+      this.divsBarraProgreso.push(divCreado);
+      
+      this.renderer2.setAttribute(divCreado, 'class', 'barraProgreso');
+      this.renderer2.appendChild(this.divProgresoRef?.nativeElement, divCreado);
+  }
+
+  eventoReiniciarModal():void{
+    this.reiniciar();
+  }
+
+  reiniciar():void{
+    this.eliminarBarraProgreso();
+    this.modalDerrota = false;
+    this.modalVictoria = false;
+    this.intentos = 3;
+  }
+
+  private eliminarBarraProgreso():void{
+    this.divsBarraProgreso.forEach((e) => this.renderer2.removeChild(this.divProgresoRef?.nativeElement, e));
+    this.divsBarraProgreso.splice(0);
+  }
+
+  avisarVictoria():void{
+    this.modalVictoria = true;
+  }
+  
   numeroRandom(min:number, max:number):number {
     return Math.floor((Math.random() * (max - min + 1)) + min);
   }

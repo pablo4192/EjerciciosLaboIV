@@ -13,6 +13,9 @@ import { ModalVictoriaComponent } from './components/modal-victoria/modal-victor
 import { ModalPreguntaComponent } from './components/modal-pregunta/modal-pregunta.component';
 import { ModalCategoriaComponent } from './components/modal-categoria/modal-categoria.component';
 import { ColorCategoriaDirective } from './directives/color-categoria.directive';
+import { JuegoPropioComponent } from './components/juego-propio/juego-propio.component';
+import { ModalFinJuegoMeteoritosComponent } from './components/modals/modal-fin-juego-meteoritos/modal-fin-juego-meteoritos.component';
+
 
 
 
@@ -28,7 +31,9 @@ import { ColorCategoriaDirective } from './directives/color-categoria.directive'
     ModalVictoriaComponent,
     ModalPreguntaComponent,
     ModalCategoriaComponent,
-    ColorCategoriaDirective
+    ColorCategoriaDirective,
+    JuegoPropioComponent,
+    ModalFinJuegoMeteoritosComponent
     
   ],
   imports: [

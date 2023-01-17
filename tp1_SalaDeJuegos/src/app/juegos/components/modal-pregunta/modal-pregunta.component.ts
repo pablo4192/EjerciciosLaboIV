@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { Pregunta } from 'src/app/entidades/pregunta';
 
 @Component({
@@ -12,6 +12,8 @@ export class ModalPreguntaComponent implements OnInit {
   @Input() categoria:string|undefined;
   @Input() urlImg:string|undefined;
   @Input() pregunta:Pregunta|undefined;
+
+  @Output() cerrarModalPadre = new EventEmitter<string>();
 
   opcion1:string = '';
   opcion2:string = '';
@@ -81,6 +83,10 @@ export class ModalPreguntaComponent implements OnInit {
 
   }
 
-  
+  cerrarModal():void{
+    this.dialogRef?.nativeElement.close();
+    this.mostrarResultado = false;
+    this.cerrarModalPadre.emit(this.resultado);
+  }
 
 }

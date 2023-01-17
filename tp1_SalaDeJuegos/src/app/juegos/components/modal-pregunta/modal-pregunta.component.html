@@ -16,9 +16,6 @@
     </div>
     <div class="resultado" *ngIf="mostrarResultado" >
         <div #divResultado>{{resultado}}</div>
-    </div>
-    <div class="botones" *ngIf="mostrarResultado">
-        <input type="button" value="Terminar partida">
-        <input type="button" value="Siguiente pregunta">
-    </div>
+        <input type="button" value="Siguiente pregunta" (click)="cerrarModal()">
+    </div> 
 </dialog>

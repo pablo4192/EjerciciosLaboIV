@@ -50,4 +50,5 @@ img{
 #divJuegoPropio{
     height: 300px;
     border: 2px solid black;
+    background: radial-gradient(ellipse farthest-side at 45px 30px , #fff 50%, rgba(0, 255, 0, 0) 0%, #00ff00 50%);
 }

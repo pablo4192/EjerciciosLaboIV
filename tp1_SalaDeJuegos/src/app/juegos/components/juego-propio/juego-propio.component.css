@@ -1,0 +1,200 @@
+*{
+    box-sizing: border-box;
+    
+}
+
+
+
+#contenedor{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+   
+}
+
+#comenzar{
+    width: 98%;
+    height: 250px;
+    border: 1px solid black;
+    margin: 20px 0 10px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    background-color: rgb(17, 17, 84);
+    color: #fff;
+
+    font-family:'Consolas';
+}
+
+#comenzar p{
+    font-size: 4em;
+    
+    
+}
+
+#comenzar input{
+    width: 350px;
+    height: 90px;
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(250, 199, 14);
+    color: #fff;
+    font-size: xx-large;
+    font-weight: bold;
+
+    transition: all 1s;
+}
+
+#comenzar input:hover{
+    background-color: orange;
+    color: white;
+    transform: scale(1.1);
+    transition: all 1s;
+}
+
+#juego{ 
+    height: 700px;
+    display: flex;
+    align-items: flex-end;
+
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(rgb(20,20,40), rgb(0,0,0));
+    border: 1px solid black;
+    
+    margin-top: 10px;
+    padding: 0;
+   
+}
+
+
+.meteorito{
+    width: 50px;
+    height: 40px;
+    background-color: #ddd;
+
+    top: -10%;
+
+    border-radius: 50%;
+
+    position: absolute;
+}
+
+.meteoritoGrande{
+    width: 70px;
+    height: 60px;
+    background-color: #ddd;
+    top: -15%;
+    border-radius: 50%;
+    position: absolute;
+}
+
+img{
+  
+   width: 100%;
+   height: 40%;
+}
+
+
+
+@keyframes trayectoria1{
+    0%{
+        top: -10%;
+        left: 20%;
+    }
+    100%{
+        top: 85%;
+        left: 20%;
+    }
+}
+
+@keyframes trayectoria2{
+    0%{
+        top: -10%;
+        left: 80%;
+    }
+    100%{
+        top: 85%;
+        left: 80%;
+    }
+
+}
+
+@keyframes trayectoria3{
+    0%{
+        top: -10%;
+        left: 100%;
+    }
+    100%{
+        top: 85%;
+        left: 10%;
+    }
+
+}
+
+@keyframes trayectoria4{
+    0%{
+        top: -10%;
+        left: 0;
+    }
+    100%{
+        top: 85%;
+        left: 90%;
+    }
+
+}
+
+@keyframes trayectoria5{
+    0%{
+        top: -10%;
+        left: -20%;
+    }
+    100%{
+        top: 85%;
+        left: 70%;
+    }
+
+}
+
+@keyframes trayectoria6{
+    0%{
+        top: -10%;
+        left: 10%;
+    }
+    100%{
+        top: 85%;
+        left: 50%;
+    }
+
+}
+
+@keyframes trayectoria7{
+    0%{
+        top: -10%;
+        left: 90%;
+    }
+    100%{
+        top: 85%;
+        left: 30%;
+    }
+}
+
+@keyframes trayectoria8{
+    0%{
+        top: -10%;
+        left: 50%;
+    }
+    100%{
+        top: 85%;
+        left: 90%;
+        right: 40%;
+    }
+}

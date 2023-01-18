@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input, Output, EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -19,7 +20,8 @@ export class ModalFinJuegoMeteoritosComponent implements OnInit {
 
   constructor(private renderer2:Renderer2,
               private loginService:LoginService,
-              private firestoreService:FirestoreService) { }
+              private firestoreService:FirestoreService,
+              private router:Router) { }
 
   ngOnInit(): void {
     
@@ -55,7 +57,19 @@ reiniciar():void{
 }
 
 salir():void{
+  if(this.loginService.usuario != null)
+    {
+      this.loginService.usuario.puntaje_acumulado += this.puntaje;
 
+      this.firestoreService.updateScoreUsr(this.loginService.usuario);
+      
+      this.dialogRef?.nativeElement.close();
+      this.router.navigate(['/juegos']);
+    }
+    else
+    {
+      console.log(`loginService.usuario: ${this.loginService.usuario}`);
+    }
 }
 
 generarPuntaje():void{
@@ -78,7 +92,7 @@ generarPuntaje():void{
 
 }
 
-//Cambiar valores
+
 generarTitulo():void{
 
     if(this.meteoritosInterceptados < 10)

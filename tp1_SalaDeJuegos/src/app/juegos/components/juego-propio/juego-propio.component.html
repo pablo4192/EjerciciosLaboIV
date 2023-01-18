@@ -3,8 +3,13 @@
         <p>DESTRUCTOR DE METEORITOS<p>
         <input type="button" value="Comenzar juego" (click)="comenzarJuego()">
     </div>
-    <div class="container-fluid" id="juego" #divContainer>
+    <div class="container-fluid" id="juego" #divContainer> 
         <img src="./../../../../assets/img_juegoPropio/planetaTierra.jpg" alt="planetaTierra.jpg">
+        <div *ngIf="destruccionMasiva" class="destruccionMasiva">
+            <p>DESTRUCCION MASIVA ACTIVADA</p> 
+            <p>Pasa el cursor por los meteoritos y seran destuidos automaticamente</p>
+            <p>{{timerDestruccionMasiva}}</p>
+        </div>
     </div>
     <div>
             Meteoritos interceptados: {{meteoritosEliminados}}

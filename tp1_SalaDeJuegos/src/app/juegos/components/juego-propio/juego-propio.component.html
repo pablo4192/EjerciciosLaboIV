@@ -10,6 +10,17 @@
             <p>Pasa el cursor por los meteoritos y seran destuidos automaticamente</p>
             <p>{{timerDestruccionMasiva}}</p>
         </div>
+        <div *ngIf="flagDerrota" class="gameOver">
+            <div class="row">
+                <div class="col-7"> 
+                    <p>GAME OVER</p>
+                </div>
+                <div class="col-5">
+                    <input type="button" value="Nueva partida" (click)="reiniciar()">
+                    <input type="button" value="Salir" (click)="salir()">
+                </div>
+            </div>
+        </div>
     </div>
     <div>
             Meteoritos interceptados: {{meteoritosEliminados}}

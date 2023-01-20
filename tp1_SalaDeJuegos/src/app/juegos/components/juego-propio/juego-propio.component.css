@@ -3,17 +3,12 @@
     
 }
 
-
-
 #contenedor{
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    
-   
 }
 
 #comenzar{
@@ -35,8 +30,6 @@
 
 #comenzar p{
     font-size: 4em;
-    
-    
 }
 
 #comenzar input{
@@ -73,7 +66,73 @@
     
     margin-top: 10px;
     padding: 0;
+
+    cursor: crosshair;
+    
    
+}
+
+.gameOver{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250, 0, 0, .5);
+    
+    animation: 2s ease-in 1 gameOver;
+}
+
+.gameOver>div{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    height: 30%;
+}
+
+.row div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gameOver p{
+    font-size: 7em;
+    font-weight: bold;
+    color: #eee;
+}
+
+.gameOver input{
+    width: 90%;
+    height: 35%;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+
+    font-size: xx-large;
+    font-weight: lighter;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #eee;
+}
+
+.gameOver input:hover{
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+}
+
+@keyframes gameOver{
+    0%{
+        background-color: white;
+        opacity: 1;
+    }
+    50%{
+        opacity: .5;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 
 
@@ -98,16 +157,56 @@
     position: absolute;
 }
 
+.meteoritoGigante{
+    width: 500px;
+    height: 450px;
+    
+    border-radius: 50%;
+    background-color: #aaa;
+    
+    position: absolute;
+    top: -30%;
+    left: 0;
+    transform: scale(0);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+    animation: 12s linear 1 trayectoriaGigante;
+}
+
+.meteoritoGigante div{
+    background-color: red;
+    width: 45px;
+    height: 45px;
+
+    border: 1px red solid;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.meteoritoGigante div::after{
+    content: 'Shoot';
+    font-size: small;
+    font-weight: bolder;
+    color: white;
+}
+
 .ovni{
     width: 70px;
     height: 40px;
     background-color: rgb(173, 255, 47);
     position: absolute;
     top: 50%;
+    left: -10%;
     animation: 5s linear 1 trayectoriaOvni;
-
-    
-    
 }
 
 .destruccionMasiva{
@@ -145,6 +244,17 @@
 img{
     width: 100%;
     height: 40%;
+}
+
+@keyframes trayectoriaGigante{
+    0%{
+        transform: scale(.05);
+    }
+    100%{
+        transform: scale(1);
+        top: 15%;
+        left: 30%;
+    }
 }
 
 @keyframes trayectoriaOvni{

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class JuegoPropioComponent implements OnInit {
   flagModalReinicio:boolean = false;
   start:boolean = false;
 
-  lanzamientos:number = 50;
+  lanzamientos:number = 80;
   meteoritosALanzar:number = this.lanzamientos;
   
   meteoritos:HTMLDivElement[] = [];
@@ -25,9 +26,12 @@ export class JuegoPropioComponent implements OnInit {
   ovni:HTMLDivElement|undefined;
   destruccionMasiva:boolean = false;
   timerDestruccionMasiva:number = 10;
+  energiaMeteoritoGigante:number = 21;
+
+  flagDerrota = false;
 
   constructor(private renderer2:Renderer2,
-              ) { }
+              private router:Router) { }
 
   ngOnInit(): void {
     window.scroll({
@@ -45,8 +49,13 @@ export class JuegoPropioComponent implements OnInit {
 
   reiniciar():void{
     this.eliminarMeteoritos();
-    this.renderer2.removeChild(this.containerRef?.nativeElement, this.ovni);
-    this.ovni = undefined;
+
+    if(this.ovni != undefined)
+    {
+      this.renderer2.removeChild(this.containerRef?.nativeElement, this.ovni);
+      this.ovni = undefined;
+    }
+
     this.meteoritosALanzar = this.lanzamientos;
     this.meteoritosEliminados = 0;
     this.puntaje = 0;
@@ -54,20 +63,28 @@ export class JuegoPropioComponent implements OnInit {
     this.start = false;
     this.flagModalReinicio = false;
     this.destruccionMasiva = false; 
+    this.timerDestruccionMasiva = 10;
+    this.flagDerrota = false;
+    this.energiaMeteoritoGigante = 21;
+
 
     this.comenzarJuego();
   }
 
-   //Usarlo cuando quiero reiniciar la partida
-   eliminarMeteoritos():void{
-    
-    this.meteoritos.forEach((m) => {
-      this.renderer2.removeChild(this.containerRef?.nativeElement, m);
-    });
+  salir():void{
+    this.router.navigate(['/juegos']);
+  }
 
-    this.meteoritos.splice(0, this.meteoritos.length);
-    this.meteoritosGrandes.splice(0, this.meteoritosGrandes.length);
-
+  eliminarMeteoritos():void{
+    if(this.meteoritos.length > 0)
+    {
+      this.meteoritos.forEach((m) => {
+        this.renderer2.removeChild(this.containerRef?.nativeElement, m);
+      });
+  
+      this.meteoritos.splice(0, this.meteoritos.length);
+      this.meteoritosGrandes.splice(0, this.meteoritosGrandes.length);
+    }
   }
 
   comenzarJuego():void{
@@ -92,13 +109,12 @@ export class JuegoPropioComponent implements OnInit {
           
             if(this.meteoritosALanzar == 0)
             {
-              clearInterval(id);
-              setTimeout(() => {
-                this.flagModalReinicio = true;
-                }, 6000);
-            }
-            
+              this.generarMeteoritoGigante();
 
+              clearInterval(id);
+              
+            }
+        
         },500);
       }, 2000);
   }
@@ -124,14 +140,14 @@ export class JuegoPropioComponent implements OnInit {
     this.meteoritos.push(meteorito);
       
     this.renderer2.appendChild(this.containerRef?.nativeElement, meteorito);
-    this.renderer2.listen(meteorito, 'mousedown', (e) => {
-      this.destruirMeteorito(e);
-      
-    });
-
+    
     if(this.destruccionMasiva)
     {
       this.renderer2.listen(meteorito, 'mouseover', (e) => this.destruirMeteorito(e));
+    }
+    else
+    {
+      this.renderer2.listen(meteorito, 'mousedown', (e) => this.destruirMeteorito(e));
     }
 
     this.contadorMeteoritos++;
@@ -147,14 +163,62 @@ export class JuegoPropioComponent implements OnInit {
     this.renderer2.listen(this.ovni, 'mousedown', (e) => this.comenzarDestruccionMasiva(e));
   }
 
-  //VER DELAY EN GENERACION DE METEORITOS CON DESTRUCCION MASIVA
+  generarMeteoritoGigante():void{
+    let gigante = this.renderer2.createElement('div');
+    let divs:HTMLDivElement[] = [];
+    let div:HTMLDivElement;
+    let texto:string;
+
+    let arrayPosicionY:string[] = [
+      '10%', '45%', '45%', '45%', '85%'
+    ];
+
+    let arrayPosicionX:string[] = [
+      '47%', '5%', '47%', '85%', '47%'
+    ];
+
+    divs = this.crearPuntosClave(arrayPosicionY, arrayPosicionX);
+
+    for(let i = 0; i < divs.length; i++)
+    {
+      this.renderer2.appendChild(gigante, divs[i]);
+    }
+    
+    
+    this.renderer2.appendChild(this.containerRef?.nativeElement, gigante);
+    this.renderer2.addClass(gigante, 'meteoritoGigante');
+
+    this.gameOver(gigante);
+    
+  }
+
+  crearPuntosClave(posicionesY:string[], posicionesX:string[]):HTMLDivElement[]{
+    let divs:HTMLDivElement[] = [];
+    let div:HTMLDivElement;
+
+    for(let i = 0; i < 5; i++)
+    {
+      div = this.renderer2.createElement('div');
+      this.renderer2.setStyle(div, 'position', 'absolute');
+      this.renderer2.setStyle(div, 'top', `${posicionesY[i]}`);
+      this.renderer2.setStyle(div, 'left', `${posicionesX[i]}`);
+      
+      this.renderer2.listen(div, 'mousedown', (e) => this.destruirPuntosClaves(e));
+      divs.push(div);
+    }
+
+    return divs;
+  }
+
   comenzarDestruccionMasiva($event:any):void{
 
     this.renderer2.setStyle($event.target, 'background-color', 'white'); //SE puede cambiar imagen de ovni al hacer click
 
     this.destruccionMasiva = true;
 
-    let id = setInterval(() => {  //Ver si estos casos de setInterval y/o setTimeOut los puedo hacer en una funcion que pueda reutilizar
+    this.cambiarEventoMeteoritos();
+
+    let id = setInterval(() => { 
       this.timerDestruccionMasiva--;
       
       if(this.timerDestruccionMasiva == 0)
@@ -163,6 +227,19 @@ export class JuegoPropioComponent implements OnInit {
         this.destruccionMasiva = false;
       }
     }, 1000)
+  }
+
+  cambiarEventoMeteoritos():void{
+    
+  let hermano = this.renderer2.nextSibling(this.containerRef?.nativeElement.firstChild);
+
+  do{
+    
+    this.renderer2.listen(hermano, 'mouseover', (e) => this.destruirMeteorito(e));
+    hermano = this.renderer2.nextSibling(hermano); 
+
+  }while (hermano != null);
+
   }
 
   seleccionarDireccionCaida(meteorito:HTMLDivElement):void{
@@ -233,7 +310,50 @@ export class JuegoPropioComponent implements OnInit {
       
   }
 
-  numeroRandom(min:number, max:number) {
+  destruirPuntosClaves($event:any):void{
+    
+    let padre = $event.target.parentNode;
+
+    this.renderer2.removeChild(padre, $event.target);
+
+    if(padre.firstChild == null)
+    {
+      this.renderer2.listen(padre, 'mousedown', () => this.destruirMeteoritoGigante(padre));
+    }
+  }
+
+  destruirMeteoritoGigante(meteoritoGigante:HTMLDivElement):void{
+    this.energiaMeteoritoGigante--;
+
+    this.renderer2.setStyle(meteoritoGigante, 'background-color', 'orangered'); //Como activar pseudoClase :active en css desde aca?
+
+    setTimeout(() => {
+      this.renderer2.setStyle(meteoritoGigante, 'background-color', '#aaa');
+    }, 50);
+      
+    if(this.energiaMeteoritoGigante == 0)
+    {
+      this.renderer2.removeChild(meteoritoGigante.parentNode, meteoritoGigante);
+    }
+  }
+
+  gameOver(meteoritoGigante:HTMLDivElement):void{
+
+    setTimeout(() => {
+      if(this.energiaMeteoritoGigante > 0)
+      {
+          this.flagDerrota = true;
+          this.renderer2.removeChild(meteoritoGigante.parentNode, meteoritoGigante);
+      }
+      else
+      {
+        this.flagModalReinicio = true;
+      }
+    }, 12000);
+
+  }
+
+  numeroRandom(min:number, max:number):number {
     return Math.floor((Math.random() * (max - min + 1)) + min);
   }
 

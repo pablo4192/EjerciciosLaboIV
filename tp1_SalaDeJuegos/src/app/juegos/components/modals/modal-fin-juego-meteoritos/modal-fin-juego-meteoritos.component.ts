@@ -86,7 +86,7 @@ generarPuntaje():void{
           clearInterval(id);
         }
     
-      }, 200);
+      }, 100);
     }, 1000);
   }
 
@@ -95,15 +95,15 @@ generarPuntaje():void{
 
 generarTitulo():void{
 
-    if(this.meteoritosInterceptados < 10)
+    if(this.meteoritosInterceptados < 20)
     {
-      this.titulo = 'Cuando te reclutamos para salvar al mundo hubiera sido bueno saber sobre tus problemas visuales. Todos los meteoritos impactaron, se acabo todo todillo... ';
+      this.titulo = 'Cuando te reclutamos para salvar al mundo hubiera sido bueno saber sobre tus problemas visuales. Demasiados meteoritos impactaron, se acabo todo todillo... ';
     }
-    else if(this.meteoritosInterceptados < 20)
+    else if(this.meteoritosInterceptados < 40)
     {
       this.titulo = 'Ya no hay vuelta atras, el planeta entro en su sexta extinsión masiva. Demasiados meteoritos impactaron en la superficie';
     }
-    else if(this.meteoritosInterceptados < 30)
+    else if(this.meteoritosInterceptados < 60)
     {
       this.titulo = 'Nos costara salir de esta catastrofe pero lograremos sobreponernos. Varias zonas se vieron afectadas por los impactos';
     }

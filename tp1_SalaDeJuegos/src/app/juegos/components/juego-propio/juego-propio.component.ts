@@ -14,7 +14,7 @@ export class JuegoPropioComponent implements OnInit {
   flagModalReinicio:boolean = false;
   start:boolean = false;
 
-  lanzamientos:number = 80;
+  lanzamientos:number = 50;
   meteoritosALanzar:number = this.lanzamientos;
   
   meteoritos:HTMLDivElement[] = [];
@@ -125,14 +125,29 @@ export class JuegoPropioComponent implements OnInit {
   generarMeteoritos():void{
     
     let meteorito = this.renderer2.createElement('div');
+    this.renderer2.addClass(meteorito, 'img-fluid');
+    this.renderer2.addClass(meteorito, 'divMeteorito');
+
+    
+    let img = this.renderer2.createElement('img');
+    this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/meteorito.png');
+    this.renderer2.setAttribute(img, 'alt', 'meteorito.png');
+    
+    let audio = this.renderer2.createElement('audio');
+    this.renderer2.setAttribute(audio, 'src', 'assets/img_juegoPropio/explosionChica.mp3');
+    
+    
+    this.renderer2.appendChild(img, audio);
+
+    this.renderer2.appendChild(meteorito, img);
 
     if(this.contadorMeteoritos == 10 || this.contadorMeteoritos == 20 || this.contadorMeteoritos == 30 || this.contadorMeteoritos == 40)
     {
-      this.renderer2.setAttribute(meteorito, 'class', 'meteoritoGrande');
+      this.renderer2.addClass(img, 'meteoritoGrande');
     }
     else
     {
-      this.renderer2.setAttribute(meteorito, 'class', 'meteorito');
+      this.renderer2.addClass(img, 'meteorito');
     }
     
     this.seleccionarDireccionCaida(meteorito);
@@ -157,7 +172,14 @@ export class JuegoPropioComponent implements OnInit {
   generarOvni():void{
 
     this.ovni = this.renderer2.createElement('div');
+    this.renderer2.addClass(this.ovni, 'img-fluid');
     this.renderer2.setAttribute(this.ovni, 'class', 'ovni');
+
+    let img = this.renderer2.createElement('img');
+    this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/react.png');
+    this.renderer2.setAttribute(img, 'alt', 'react.png');
+
+    this.renderer2.appendChild(this.ovni, img);
     this.renderer2.appendChild(this.containerRef?.nativeElement, this.ovni);
 
     this.renderer2.listen(this.ovni, 'mousedown', (e) => this.comenzarDestruccionMasiva(e));
@@ -165,9 +187,22 @@ export class JuegoPropioComponent implements OnInit {
 
   generarMeteoritoGigante():void{
     let gigante = this.renderer2.createElement('div');
+    this.renderer2.addClass(gigante, 'img-fluid');
+    this.renderer2.addClass(gigante, 'divGigante');
+
+    let img = this.renderer2.createElement('img');
+    this.renderer2.addClass(img, 'meteoritoGigante');
+    this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/meteorito.png');
+    this.renderer2.setAttribute(img, 'alt', 'meteorito.png');
+
+    let audio = this.renderer2.createElement('audio');
+    this.renderer2.setAttribute(audio, 'src', 'assets/img_juegoPropio/explosionGrande.mp3');
+    this.renderer2.appendChild(img, audio);
+
+    this.renderer2.appendChild(gigante, img);
+
     let divs:HTMLDivElement[] = [];
     let div:HTMLDivElement;
-    let texto:string;
 
     let arrayPosicionY:string[] = [
       '10%', '45%', '45%', '45%', '85%'
@@ -184,9 +219,8 @@ export class JuegoPropioComponent implements OnInit {
       this.renderer2.appendChild(gigante, divs[i]);
     }
     
-    
     this.renderer2.appendChild(this.containerRef?.nativeElement, gigante);
-    this.renderer2.addClass(gigante, 'meteoritoGigante');
+    //this.renderer2.addClass(gigante, 'meteoritoGigante');
 
     this.gameOver(gigante);
     
@@ -212,7 +246,7 @@ export class JuegoPropioComponent implements OnInit {
 
   comenzarDestruccionMasiva($event:any):void{
 
-    this.renderer2.setStyle($event.target, 'background-color', 'white'); //SE puede cambiar imagen de ovni al hacer click
+    this.renderer2.setStyle($event.target, 'background-color', '#ddd'); //SE puede cambiar imagen de ovni al hacer click
 
     this.destruccionMasiva = true;
 
@@ -280,23 +314,38 @@ export class JuegoPropioComponent implements OnInit {
 
     if($event.target.className == 'meteorito')
     {
-      this.renderer2.removeChild(this.containerRef?.nativeElement, $event.target);
+      this.renderer2.selectRootElement($event.target.firstChild).play();
+      this.renderer2.setAttribute($event.target, 'src', 'assets/img_juegoPropio/explosion2.png')
+      this.renderer2.setStyle($event.target, 'animation', '.5s ease-in 1 explosion');
 
-      i_destruido = this.meteoritos.indexOf($event.target);
+      setTimeout(() => {
+        
+        this.renderer2.removeChild(this.containerRef?.nativeElement, $event.target.parentNode);
+      }, 500);
+
+      i_destruido = this.meteoritos.indexOf($event.target.parentNode);
       this.meteoritos.splice(i_destruido, 1);
 
       this.meteoritosEliminados++;
     }
-    else //meteoritoGrande
+    else if($event.target.className == 'meteoritoGrande')
     {
-      if(this.meteoritosGrandes.includes($event.target))
+      if(this.meteoritosGrandes.includes($event.target.parentNode))
       {
-        this.renderer2.removeChild(this.containerRef?.nativeElement, $event.target);
-        let i = this.meteoritosGrandes.indexOf($event.target);
+        this.renderer2.selectRootElement($event.target.firstChild).play();
+        this.renderer2.removeStyle($event.target, 'background-color');
+        this.renderer2.setAttribute($event.target, 'src', 'assets/img_juegoPropio/explosion2.png')
+        this.renderer2.setStyle($event.target, 'animation', '.5s ease-in 1 explosion');
+
+        setTimeout(() => {
+          this.renderer2.removeChild(this.containerRef?.nativeElement, $event.target.parentNode);
+        }, 500);
+          
+        let i = this.meteoritosGrandes.indexOf($event.target.parentNode);
 
         this.meteoritosGrandes.splice(i, 1);
         
-        i_destruido = this.meteoritos.indexOf($event.target);
+        i_destruido = this.meteoritos.indexOf($event.target.parentNode);
         this.meteoritos.splice(i_destruido, 1);
 
         this.meteoritosEliminados++;
@@ -304,7 +353,7 @@ export class JuegoPropioComponent implements OnInit {
       else
       {
         this.renderer2.setStyle($event.target, 'background-color', 'red');
-        this.meteoritosGrandes.push($event.target);
+        this.meteoritosGrandes.push($event.target.parentNode);
       }
     }
       
@@ -316,24 +365,32 @@ export class JuegoPropioComponent implements OnInit {
 
     this.renderer2.removeChild(padre, $event.target);
 
-    if(padre.firstChild == null)
+    if(padre.firstChild.nextSibling == null) //Ver
     {
       this.renderer2.listen(padre, 'mousedown', () => this.destruirMeteoritoGigante(padre));
     }
   }
 
   destruirMeteoritoGigante(meteoritoGigante:HTMLDivElement):void{
+    let img = meteoritoGigante.firstChild;
     this.energiaMeteoritoGigante--;
-
-    this.renderer2.setStyle(meteoritoGigante, 'background-color', 'orangered'); //Como activar pseudoClase :active en css desde aca?
+    
+    this.renderer2.setStyle(meteoritoGigante, 'background-color', 'red'); //Como activar pseudoClase :active en css desde aca?
 
     setTimeout(() => {
-      this.renderer2.setStyle(meteoritoGigante, 'background-color', '#aaa');
+      this.renderer2.setStyle(meteoritoGigante, 'background-color', 'transparent');
     }, 50);
       
     if(this.energiaMeteoritoGigante == 0)
     {
-      this.renderer2.removeChild(meteoritoGigante.parentNode, meteoritoGigante);
+      this.renderer2.selectRootElement(img?.firstChild).play();
+      this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/explosion2.png')
+      this.renderer2.setStyle(img, 'animation', '1s ease-in 1 explosion');
+
+      setTimeout(() => {
+        this.renderer2.removeChild(meteoritoGigante.parentNode, meteoritoGigante);
+        
+      }, 1000);
     }
   }
 
@@ -347,7 +404,10 @@ export class JuegoPropioComponent implements OnInit {
       }
       else
       {
-        this.flagModalReinicio = true;
+        setTimeout(() => {
+          this.flagModalReinicio = true;
+        }, 1000);
+          
       }
     }, 12000);
 

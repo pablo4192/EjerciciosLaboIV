@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+    
+    padding: 0;
+}
+
+.container{
+    min-height: 50vh;
+    background-color: #eef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+table{
+    
+}
+
+table, tr, td{
+    background-color: #eff;
+    border: 3px #fff solid;
+    border-radius: 10px;
+}
+
+thead td{
+    background-color: #eee;
+}
+
+td{
+    padding: 10px 30px;
+}
+

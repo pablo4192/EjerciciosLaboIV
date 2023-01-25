@@ -1,10 +1,12 @@
 <div class="container-fluid" id="contenedor">
     <div id="comenzar">
-        <p>DESTRUCTOR DE METEORITOS<p>
-        <input type="button" value="Comenzar juego" (click)="comenzarJuego()">
+        <p>Impacta la mayor cantidad de meteoritos antes de que impacten en la superficie.</p>
+        <p>Cada objetivo destruido suma 5 puntos a tu puntaje.</p>
+        <p>Aunque destruyas todos los meteoritos si no logras destruir el ultimo todo sera en vano...</p>
+        <div (click)="comenzarJuego()">Comenzar juego</div>
     </div>
     <div class="container-fluid" id="juego" #divContainer> 
-        <img src="./../../../../assets/img_juegoPropio/planetaTierra.jpg" alt="planetaTierra.jpg">
+        <img src="./../../../../assets/img_juegoPropio/planetaTierra.png" alt="planetaTierra.png">
         <div *ngIf="destruccionMasiva" class="destruccionMasiva">
             <p>DESTRUCCION MASIVA ACTIVADA</p> 
             <p>Pasa el cursor por los meteoritos y seran destruidos automaticamente</p>
@@ -12,7 +14,7 @@
         </div>
         <div *ngIf="flagDerrota" class="gameOver">
             <div class="row">
-                <div class="col-7"> 
+                <div class="col-7">  
                     <p>GAME OVER</p>
                 </div>
                 <div class="col-5">
@@ -22,7 +24,8 @@
                 <audio src="assets/img_juegoPropio/gameOver.mp3" autoplay></audio>
             </div>
         </div>
-    </div>
+        <div id="btnReiniciar" *ngIf="start" (click)="reiniciar()">Reiniciar</div>
+    </div> 
     <div class="contadorMeteoritos">
             Meteoritos interceptados: {{meteoritosEliminados}}
     </div>
@@ -31,6 +34,7 @@
                                     (reiniciarJuego)="manejarEventoReiniciar()">
     </app-modal-fin-juego-meteoritos>
 </div>
+
 
 
 

@@ -4,9 +4,8 @@ import { LoginComponent } from './components/login/login.component';
 import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { VistaPrincipalComponent } from './components/vista-principal/vista-principal.component';
-import {canActivate, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 import { ChatComponent } from './components/chat/chat.component';
-import { JuegosComponent } from './juegos/juegos.component';
+import { PuntajesComponent } from './components/puntajes/puntajes.component';
 
 const routes: Routes = [
   {path: 'registro', component:RegistroComponent},
@@ -18,7 +17,7 @@ const routes: Routes = [
   //{path: 'chat', component:ChatComponent, ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
   {path: 'chat', component:ChatComponent},
   { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) },  //Cargado con lazy loading (lo trae solo cuando lo llama) Hacer con guard, visto en clase
-  {path: '**', component:VistaPrincipalComponent},
+  {path: 'puntajes', component:PuntajesComponent}
 
 ];
 

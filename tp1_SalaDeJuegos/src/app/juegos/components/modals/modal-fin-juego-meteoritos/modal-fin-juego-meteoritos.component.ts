@@ -17,6 +17,7 @@ export class ModalFinJuegoMeteoritosComponent implements OnInit {
   puntaje:number = 0;
   titulo:string = '';
 
+  flag:boolean = true;
 
   constructor(private renderer2:Renderer2,
               private loginService:LoginService,
@@ -84,6 +85,7 @@ generarPuntaje():void{
         if(this.meteoritosInterceptados == 0)
         {
           clearInterval(id);
+          this.flag = false;
         }
     
       }, 100);

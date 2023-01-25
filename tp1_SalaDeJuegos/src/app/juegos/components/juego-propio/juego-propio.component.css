@@ -13,45 +13,83 @@
 
 #comenzar{
     width: 98%;
-    height: 250px;
+    height: 350px;
+    border-radius: 2px;
     border: 1px solid black;
     margin: 20px 0 10px 0;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   
-    background-color: rgb(17, 17, 84);
-    color: #fff;
-
+    background-color: rgb(10, 40, 84);
+    color: #eee;
     font-family:'Consolas';
 }
 
 #comenzar p{
-    font-size: 4em;
+    font-size: 1.5em;
 }
 
-#comenzar input{
-    width: 350px;
-    height: 90px;
-    padding: 20px;
-    border-radius: 10px;
-    border: none;
-    background-color: rgb(250, 199, 14);
+/* EFECTO BORDE OUTLINE*/
+#comenzar>div{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 25%;
     color: #fff;
-    font-size: xx-large;
-    font-weight: bold;
-
-    transition: all 1s;
+    font-size: 30px;
+    font-weight: 500;
+    
+    background: #318aac;
+    border-radius: 1px;
+    border: 1px solid #318aac;
+    outline: 2px solid rgba(49, 138, 172, .5);
+    transition: all .4s ease;
+}
+ 
+#comenzar>div:hover{
+    box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
+    outline-color: rgba(49, 138, 172, 0);
+    outline-offset: 80px;
+    text-shadow: 1px 1px 6px #fff;
 }
 
-#comenzar input:hover{
-    background-color: orange;
-    color: white;
-    transform: scale(1.1);
-    transition: all 1s;
+ /*EFECTOS BORDES ARRIBA Y ABAJO
+#comenzar>::before , #comenzar>div::after{
+    content: '';
+    display: block;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    transition: all .3s;
 }
+
+#comenzar>div::before{
+    width: 0;
+    height: 3px;
+    left: 0;
+    box-shadow: 300px -88px red;
+}
+
+#comenzar>div:hover::before{
+    width: 100%;
+    box-shadow: 0 -88px red;
+}
+
+#comenzar>div::after{
+    width: 3px;
+    height: 0;
+    right: 0;
+    box-shadow: -297px -90px red;
+}
+
+#comenzar>div:hover::after{
+    height: 100%;
+    box-shadow: -297px 0 red;
+}
+*/
 
 #juego{ 
     height: 700px;
@@ -60,19 +98,21 @@
 
     position: relative;
     overflow: hidden;
-
-    background: linear-gradient(rgb(20,20,40), rgb(0,0,0));
+    background-image: url("./../../../../assets/img_juegoPropio/cieloOscuro.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     border: 1px solid black;
     
-    margin-top: 10px;
+    margin-top: 10px; 
     padding: 0;
 
     cursor: crosshair;
+    user-select: none;
 }
 
 .contadorMeteoritos{
     height: 30px;
-    background-color: rgb(17, 17, 84);
+    background-color: rgb(10, 40, 84);
     color: #ddd;
     width: 100%;
     font-size: large;
@@ -87,22 +127,35 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('./../../../../assets/img_juegoPropio/pantallaRota.jpg');
+    background-image: url('./../../../../assets/img_juegoPropio/pantallaRota2.png');
     background-repeat: no-repeat;
     background-size: cover;
     
-    animation: 1s ease-in 1 gameOver;
+    animation: 2s ease-in 1 gameOver;
 }
 
 .gameOver>div{
     height: 30%;
+    animation: 5s linear 1 animacionOpacidad;
+}
+
+@keyframes animacionOpacidad{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }   
+    100%{
+        opacity: 1;
+    }
 }
 
 .row div{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .gameOver p{
@@ -135,11 +188,12 @@
         background-color: white;
         opacity: 1;
     }
-    50%{
-        opacity: .5;
+    75%{
+        background-color: white;
     }
     100%{
-        opacity: 0;
+        
+        opacity: .2;
     }
 }
 
@@ -167,7 +221,7 @@
     left: 0;
     transform: scale(0);
     border-radius: 50%;
-    animation: 12s linear 1 trayectoriaGigante;
+    
 }
 
 .meteoritoGigante{
@@ -177,11 +231,11 @@
 }
 
 .divGigante div{
-    background-color: red;
-    width: 45px;
-    height: 45px;
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
 
-    border: 1px red solid;
+    border: 1px solid black;
     border-radius: 50%;
 
     display: flex;
@@ -192,10 +246,10 @@
 }
 
 .divGigante div::after{
-    content: 'Shoot';
-    font-size: small;
-    font-weight: bolder;
-    color: white;
+    content: 'X';
+    font-size: x-large;
+    font-weight: bold;
+    color: red;
 }
 
 @keyframes explosion{
@@ -258,12 +312,37 @@ img{
     height: 40%;
 }
 
-@keyframes trayectoriaGigante{
+@keyframes trayectoriaGigante1{
     0%{
         transform: scale(.05);
     }
     100%{
-        transform: scale(1);
+        transform: scale(1.2);
+        top: 20%;
+        left: 30%;
+    }
+}
+
+@keyframes trayectoriaGigante2{
+    0%{
+        left: 85%;
+        transform: scale(.05);
+    }
+    100%{
+        transform: scale(1.2);
+        top: 15%;
+        left: 40%;
+    }
+}
+
+@keyframes trayectoriaGigante3{
+    0%{
+       
+        left: 30%;
+        transform: scale(.05);
+    }
+    100%{
+        transform: scale(1.2);
         top: 15%;
         left: 30%;
     }
@@ -281,11 +360,6 @@ img{
         left: 110%;
     }
 }
-
-@keyframes animacionOvni{
-    
-}
-
 
 @keyframes trayectoria1{
     0%{
@@ -380,6 +454,27 @@ img{
         right: 40%;
     }
 }
+
+#btnReiniciar{
+    position: absolute;
+    background-color: transparent;
+    color: yellow;
+    font-size: large;
+    font-weight: bolder;
+    border: 1px #fff solid;
+    border-radius: 5px;
+    top: 5%;
+    right: 2%;
+    padding: 10px 30px;
+   
+}
+
+#btnReiniciar:hover{
+    transition: all .5s;
+    background-color: yellow;
+    color: black;
+}
+
 
 
 

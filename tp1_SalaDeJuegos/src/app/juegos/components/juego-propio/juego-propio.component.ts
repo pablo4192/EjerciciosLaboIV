@@ -14,7 +14,7 @@ export class JuegoPropioComponent implements OnInit {
   flagModalReinicio:boolean = false;
   start:boolean = false;
 
-  lanzamientos:number = 50;
+  lanzamientos:number = 80;
   meteoritosALanzar:number = this.lanzamientos;
   
   meteoritos:HTMLDivElement[] = [];
@@ -29,6 +29,7 @@ export class JuegoPropioComponent implements OnInit {
   energiaMeteoritoGigante:number = 21;
 
   flagDerrota = false;
+  idIntervalGeneradorMeteoritos:any;
 
   constructor(private renderer2:Renderer2,
               private router:Router) { }
@@ -40,7 +41,7 @@ export class JuegoPropioComponent implements OnInit {
   }
 
   ngAfterViewInit():void{
-   
+    
   }
 
   manejarEventoReiniciar():void{
@@ -48,6 +49,8 @@ export class JuegoPropioComponent implements OnInit {
   }
 
   reiniciar():void{
+    
+    clearInterval(this.idIntervalGeneradorMeteoritos);
     this.eliminarMeteoritos();
 
     if(this.ovni != undefined)
@@ -99,7 +102,7 @@ export class JuegoPropioComponent implements OnInit {
       });
       
       setTimeout(() => {
-        let id = setInterval(()=>{
+        this.idIntervalGeneradorMeteoritos = setInterval(()=>{
           
             this.generarMeteoritos();
             this.meteoritosALanzar--;
@@ -109,10 +112,9 @@ export class JuegoPropioComponent implements OnInit {
           
             if(this.meteoritosALanzar == 0)
             {
+              clearInterval(this.idIntervalGeneradorMeteoritos);
+              this.start = false;
               this.generarMeteoritoGigante();
-
-              clearInterval(id);
-              
             }
         
         },500);
@@ -188,7 +190,7 @@ export class JuegoPropioComponent implements OnInit {
   generarMeteoritoGigante():void{
     let gigante = this.renderer2.createElement('div');
     this.renderer2.addClass(gigante, 'img-fluid');
-    this.renderer2.addClass(gigante, 'divGigante');
+    this.renderer2.addClass(gigante, 'divGigante'); 
 
     let img = this.renderer2.createElement('img');
     this.renderer2.addClass(img, 'meteoritoGigante');
@@ -198,6 +200,8 @@ export class JuegoPropioComponent implements OnInit {
     let audio = this.renderer2.createElement('audio');
     this.renderer2.setAttribute(audio, 'src', 'assets/img_juegoPropio/explosionGrande.mp3');
     this.renderer2.appendChild(img, audio);
+
+    this.seleccionarTrayectoriaGigante(gigante);
 
     this.renderer2.appendChild(gigante, img);
 
@@ -220,11 +224,23 @@ export class JuegoPropioComponent implements OnInit {
     }
     
     this.renderer2.appendChild(this.containerRef?.nativeElement, gigante);
-    //this.renderer2.addClass(gigante, 'meteoritoGigante');
-
+    
     this.gameOver(gigante);
     
-  }
+  } 
+  /*
+  crearPosiciones(min:number, max:number, cantidad:number):string[]{
+    let random:number;
+    let arrayRetorno:string[] = [];
+
+    for(let i = 0; i < cantidad; i++)
+    {
+      random = this.numeroRandom(min, max);
+      arrayRetorno.push(`${random}%`);
+    }
+    
+    return arrayRetorno;
+  }*/
 
   crearPuntosClave(posicionesY:string[], posicionesX:string[]):HTMLDivElement[]{
     let divs:HTMLDivElement[] = [];
@@ -307,6 +323,23 @@ export class JuegoPropioComponent implements OnInit {
     }
 
   }
+
+  seleccionarTrayectoriaGigante(meteoritoGigante:HTMLDivElement):void{
+    let random = this.numeroRandom(1,3);
+    
+    switch(random)
+    {
+      case 1:
+        this.renderer2.setStyle(meteoritoGigante, 'animation', '12s linear 1 trayectoriaGigante1');
+        break;
+        case 2:
+          this.renderer2.setStyle(meteoritoGigante, 'animation', '12s linear 1 trayectoriaGigante2');
+          break;
+          case 3:
+            this.renderer2.setStyle(meteoritoGigante, 'animation', '12s linear 1 trayectoriaGigante3');
+            break;
+    }
+  }
     
   destruirMeteorito($event:any):void{
     
@@ -375,7 +408,7 @@ export class JuegoPropioComponent implements OnInit {
     let img = meteoritoGigante.firstChild;
     this.energiaMeteoritoGigante--;
     
-    this.renderer2.setStyle(meteoritoGigante, 'background-color', 'red'); //Como activar pseudoClase :active en css desde aca?
+    this.renderer2.setStyle(meteoritoGigante, 'background-color', 'red'); 
 
     setTimeout(() => {
       this.renderer2.setStyle(meteoritoGigante, 'background-color', 'transparent');

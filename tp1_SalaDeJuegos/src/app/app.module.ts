@@ -16,6 +16,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PuntajesComponent } from './components/puntajes/puntajes.component';
 
 
 
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegistroComponent,
     NavComponent,
     ChatComponent,
-    LogoutComponent
+    LogoutComponent,
+    PuntajesComponent
     
   ],
   imports: [

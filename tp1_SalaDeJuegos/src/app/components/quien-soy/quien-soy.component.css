@@ -1,54 +1,253 @@
 *{
     box-sizing: border-box;
-    
-}
-
-#divContenedor{
-    
-    height: 550px;
-    margin-top: 20px;
-    padding: 0;
-    
-}
-
-h1{
-    background-color: #FFE082;
-    padding: 5px;
-    margin-top: 5px;
-    
 }
 
 .row{
+    height: 55vh;
     margin: 0;
+   
 }
 
-#divImagen{
-    height: 450px;
+#divContenedor{
+    margin-top: 50px;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+ #divImagen{
+    height: 100%;
     background-color: rgb(240, 240, 240);
     display: flex;
     justify-content: center;
     align-items: center;
+
     border: 2px white solid;
-    
+    border-radius: 10px;
 }
 
 #divDatosPersonales{
+   height: 100%;
    border: 2px white solid;
+   border-radius: 10px;
+   padding: 0;
    background-color: #1E88E5;
-   color: white;
-   font-weight: lighter;
+   color: #eee;
+
+   font-size: xx-large;
+
+   display: flex;
+   flex-direction: column;
    
 }
 
-img{
-    width: 50%;
-    height: 400px;
-    border: 2px solid white;
-    
+.datosTitulo{
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px white solid;
+
+    font-weight: 700;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.datos{
+   height: 85%;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: flex-start;
+   border: 1px white solid;
+   padding: 10px;
+}
+
+#imgPablo{
+    width: 80%;
+    height: 100%;
+}
+
+.divImgJuego{
+    background-color: rgb(20, 20, 20);
+    color: #ddd;
+    font-family:'Consolas';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.divImgJuego p:first-child{
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: orangered;
+    width: 80%;
+    padding: 15px;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+}
+
+.divImgJuego :nth-child(2){
+    font-size: xx-large;
+    text-shadow: 0 0 20px rgba(250, 250, 250,.7);
+    margin-top: 10px;
+    visibility: hidden;
+}
+
+#imgJuegoPropio{
+    width: 100%;
+    height: 40vh;
+   
 }
 
 #divJuegoPropio{
-    height: 300px;
-    border: 2px solid black;
-    background: radial-gradient(ellipse farthest-side at 45px 30px , #fff 50%, rgba(0, 255, 0, 0) 0%, #00ff00 50%);
+    margin-top: 50px;
+    padding: 0;
+    height: 70vh;
+   
+}
+
+.explicacion{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 50px;
+    border-radius: 5px;
+    border: 1px white solid;
+    margin-top: 10px;
+    visibility: hidden;
+    cursor: pointer;
+
+    transition: all .3s;
+}
+
+@keyframes efectoOpacidad{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes efectoOpacidad2{
+    0%{
+        opacity: 0;
+    }
+    30%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.explicacion::after{
+    content: '>';
+    transform: rotate(90deg);
+    color: yellow;
+}
+
+.explicacion:hover{
+    box-shadow: 0 0 10px rgba(250, 250, 250,.7);
+    transition: all .3s;
+    text-shadow: 0 0 20px rgba(250, 250, 250,.7);
+}
+
+.reglasJuego{
+    position: absolute;
+    width: 100%;
+    height: 160%;
+    background-color: rgba(0, 0, 0, .5);
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data{
+    border: 1px white solid;
+    width: 40%;
+    height: 75%;
+    top: 10%;
+    position: fixed;
+    color: #ddd;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, .6) ;
+    animation: .4s ease 1 aperturaExp;
+}
+
+@keyframes aperturaExp{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+#pagina1{
+    font-size: x-large;
+    letter-spacing: 2px;
+   
+    /*VER COMO HACER PARA QUE LAS PAGINAS VAYAN PASANDO CUANDO PRESIONO ANTERIOR/SIGUIENTE*/
+}
+
+#pagina1 p:first-child{
+    border-bottom: 2px white solid;
+}
+
+.cerrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: orangered;
+    color: #eee;
+    position: fixed;
+    top: 7%;
+    left: 68.5%;
+    cursor: pointer;
+    animation: .6s ease 1 aperturaExp;
+}
+
+#anterior, #siguiente{
+    width: 5% ;
+    height: 30%;
+    background-color: rgba(0, 0, 0, .2) ;
+    position: fixed;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: #eee;
+}
+
+#anterior:hover, #siguiente:hover{
+    background-color: rgba(0, 0, 0, .7);
+    text-shadow: 0 0 10px rgba(250, 250, 250,.8);
+    transition: all .5s;
+    cursor: pointer;
+}
+
+#anterior{
+    left: 24.8%;
+}
+
+#siguiente{
+    right: 24.8%;
 }

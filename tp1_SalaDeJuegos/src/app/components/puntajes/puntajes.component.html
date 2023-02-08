@@ -2,14 +2,20 @@
     <table>
         <thead>
             <tr>
+                <td>Puesto</td>
                 <td>Usuario</td>
                 <td>Nombre</td>
                 <td>Apellido</td>
                 <td>Puntaje acumulado</td>
+                <td>Ultima conexión</td>
             </tr>
         </thead>
         <tbody #tableBody>
 
         </tbody>
     </table>
+    <div *ngIf="flagSpinner">
+        <app-spinner></app-spinner>
+    </div>
 </div>
+

@@ -83,6 +83,7 @@ export class LoginComponent implements OnInit {
     this.loginService.getUsuarios().subscribe(usuarios => {
       this.loginService.usuariosRegistrados = usuarios;
       this.loginService.usuario = this.loginService.retornarDatosUsuario(this.usuario); 
+      
     });
     
     this.loginService.getUsuariosActivos().subscribe(usuarios_act => {

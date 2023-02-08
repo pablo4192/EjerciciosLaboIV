@@ -1,0 +1,42 @@
+.container-fluid{
+    background-color: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+}
+
+.spinner{
+    background: linear-gradient(rgb(14, 233, 109), rgb(250,250,250));
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    animation: 1s linear infinite spinner;
+}
+
+.circulo{
+    background-color: rgba(250,250,250,.8);
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+}
+
+@keyframes spinner{
+    from{
+    
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

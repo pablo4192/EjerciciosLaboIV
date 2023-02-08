@@ -40,9 +40,7 @@ export class JuegoPropioComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit():void{
-    
-  }
+  
 
   manejarEventoReiniciar():void{
     this.reiniciar();

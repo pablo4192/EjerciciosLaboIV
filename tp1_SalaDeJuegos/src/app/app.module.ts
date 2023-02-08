@@ -17,6 +17,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PuntajesComponent } from './components/puntajes/puntajes.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -31,7 +32,8 @@ import { PuntajesComponent } from './components/puntajes/puntajes.component';
     NavComponent,
     ChatComponent,
     LogoutComponent,
-    PuntajesComponent
+    PuntajesComponent,
+    SpinnerComponent
     
   ],
   imports: [

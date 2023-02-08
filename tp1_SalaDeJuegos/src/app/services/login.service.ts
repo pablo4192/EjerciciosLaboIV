@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
-import { Firestore, collection, addDoc,collectionData, doc, deleteDoc} from '@angular/fire/firestore';
+import { Firestore, collection, addDoc,collectionData, doc, deleteDoc, updateDoc} from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 import { Usuario } from '../entidades/usuario';
@@ -21,8 +21,6 @@ export class LoginService{
     this.usuariosRegistrados = [];
    }
   
- 
-
   Registro(usuario:Usuario){
     
     const usr = {
@@ -30,18 +28,15 @@ export class LoginService{
       contrasenia: usuario.contrasenia,
     };
 
-     //CREACION DE USUARIO ACTIVO, REGISTRADO
-     this.usuario = usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
-     this.usuario.nombre = usuario.nombre;
-     this.usuario.apellido = usuario.apellido;
-
-     
+    //CREACION DE USUARIO ACTIVO, REGISTRADO
+    this.usuario = usuario; //Para tener visibles en todos los componentes los datos del usuario logueado
+    this.usuario.nombre = usuario.nombre;
+    this.usuario.apellido = usuario.apellido;
 
     return createUserWithEmailAndPassword(this.auth, usr.mail, usr.contrasenia);
   }
 
   Login(usuario:Usuario){
-
     return signInWithEmailAndPassword(this.auth, usuario.mail, usuario.contrasenia);
   }
 
@@ -52,7 +47,6 @@ export class LoginService{
   }*/
 
   Logout(){
-    
     return signOut(this.auth);
   }
 
@@ -60,16 +54,16 @@ export class LoginService{
     return this.auth.currentUser; //Retorno el usuario activo
   }
 
-  
-
   addUsuario(usuario:Usuario){  
-    
+     
     const usr = {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       mail: usuario.mail,
       contrasenia: usuario.contrasenia,
-      puntaje_acumulado: 0
+      puntaje_acumulado: 0,
+      puesto: usuario.puesto,
+      perfo: usuario.perfo
     };
     
     const usrRef = collection(this.firestore, 'usuarios');
@@ -105,20 +99,28 @@ export class LoginService{
     return collectionData(usrRef,{idField: 'id'}) as Observable<Usuario[]>;
   }
 
-  
-
   GuardarLogUsuario(usuario:Usuario){  
     
-    let fecha = new Date();
+    let date = new Date();
+    let fecha:string  = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
     let mail = usuario.mail;
+
+    setTimeout(() => {
+      if(this.usuario != null)
+      this.updateUltimaConexion(this.usuario, fecha);
+    }, 2000);
                           
     const usrRef = collection(this.firestore, 'log_usuarios');
     return addDoc(usrRef, {mail, fecha});
   }
 
+  private updateUltimaConexion(usuario:Usuario, fecha:string){ 
+    const usrRef = doc(this.firestore, `usuarios/${usuario.id}`);
+    return updateDoc(usrRef, {ultima_conexion: fecha});
+  }
+
 
   retornarDatosUsuario(usuario:Usuario){
-    
     return this.usuariosRegistrados.find((u) => u.mail == usuario.mail); //Retorno usuario con id de firebase
   }
 

@@ -12,12 +12,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'quienSoy', component: QuienSoyComponent},
   //{path: 'home', component:HomeComponent , ...canActivate(() => redirectUnauthorizedTo(['/registro']))}, //Hacer con guard, visto en clase
- 
-  {path: 'inicio', component:VistaPrincipalComponent},
   //{path: 'chat', component:ChatComponent, ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
   {path: 'chat', component:ChatComponent},
   { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) },  //Cargado con lazy loading (lo trae solo cuando lo llama) Hacer con guard, visto en clase
-  {path: 'puntajes', component:PuntajesComponent}
+  {path: 'puntajes', component:PuntajesComponent},
+  {path: '**', component:VistaPrincipalComponent}
 
 ];
 

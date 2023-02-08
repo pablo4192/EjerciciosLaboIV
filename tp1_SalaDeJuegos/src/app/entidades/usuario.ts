@@ -5,6 +5,9 @@ export class Usuario {
     contrasenia:string = '';
     id:string = '';
     puntaje_acumulado:number = 0;
+    ultima_conexion:string = '';
+    puesto:number = 0;
+    perfo:number = 0;
    
    
 

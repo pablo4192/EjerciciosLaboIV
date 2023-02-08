@@ -11,16 +11,18 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    position: relative;
 }
 
-table{
-    
-}
 
 table, tr, td{
     background-color: #eff;
     border: 3px #fff solid;
     border-radius: 10px;
+}
+
+.trUsr{
+    color: red;
 }
 
 thead td{
@@ -29,5 +31,10 @@ thead td{
 
 td{
     padding: 10px 30px;
+}
+
+img{
+    width: 25px;
+    height: 25px;
 }
 

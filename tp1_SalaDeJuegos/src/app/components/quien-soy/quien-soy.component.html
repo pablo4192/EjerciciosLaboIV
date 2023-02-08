@@ -1,19 +1,62 @@
-
-    <div class="container" id="divContenedor">
-        <h1>Quien soy</h1>
-        <div class="row">
-            <div class="col" id="divImagen">
-                <img src="./../../../assets/img/pabloProvi.jpg" alt="imgPablo">
-            </div>
-            <div class="col" id="divDatosPersonales">
-                <h2>Datos Personales</h2>
-                <p>Nombre: Pablo</p>
-                <p>Apellido: Estanguet</p>
+<div class="container" id="divContenedor">
+    <div class="row">
+        <div class="col-4" id="divImagen">
+            <img id="imgPablo" src="./../../../assets/img/pabloProvi.jpg" alt="imgPablo">
+        </div>
+        <div class="col-8" id="divDatosPersonales">
+            <div class="datosTitulo">Datos Personales</div>
+            <div class="datos">
+                <p>Nombre y apellido: Pablo Estanguet</p>
+                <p>Estudiante Tecnicatura Superior en Programación</p>
+                <p>Institución: UTN Avellaneda</p>
                 <p>Division: 4B</p>
             </div>
         </div>
     </div>
-    <div class="container" id="divJuegoPropio">
-        <h3>Explicacion juego propio</h3>
-        <p>Informacion sobre juego propio</p>
+</div>
+<div class="container-fluid" id="divJuegoPropio">
+    <div class="divImgJuego">
+        <p>JUEGO PROPIO</p>
+        <p #nombreJuego>DESTRUCTOR DE METEORITOS</p>
+        <div #divExplicacion class="explicacion" (click)="mostrarExplicacionJuego()">Explicación</div>
+        <img id="imgJuegoPropio" src="assets/img_juegoPropio/planetaTierra.png" alt="img_juegoPropio">
     </div>
+</div>
+<div *ngIf="flagExplicacion" class="reglasJuego">
+    <div id="anterior">&lt;</div>
+    <div class="data">
+        <div #pagina1 id="pagina1">
+            <p>OBJETIVO DEL JUEGO</p>
+            <p>
+                El objetivo del juego es destruir la mayor cantidad de meteoritos antes de que toquen la superficie de la tierra. 
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, pariatur!
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, pariatur!
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, pariatur!
+            </p>
+        </div>
+        <div id="pagina2">
+            <p>MODO DE JUEGO</p>
+            <p>
+                El objetivo del juego es destruir la mayor cantidad de meteoritos antes de que toquen la superficie de la tierra. 
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, pariatur!
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, pariatur!
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam, pariatur!
+            </p>
+        </div>
+    </div>
+    <div (click)="pasarPagina()" id="siguiente">&gt;</div>
+    <div (click)="ocultarExplicacion()" class="cerrar">X</div>
+</div>
+

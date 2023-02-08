@@ -4,20 +4,23 @@ import { Observable } from 'rxjs';
 import { Palabra } from '../entidades/palabra';
 import { Pregunta } from '../entidades/pregunta';
 import { Usuario } from '../entidades/usuario';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
 
-  constructor(private firestore:Firestore) { 
+  usuarios:Usuario[] = [];
+
+  constructor(private firestore:Firestore,
+              private loginService:LoginService) { 
 
   }
 
   updateScoreUsr(usuario:Usuario){ 
     const usrRef = doc(this.firestore, `usuarios/${usuario.id}`);
-    return updateDoc(usrRef, {puntaje_acumulado: usuario.puntaje_acumulado});
-
+    updateDoc(usrRef, {puntaje_acumulado: usuario.puntaje_acumulado});
   }
 
   addPalabra(palabra:Palabra){  

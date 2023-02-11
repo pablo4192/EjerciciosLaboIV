@@ -32,7 +32,7 @@
    border: 2px white solid;
    border-radius: 10px;
    padding: 0;
-   background-color: #1E88E5;
+   background-color: #0668bd;
    color: #eee;
 
    font-size: xx-large;
@@ -65,7 +65,7 @@
 }
 
 #imgPablo{
-    width: 80%;
+    width: 70%;
     height: 100%;
 }
 
@@ -171,18 +171,16 @@
 
 .data{
     border: 1px white solid;
-    width: 40%;
-    height: 75%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(250, 250, 250,.7);
+    width: 35%;
+    height: 70%;
     top: 10%;
     position: fixed;
-    color: #ddd;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+    color: #fff;    
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, .6) ;
-    animation: .4s ease 1 aperturaExp;
+    animation: .6s ease 1 aperturaExp;
 }
 
 @keyframes aperturaExp{
@@ -194,15 +192,47 @@
     }
 }
 
-#pagina1{
-    font-size: x-large;
-    letter-spacing: 2px;
-   
-    /*VER COMO HACER PARA QUE LAS PAGINAS VAYAN PASANDO CUANDO PRESIONO ANTERIOR/SIGUIENTE*/
+#pagina1, #pagina2, #pagina3{
+   font-size: large;
 }
 
-#pagina1 p:first-child{
-    border-bottom: 2px white solid;
+#pagina1 p:first-child, #pagina2 p:first-child, #pagina3 p:first-child{
+    padding: 5px;
+   
+    position: relative;
+    letter-spacing: 2px;
+    font-size: xx-large;
+    color: #eee;
+}
+
+#pagina1 p:first-child::after, #pagina2 p:first-child::after, #pagina3 p:first-child::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: goldenrod;
+    display: block;
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    animation: 1.5s ease 1 fxTituloOverLine forwards;
+} 
+
+
+@keyframes fxTituloOverLine{
+    100%{
+        left: 5%;
+        width: 90%;
+        box-shadow: 0 5px 10px gold;
+    }
+}
+
+#pagina1 p, #pagina2 p, #pagina3 p{
+    padding: 10px 0;
+}
+
+#pagina2 img{
+    width: 7%;
+    height: 7%;
 }
 
 .cerrar{
@@ -217,8 +247,8 @@
     background-color: orangered;
     color: #eee;
     position: fixed;
-    top: 7%;
-    left: 68.5%;
+    top: 7.5%;
+    left: 66%;
     cursor: pointer;
     animation: .6s ease 1 aperturaExp;
 }
@@ -235,6 +265,7 @@
     font-size: 4em;
     font-weight: bold;
     color: #eee;
+    border-radius: 5px;
 }
 
 #anterior:hover, #siguiente:hover{
@@ -245,9 +276,9 @@
 }
 
 #anterior{
-    left: 24.8%;
+    left: 27%;
 }
 
 #siguiente{
-    right: 24.8%;
+    right: 27%;
 }

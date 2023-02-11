@@ -9,9 +9,12 @@ export class QuienSoyComponent implements OnInit {
 
   @ViewChild('nombreJuego') nombreJuegoRef:ElementRef|undefined;
   @ViewChild('divExplicacion') divExplicacionRef:ElementRef|undefined;
-  @ViewChild('pagina1') pagina1Ref:ElementRef|undefined;
+ 
+  pag1:boolean = true;
+  pag2:boolean = false;
+  pag3:boolean = false;
 
-  flagExplicacion:boolean = true;
+  flagExplicacion:boolean = false;
 
   constructor(private renderer2:Renderer2) { }
 
@@ -58,7 +61,30 @@ export class QuienSoyComponent implements OnInit {
   }
 
   pasarPagina():void{
-    this.renderer2.setStyle(this.pagina1Ref?.nativeElement, 'display', 'none');
+    if(this.pag1)
+    {
+      this.pag2 = true;
+      this.pag1 = false;
+    }
+    else if(this.pag2)
+    {
+      this.pag3 = true;
+      this.pag2 = false;
+    }
+
+  }
+
+  retrocederPagina():void{
+    if(this.pag3)
+    {
+      this.pag3 = false;
+      this.pag2 = true;
+    }
+    else if(this.pag2)
+    {
+      this.pag2 = false;
+      this.pag1 = true;
+    }
   }
 
 }

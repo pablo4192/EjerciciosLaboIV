@@ -1,16 +1,23 @@
-<h1><a routerLink="**">Sala de Juegos</a></h1>   
-    <div *ngIf="!GetLogueado()">
-        <nav>
-            <a routerLink="registro">Registrarse</a>
-            <a routerLink="login">Ingresar</a>
-            <a routerLink="quienSoy">Quien soy</a>
-        </nav> 
+<div class="container-fluid row">
+    <div class="titulo col">
+        <a routerLink="**">SALA DE JUEGOS</a>
     </div>
-    <div *ngIf="GetLogueado()">
-        <nav>
-            <a routerLink="juegos">Juegos</a>
-            <a routerLink="chat">Chat</a>
-            <a routerLink="puntajes">Puntajes</a>
-        </nav>
-        <app-logout></app-logout> 
+    <div class="secciones col">
+        <div *ngIf="!GetLogueado()">
+            <nav>
+                <a routerLink="registro">Registrarse</a>
+                <a routerLink="login">Ingresar</a>
+                <a routerLink="quienSoy">Quien soy</a>
+            </nav> 
+        </div>
+        <div *ngIf="GetLogueado()">
+            <nav>
+                <a routerLink="juegos">Juegos</a>
+                <a routerLink="chat">Chat</a>
+                <a routerLink="puntajes">Puntajes</a>
+            </nav>
+            <app-logout></app-logout> 
+        </div>
     </div>
+    
+</div>

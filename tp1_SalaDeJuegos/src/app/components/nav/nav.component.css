@@ -1,28 +1,61 @@
-h1{
-    background-color: #F5F5F5;
+*{
+    box-sizing: border-box;
+}
+
+.container-fluid{
+    background-image: url('./../../../assets/img/fondo-de-juego-patrón-transparente-ilustración-vectorial-concepfondo2.jpg');
+    background-position: center;
+    background-size: contain;
+    height: 25vh;
+    font-family: 'Consolas';
+    padding: 0;
     margin: 0;
-    padding: 15px;
-    
+    border-bottom: 2px rgba(0, 0, 0, .5) solid;
 }
 
-h1>a{
-    color: black;
-    font-weight: lighter;
+.secciones{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: rgba(0,0,0,.03);
 }
 
-a{
+.secciones a{
     text-decoration: none;
-    margin: 0 10px 0 10px;
-    color: #FAFAFA;
-    font-weight: bolder;
-    font-size: larger;
-    
+    margin: 10px;
+    padding: 10px 15px;
+    font-size: large;
+    letter-spacing: 2px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #1E88E5;
 }
 
-nav{
-    background-color:#82E0AA;
-    height: 40px;
+.secciones a:hover{
+    text-shadow: 0 0 10px rgba(250,250,250,.7);
 }
+
+.titulo{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    letter-spacing: 3px;
+    background-color: rgba(0,0,0,.03);
+}
+
+
+.titulo a{
+    text-decoration: none;
+    font-size: 5em;
+    font-weight: bold;
+    color: black;
+    text-shadow: -5px 3px 0 rgba(0, 0, 0, .2);
+}
+
+
 
 
 

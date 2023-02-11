@@ -1,8 +1,7 @@
 <div class="container-fluid">
-    <main class="form-signin">
-      <form name="Frm" name="frmRegistro">
+    <main class="form-signin"> 
+      <form name="Frm" name="frmRegistro" class="formulario">
         <h1 class="h3 mb-3 fw-normal">Formulario registro</h1>
-    
         <div class="form-floating">
           <input type="text" class="form-control" id="txtNombre" placeholder="nombre" [(ngModel)]="usuario.nombre" name="frmRegistro">
           <label for="floatingInput">Nombre</label>
@@ -23,7 +22,7 @@
             <input type="password" class="form-control" id="txtVerContrasenia" placeholder="Verificar Contraseña" [(ngModel)]="verContrasenia" name="frmRegistro">
             <label for="floatingPassword">Confirmar Contraseña</label>
           </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="ValidarRegistro()">Registrarme</button>
+        <button class="w-25 btn btn-lg btn-primary" type="submit" (click)="ValidarRegistro()">Registrarme</button>
         <div *ngIf="existe">
           <p>El usuario ya existe, pruebe con mail y/o contraseña distinto</p>
         </div>

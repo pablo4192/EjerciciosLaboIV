@@ -1,4 +1,4 @@
-<div class="container-fluid" >
+<div class="container" > 
     <div id="puntaje">Puntaje parcial: {{puntaje}}</div> 
     <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-derrota>
     <app-modal-victoria *ngIf="flagVictoria" [puntajeUsuario]="puntaje" (reiniciarJuego)="eventoReiniciarModal($event)"></app-modal-victoria>

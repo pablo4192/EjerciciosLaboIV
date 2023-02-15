@@ -3,19 +3,18 @@
 }
 
 dialog{
-    width: 400px; 
-    height: 550px;
+    width: 30%; 
+    height: 85%;
     margin: auto;
-    border-radius: 5px;
+    border: 2px solid black;
+    border-radius: 5px; 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: rgb(100, 110, 110);
+    background-color: #ccc;
     animation: 1s ease efectoOpacidad;
-    position: relative;
-
     overflow: visible;
-    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 dialog::backdrop{
@@ -33,28 +32,34 @@ dialog::backdrop{
 }
 
 .imagen{
-    margin: 10px;
+    margin: 10px 20px;
     height: 20%;
-    border: 2px black solid;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.imagen img{
+    border-radius: 5px;
 }
 
 .categoria{
-    
     height: 10%;
-    background-color: orange;
+    font-size: xx-large;
+    letter-spacing: 5px;
     color: #fff;
-    font-weight: bold;
+    border-bottom: 4px solid #eee;
 }
 
 .pregunta{
     display: flex;
     justify-content: center;
     align-items: center;
-   
-    border-radius: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
     height: 20%;
-    margin: 10px;
+    margin: 10px 20px;
     background-color: #fff;
+    font-size: large;
 }
 
 .opciones{
@@ -68,12 +73,12 @@ dialog::backdrop{
 }
 
 .opciones input{
-    width: 95%;
+    width: 90%;
     padding: 10px;
+    border: 1px solid black;
     border-radius: 5px;
     background-color: #fff;
-    border: none;
-    font-weight: lighter;
+    
 }
 
 img{
@@ -91,7 +96,8 @@ img{
     height: 650px;
     background-color: transparent;
     animation: 1s ease 1 mostrarResultado;
-    top: -15%;
+    top: -27%;
+    left: 6%;
     
 }
 
@@ -122,11 +128,18 @@ img{
 }
 
 .resultado input{
-    width: 180px;
-    height: 45px;
-    margin: 5px;
+    width: 190px;
+    height: 60px;
+    margin-top: 15px;
     border-radius: 5px;
     border: none;
     background-color: #1E88E5;
     color: #fff;
+    font-size: large;
+
+}
+
+.resultado input:hover{
+    background: linear-gradient(to right, rgb(30, 136, 229), rgb(30, 190, 229));
+
 }

@@ -5,7 +5,7 @@
 }
 
 #contenedor{
-    height: 100vh; 
+    height: 120vh; 
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@
 
 .divJuego{
     width: 45vw;
-    height: 45vh;
+    height: 50vh;
     background-color: #eee;
     display: flex;
     flex-direction: row;
@@ -42,8 +42,8 @@
     content: "";
     display: block;
     width: 0;
-    height: 7px;
-    background-color: #82E0AA;
+    height: 5px;
+    background-color: #1ed8e5;
     position: absolute;
     bottom: 0;
     transition: all .5s;
@@ -72,7 +72,7 @@
 }
 
 #ahorcado{
-    background-color: #2D08E3;
+    background-color: #4828eb;
 }
 
 #mayorMenor{

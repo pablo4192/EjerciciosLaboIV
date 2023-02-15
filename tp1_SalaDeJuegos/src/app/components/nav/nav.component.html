@@ -16,8 +16,7 @@
                 <a routerLink="chat">Chat</a>
                 <a routerLink="puntajes">Puntajes</a>
             </nav>
-            <app-logout></app-logout> 
         </div>
     </div>
-    
+    <app-logout id="logout" *ngIf="GetLogueado()"></app-logout> 
 </div>

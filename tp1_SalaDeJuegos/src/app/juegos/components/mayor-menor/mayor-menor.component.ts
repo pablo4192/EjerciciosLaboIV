@@ -45,6 +45,9 @@ export class MayorMenorComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+
+    
+
     this.darCarta("");
   }
 

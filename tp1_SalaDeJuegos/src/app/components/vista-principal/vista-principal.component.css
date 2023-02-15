@@ -84,26 +84,11 @@
 
 .accesos div:hover{
     box-shadow: -5px 5px 10px rgba(0,0,0,.3);
+    background-color: orange;
     cursor: pointer;
 }
 
-.accesos div::before{
-    content: "";
-    display: block;
-    background-color: rgba(250,250,250,.1);
-    position: absolute;
-    width: 0;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    transition: all 1s;
-}
 
-.accesos div:hover::before
-{
-    transition: all 1s;
-    width: 100%;
-}
 
 
 

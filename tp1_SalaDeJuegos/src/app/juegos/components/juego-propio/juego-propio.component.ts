@@ -94,7 +94,7 @@ export class JuegoPropioComponent implements OnInit {
     {
       this.start = true; 
 
-      window.scroll({
+      this.renderer2.selectRootElement(window).scroll({
         top: 1000,
         behavior: 'smooth'
       });

@@ -63,7 +63,7 @@
 }
 
 .aside{
-    background-color: #166db9;
+    background-color: rgb(34, 35, 48);
     color: #eee;
     font-size: large;
     height: 95%;
@@ -90,11 +90,12 @@
 }
 
 .bajoAside{
- background-color: rgb(89, 4, 163);
+ background-color: rgb(103, 5, 189);
  border-right: 4px solid #fff;
  border-left: 4px solid #fff;
  font-weight: bold;
  letter-spacing: 2px;
+ color: #fff;
 }
 
 .txtMsj input{
@@ -120,31 +121,46 @@
 
 
 #pChat{
-    color: white;
+   
     font-style: italic;
 }
 
 #mensaje{
-    border-radius: 5px;
+    border-radius: 0 5px 5px 5px;
     width: fit-content;
+    max-width: 45%;
+    word-wrap: break-word;
     margin: 10px;
-    background-color: #F2F3F4;
+    position: relative;
+    color: black;
+    box-shadow: -3px 3px 15px #166db9;
+ 
 }
 
-#mensaje>p{
-    display: flex;
-    padding: 0 20px 0 5px;
-    
+#mensaje::before{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: -29px;
+    border: 15px transparent solid;
+    border-right-color: #166db9;
+}
+
+#mensaje p{
+    padding: 5px 10px;
+    letter-spacing: 1px;
     font-weight: bold;
+    text-align: start;
 }
 
 #pFecha{
     font-size: small;
-    color: whitesmoke;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0 5px 0 0;
     width: 100%;
-    
-    
+    background-color: #166db9;
+    color: #eee;
 }
 
 

@@ -21,13 +21,13 @@ export class ColorCategoriaDirective {
     switch(this.appColorCategoria)
       {
         case 'Historia':
-          this.renderer2.setStyle(this.element.nativeElement, 'backgroundColor', 'yellow');
+          this.renderer2.setStyle(this.element.nativeElement, 'backgroundColor', '#ffdf00');
           break;
           case 'Arte':
             this.renderer2.setStyle(this.element.nativeElement, 'backgroundColor', 'red');
             break;
             case 'Deportes':
-              this.renderer2.setStyle(this.element.nativeElement, 'backgroundColor', 'orange');
+              this.renderer2.setStyle(this.element.nativeElement, 'backgroundColor', '#ff9900');
               break;
               case 'Cine':
                 this.renderer2.setStyle(this.element.nativeElement, 'backgroundColor', 'violet');

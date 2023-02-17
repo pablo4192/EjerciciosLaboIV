@@ -1,9 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, ViewChild} from '@angular/core';
 import { Chat } from 'src/app/entidades/chat';
 import { Usuario } from 'src/app/entidades/usuario';
 import { ChatService } from 'src/app/services/chat.service';
 import { LoginService } from 'src/app/services/login.service';
-import { __values } from 'tslib';
 
 @Component({
   selector: 'app-chat',
@@ -18,10 +17,12 @@ export class ChatComponent implements OnInit {
 
   textoMsj:string = '';
   
+  @ViewChild('chat') chatRef:ElementRef|undefined;
   
-  
-
-  constructor(private chatService:ChatService, private loginService:LoginService) { 
+  constructor(private chatService:ChatService, 
+              private loginService:LoginService, 
+              private renderer2:Renderer2) 
+  { 
     this.chats = [];
     this.usuarioActivo = new Usuario();
     this.arrayUsuariosActivos = [];
@@ -34,8 +35,22 @@ export class ChatComponent implements OnInit {
     this.ObtenerMensajes();
     this.loginService.getUsuariosActivos().subscribe(data => this.arrayUsuariosActivos = data);
 
-    //console.log(this.arrayUsuariosActivos);
+  }
+
+  ngAfterViewInit():void{
     
+    this.renderer2.selectRootElement(window).scroll({top:1000, behavior:'smooth'});
+
+    //Ver!!!!
+    setTimeout(() => {
+      if(this.chatRef?.nativeElement != null)
+        {
+          console.log(this.chatRef.nativeElement);
+          this.renderer2.setProperty(this.chatRef.nativeElement, 'scrollTop', this.chatRef.nativeElement.scrollHeight);
+          
+        }
+      
+    }, 2500);
   }
 
   public EnviarMsj(){
@@ -60,22 +75,15 @@ export class ChatComponent implements OnInit {
     this.chatService.getMsjs().subscribe((data) => {
       this.chats = data;
       
-      let div = document.getElementById("divChat"); //Ver performance? Cuando Carga por primera vez no scrolea
-
-      if(div)
-      div.scrollTop = div.scrollHeight;
-
       this.chats.forEach((c) => {
         if(c.mailUsr == this.usuarioActivo?.mail)
         {
-          c.color = '#48C9B0'; 
-          c.position = 'relative';
+          c.color = '#fff';  
           c.left = '500px';
-          
         }
         else
         {
-          c.color = '#F9A825';
+          c.color = '#ccc';
           
         }
       });
@@ -83,6 +91,12 @@ export class ChatComponent implements OnInit {
       if(this.chats.length > 1) 
       {
         this.chats.sort((a,b) => this.OrdenarMsjs(a,b));
+      }
+
+      if(this.chatRef?.nativeElement != null)
+      {
+        this.renderer2.setProperty(this.chatRef.nativeElement, 'scrollTop', this.chatRef.nativeElement.scrollHeight);
+        
       }
 
       
@@ -133,25 +147,5 @@ export class ChatComponent implements OnInit {
     
     return 1;
   }
-
-
-  /*
-  private generarColorRandom():string{
-    let simbolos, color;
-	  simbolos = "0123456789ABCDEF";
-	  color = "#";
-
-	  for(var i = 0; i < 6; i++){
-		  color = color + simbolos[Math.floor(Math.random() * 16)];
-	  }
-
-    return color;
-  }
-  */
-  
-
-  
-
-
 
 }

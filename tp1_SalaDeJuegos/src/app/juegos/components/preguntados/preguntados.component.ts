@@ -23,6 +23,7 @@ export class PreguntadosComponent implements OnInit {
 
   @ViewChild('ruleta') ruletaRef:ElementRef|undefined;
   @ViewChild('divProgreso') divProgresoRef:ElementRef|undefined;
+ 
 
   preguntas:Pregunta[] = [];
   preguntasAux:Pregunta[] = [];
@@ -110,7 +111,7 @@ export class PreguntadosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.obtenerPreguntas();
+    this.obtenerPreguntas(); 
   }
 
   private obtenerPreguntas():void{

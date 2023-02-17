@@ -251,6 +251,12 @@
     left: 66%;
     cursor: pointer;
     animation: .6s ease 1 aperturaExp;
+    transition: all .5s;
+}
+
+.cerrar:hover{
+    transition: all .5s;
+    transform: scale(1.2);
 }
 
 #anterior, #siguiente{

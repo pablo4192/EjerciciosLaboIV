@@ -54,6 +54,7 @@ dialog::backdrop{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
     border: 1px solid black;
     border-radius: 5px;
     height: 20%;
@@ -92,13 +93,12 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 650px;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
     animation: 1s ease 1 mostrarResultado;
-    top: -27%;
-    left: 6%;
-    
+    top: 0;
+    left: 0;
 }
 
 .resultado div{

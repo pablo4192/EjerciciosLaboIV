@@ -1,19 +1,60 @@
 *{
     box-sizing: border-box;
-    
     padding: 0;
 }
 
-.container{
-    min-height: 50vh;
+.container-fluid{
+    min-height: 80vh;
     background-color: #eef;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 20px;
-    position: relative;
+    margin-bottom: 20px;
+    padding: 20px 0;
+    border-radius: 5px;
+    font-family: 'Consolas';
 }
 
+.container-fluid>p{
+    font-size: xx-large;
+    font-weight: bold;
+    color: #eee;
+    letter-spacing: 3px;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    position: relative;
+    width: 70%;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: #272c47;
+    animation: 2s ease-in-out  infinite fxTitulo;
+}
+
+@keyframes fxTitulo{
+    0%{
+        border-color: #f52549;
+        box-shadow: 0 0 20px #f52549;
+    }
+    25%{
+        border-color: #fa6775;
+        box-shadow: 0 0 20px #fa6775;
+    }
+    50%{
+        border-color: #ffd64d;
+        box-shadow: 0 0 20px #ffd64d;
+    }
+    75%{
+        border-color: #9bc01c;
+        box-shadow: 0 0 20px #9bc01c;
+    }
+     100%{
+        border-color: #fa6775;
+        box-shadow: 0 0 20px #fa6775;
+    } 
+}
 
 table, tr, td{
     background-color: #eff;
@@ -26,7 +67,10 @@ table, tr, td{
 }
 
 thead td{
-    background-color: #eee;
+    background-color: #31333f;
+    color: #eee;
+    font-size: large;
+    letter-spacing: 2px;
 }
 
 td{

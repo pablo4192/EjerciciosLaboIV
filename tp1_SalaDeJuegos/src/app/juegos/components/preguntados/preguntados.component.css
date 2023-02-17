@@ -1,6 +1,6 @@
 .container{
     margin-top: 20px;
-    background: radial-gradient(ellipse farthest-corner at 50px 50px, yellow 60%, #ddd 40%);
+    background: radial-gradient(ellipse farthest-corner at 50px 50px, yellow 60%, #eee 40%);
     border: 2px solid black;
     border-radius: 10px;
     height: 85vh;

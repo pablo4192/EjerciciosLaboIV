@@ -15,7 +15,10 @@
         <input type="button" value="{{opcion4}}" (click)="verificarRespuesta($event)">
     </div>
     <div class="resultado" *ngIf="mostrarResultado" >
-        <div #divResultado>{{resultado}}</div>
+        <div #divResultado>{{resultado}}</div> 
         <input type="button" value="Siguiente pregunta" (click)="cerrarModal()">
+        <audio *ngIf="respuestaCorrecta" autoplay src="./../../../../assets/img_preguntados/respuestaCorrecta.mp3"></audio>
+        <audio *ngIf="respuestaIncorrecta" autoplay src="./../../../../assets/img_preguntados/respuestaIncorrecta.mp3"></audio>
     </div> 
+    <audio autoplay src="./../../../../assets/img_preguntados/pregunta.mp3"></audio>
 </dialog>

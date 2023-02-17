@@ -21,8 +21,12 @@ export class ModalPreguntaComponent implements OnInit {
   opcion4:string = '';
 
   @ViewChild('divResultado') resultadoRef:ElementRef|undefined;
+
   resultado:string = 'Respuesta incorrecta';
   mostrarResultado:boolean = false;
+
+  respuestaCorrecta:boolean = false;
+  respuestaIncorrecta:boolean = false;
 
   constructor(private renderer2:Renderer2) { }
 
@@ -53,6 +57,9 @@ export class ModalPreguntaComponent implements OnInit {
       setTimeout(() => {
         this.renderer2.setStyle(this.resultadoRef?.nativeElement, 'backgroundColor', 'lime')
       });
+
+      this.respuestaCorrecta = true;
+     
     }
     else{
       this.renderer2.setStyle($event.target, 'backgroundColor', '#F44336');
@@ -60,6 +67,8 @@ export class ModalPreguntaComponent implements OnInit {
       setTimeout(() => {
         this.renderer2.setStyle(this.resultadoRef?.nativeElement, 'backgroundColor', '#F44336')
       });
+
+      this.respuestaIncorrecta = true;
 
       this.mostrarRespuesta($event.target);
     }
@@ -86,6 +95,8 @@ export class ModalPreguntaComponent implements OnInit {
   cerrarModal():void{
     this.dialogRef?.nativeElement.close();
     this.mostrarResultado = false;
+    this.respuestaCorrecta = false;
+    this.respuestaIncorrecta = false;
     this.cerrarModalPadre.emit(this.resultado);
   }
 

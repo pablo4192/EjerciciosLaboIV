@@ -5,11 +5,11 @@
             <p>{{usrAct.mail}}</p>
         </div>
     </div> 
-    <div class="col-10 chat"> 
+    <div class="col-10 chat" #chat> 
         <div *ngFor="let chat of this.chats">
-            <div class="container" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
-                <p [ngStyle]="{'background-color': chat.color}" id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p> 
-                <p>{{chat.texto}}</p>
+            <div id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
+                <p id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p>  
+                <p [ngStyle]="{'background-color': chat.color}">{{chat.texto}}</p>
             </div>
         </div>
         <img src="assets/img/fantasmas.png" alt="fantasmas.png" id="fantasmas">

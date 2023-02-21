@@ -14,13 +14,13 @@
           <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="usuario.contrasenia" name="Frm">
           <label for="floatingPassword">Contraseña</label>
       </div>
-      <button class="w-25 btn btn-lg btn-primary" type="submit" (click)="Ingresar()">Ingresar</button>
-      <button class="w-25 btn btn-lg btn-primary" (click)="AutoCompletarLogin()">Ingreso rapido</button>
+      <button class="btn btn-lg btn-primary" type="submit" (click)="Ingresar()">Ingresar</button>
+      <button class="btn btn-lg btn-primary" (click)="AutoCompletarLogin()">Ingreso rapido</button>
     </form>
    <!-- <button class="btn btn-info" (click)="IngresarConGoogle()">Ingresar con Google</button> -->
   </main>
   <div *ngIf="error">
-    <p>Error en mail o contraseña</p>
+    <p>Error en mail o contraseña</p> 
   </div>
 </div>
 

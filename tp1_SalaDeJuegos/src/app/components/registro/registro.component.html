@@ -22,7 +22,7 @@
             <input type="password" class="form-control" id="txtVerContrasenia" placeholder="Verificar Contraseña" [(ngModel)]="verContrasenia" name="frmRegistro">
             <label for="floatingPassword">Confirmar Contraseña</label>
           </div>
-        <button class="w-25 btn btn-lg btn-primary" type="submit" (click)="ValidarRegistro()">Registrarme</button>
+        <button class="btn btn-lg btn-primary" type="submit" (click)="ValidarRegistro()">Registrarme</button>
         <div *ngIf="existe">
           <p>El usuario ya existe, pruebe con mail y/o contraseña distinto</p>
         </div>
@@ -32,7 +32,7 @@
         <div *ngIf="errorContrasenia">
           <p>Verifique la contraseña ingresada</p>
         </div>
-      </form>
+      </form> 
     </main>
     
   </div>

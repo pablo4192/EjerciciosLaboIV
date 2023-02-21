@@ -1,9 +1,9 @@
-<div class="container" id="divContenedor">
-    <div class="row">
-        <div class="col-4" id="divImagen">
+<div class="container-fluid" id="contenedorPrincipal">
+   <div class="row">
+        <div class="col-12 col-xl-4" id="divImagen">
             <img id="imgPablo" src="./../../../assets/img/pabloProvi.jpg" alt="imgPablo">
         </div>
-        <div class="col-8" id="divDatosPersonales">
+        <div class="col-12 col-xl-8" id="divDatosPersonales">
             <div class="datosTitulo">Datos Personales</div>
             <div class="datos">
                 <p>Nombre y apellido: Pablo Estanguet</p>
@@ -13,68 +13,67 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container-fluid" id="divJuegoPropio">
-    <div class="divImgJuego">
+    <div class="container-fluid" id="divJuegoPropio">
         <p>JUEGO PROPIO</p>
         <p #nombreJuego>DESTRUCTOR DE METEORITOS</p>
         <div #divExplicacion class="explicacion" (click)="mostrarExplicacionJuego()">Explicación</div>
-        <img id="imgJuegoPropio" src="assets/img_juegoPropio/planetaTierra.png" alt="img_juegoPropio">
-    </div>
-</div>
-<div *ngIf="flagExplicacion" class="reglasJuego">
-    <div id="anterior" (click)="retrocederPagina()">&lt;</div>
-    <div class="data">
-        <div *ngIf="pag1" id="pagina1">
-            <p>OBJETIVO DEL JUEGO</p>
-            <p>
-                El objetivo del juego es destruir la mayor cantidad de meteoritos antes de que toquen la superficie de la tierra. 
-            </p>
-            <p>
-                El tamaño de los mismos varía, como tambien su dirección. Los de tamaño mas grandes necesitan de dos impactos para ser eliminados. 
-            </p>
-            <p>
-                Cada meteorito destruido suma puntos al acumulado de la partida en juego, la cantidad eliminada modifica el resultado final del juego.
-            </p>
-            <p>
-                Es importante tener en cuenta que si el ultimo meteorito impacta sobre la superficie perderas la partida.
-            </p>
-        </div>
-        <div *ngIf="pag2" id="pagina2">
-            <p>MODO DE JUEGO</p>
-            <p>
-                Para destruir los objetivos se debe hacer click sobre los mismos. Los de tamaño chico necesitan 1 impacto para ser destruidos,
-                Los mas grandes 2 impactos.
-            </p>
-            <p>
-                En el transcurso de la partida cruzara sobre el cielo este icono: <img src="assets/img_juegoPropio/react.png" alt="react.png">, que permitira al hacer click sobre el, eliminar los meteoritos
-                solo pasando el cursor por encima de ellos, sin necesidad de hacer click. Esto por un tiempo determinado que aparecera en la pantalla.
-                
-            </p>
-            <p>
-                Cuando termine la partida, indiferentemente de si has ganado o perdido podras iniciar una nueva partida o salir del juego. 
-            </p>
-        </div>
-        <div *ngIf="pag3" id="pagina3">
-            <p>PUNTAJE OBTENIDO</p>
-            <p>
-                Cada meteorito destruido suma puntos al acumulado de la partida.
-                Independientemente de su tamaño cada uno equivale a 5 puntos.<br>
-                La cantidad de objetivos neutralizados modifica el puntaje y la performance del juego que se visualiza
-                en el texto final que aparece cuando concluye la partida.
-            </p>
-            <p>
-                El ultimo meteorito necesitara de varios impactos para ser destruido.
-                Si este impacta sobre la superficie de la tierra perderas la partida y los puntos acumulados no seran
-                sumados al puntaje general.
-                En sintesis, todo sera en vano.<br>
-            </p>
-            <p>
-                Si llegaste hasta aqui estas preparado/a para salvar nuestro planeta...
-            </p>
+        <div class="divImgJuego">
+            <img id="imgJuegoPropio" src="assets/img_juegoPropio/planetaTierra.png" alt="img_juegoPropio">
         </div>
     </div>
-    <div (click)="pasarPagina()" id="siguiente">&gt;</div>
-    <div (click)="ocultarExplicacion()" class="cerrar">X</div>
+    <div *ngIf="flagExplicacion" class="reglasJuego">
+        <div id="anterior" (click)="retrocederPagina()">&lt;</div>
+        <div class="data">
+            <div *ngIf="pag1" id="pagina1">
+                <p>OBJETIVO DEL JUEGO</p>
+                <p>
+                    El objetivo del juego es destruir la mayor cantidad de meteoritos antes de que toquen la superficie de la tierra. 
+                </p>
+                <p>
+                    El tamaño de los mismos varía, como tambien su dirección. Los de tamaño mas grandes necesitan de dos impactos para ser eliminados. 
+                </p>
+                <p>
+                    Cada meteorito destruido suma puntos al acumulado de la partida en juego, la cantidad eliminada modifica el resultado final del juego.
+                </p>
+                <p>
+                    Es importante tener en cuenta que si el ultimo meteorito impacta sobre la superficie perderas la partida.
+                </p>
+            </div>
+            <div *ngIf="pag2" id="pagina2">
+                <p>MODO DE JUEGO</p>
+                <p>
+                    Para destruir los objetivos se debe hacer click sobre los mismos. Los de tamaño chico necesitan 1 impacto para ser destruidos,
+                    Los mas grandes 2 impactos.
+                </p>
+                <p>
+                    En el transcurso de la partida cruzara sobre el cielo este icono: <img src="assets/img_juegoPropio/react.png" alt="react.png">, que permitira al hacer click sobre el, eliminar los meteoritos
+                    solo pasando el cursor por encima de ellos, sin necesidad de hacer click. Esto por un tiempo determinado que aparecera en la pantalla.
+                    
+                </p>
+                <p>
+                    Cuando termine la partida, indiferentemente de si has ganado o perdido podras iniciar una nueva partida o salir del juego. 
+                </p>
+            </div>
+            <div *ngIf="pag3" id="pagina3">
+                <p>PUNTAJE OBTENIDO</p>
+                <p>
+                    Cada meteorito destruido suma puntos al acumulado de la partida.
+                    Independientemente de su tamaño cada uno equivale a 5 puntos.<br>
+                    La cantidad de objetivos neutralizados modifica el puntaje y la performance del juego que se visualiza
+                    en el texto final que aparece cuando concluye la partida.
+                </p>
+                <p>
+                    El ultimo meteorito necesitara de varios impactos para ser destruido.
+                    Si este impacta sobre la superficie de la tierra perderas la partida y los puntos acumulados no seran
+                    sumados al puntaje general.
+                    En sintesis, todo sera en vano.<br>
+                </p>
+                <p>
+                    Si llegaste hasta aqui estas preparado/a para salvar nuestro planeta...
+                </p>
+            </div>
+        </div>
+        <div (click)="pasarPagina()" id="siguiente">&gt;</div>
+        <div (click)="ocultarExplicacion()" class="cerrar">X</div>
+    </div>
 </div>
-

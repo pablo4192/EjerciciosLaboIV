@@ -37,8 +37,30 @@ h1{
   align-items: center;
 }
 
-button{
+button{ 
   margin-top: 15px;
+  width: 25%;
+}
+
+
+@media screen and (max-width:1200px){
+  .form-floating{
+    width: 60%;
+  }
+
+  button{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width:768px){
+  .form-floating{
+    width: 90%;
+  }
+
+  button{
+    width: 80%;
+  }
 }
 
 

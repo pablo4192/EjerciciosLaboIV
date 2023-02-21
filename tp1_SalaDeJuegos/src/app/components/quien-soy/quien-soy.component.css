@@ -1,114 +1,105 @@
 *{
     box-sizing: border-box;
-}
-
-.row{
-    height: 55vh;
     margin: 0;
-   
-}
-
-#divContenedor{
-    margin-top: 50px;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-
 }
 
-
- #divImagen{
-    height: 100%;
-    background-color: rgb(240, 240, 240);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 2px white solid;
-    border-radius: 10px;
-}
-
-#divDatosPersonales{
-   height: 100%;
-   border: 2px white solid;
-   border-radius: 10px;
-   padding: 0;
-   background-color: #0668bd;
-   color: #eee;
-
-   font-size: xx-large;
-
-   display: flex;
-   flex-direction: column;
-   
-}
-
-.datosTitulo{
-    width: 100%;
-    height: 15%;
-    border-bottom: 1px white solid;
-
-    font-weight: 700;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-}
-
-.datos{
-   height: 85%;
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: flex-start;
-   border: 1px white solid;
-   padding: 10px;
-}
-
-#imgPablo{
-    width: 70%;
-    height: 100%;
-}
-
-.divImgJuego{
-    background-color: rgb(20, 20, 20);
-    color: #ddd;
-    font-family:'Consolas';
+#contenedorPrincipal{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
 }
 
-.divImgJuego p:first-child{
-    font-size: large;
+.row{
+    margin-top: 20px;
+    width: 80%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#divImagen{
+    height: 100%;
+    border-right: 4px white solid;
+    border-radius: 10px;
+    background-color: #eee;
+}
+
+#imgPablo{
+    width: 100%;
+    height: 55vh;
+    border-radius: 10px;
+}
+
+#divDatosPersonales{
+    border: 2px white solid;
+    border-radius: 10px;
+    padding: 0;
+    background-color: #0668bd;
+    color: #eee;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    
+ }
+ 
+ .datosTitulo{
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px white solid;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+ }
+ 
+ .datos{
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-top: 1px white solid;
+    padding: 10px;
+ }
+
+#divJuegoPropio{
+    margin-top: 20px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(20, 20, 20);
+    color: #ddd;
+    font-family:'Consolas';
+}
+
+#divJuegoPropio p:first-child{
+    font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: 5px;
     color: orangered;
     width: 80%;
     padding: 15px;
     border-bottom: 1px solid white;
-    margin-top: 10px;
+   
 }
 
-.divImgJuego :nth-child(2){
-    font-size: xx-large;
+#divJuegoPropio :nth-child(2){
+    font-size: 2rem;
     text-shadow: 0 0 20px rgba(250, 250, 250,.7);
     margin-top: 10px;
     visibility: hidden;
 }
 
-#imgJuegoPropio{
+.divImgJuego{
+    height: 65%;
     width: 100%;
-    height: 40vh;
-   
 }
 
-#divJuegoPropio{
-    margin-top: 50px;
-    padding: 0;
-    height: 70vh;
-   
+#imgJuegoPropio{
+    width: 100%;
+    height: 100%;
 }
 
 .explicacion{
@@ -287,4 +278,44 @@
 
 #siguiente{
     right: 27%;
+}
+
+@media screen and (max-width:1200px){
+    #divDatosPersonales{
+        font-size: 1.2rem;
+    }
+
+    #imgPablo{
+        width: 40%;
+    }
+
+    #divImagen{
+        border-bottom: 2px solid #fff;
+    }
+
+    .data{
+        width: 80%;
+    }
+
+    #anterior{
+        left: 5%;
+    }
+
+    #siguiente{
+        right: 5%;
+    }
+
+    .cerrar{
+        left: 88%;
+    }
+} 
+
+@media screen and (max-width:576px){
+    .data{
+        height: 90%;
+    }
+
+    .reglasJuego{
+        height: 190%;
+    }
 }

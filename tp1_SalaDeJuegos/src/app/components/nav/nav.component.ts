@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -8,15 +8,15 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private loginService:LoginService) { }
+  constructor(private loginService:LoginService,
+              private renderer2:Renderer2) { }
 
   ngOnInit(): void {
    
   }
 
   GetLogueado(){
-    
-    return this.loginService.GetUsuarioActivo();
+     return this.loginService.GetUsuarioActivo();
   }
 
 }

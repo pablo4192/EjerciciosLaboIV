@@ -79,16 +79,6 @@ export class PuntajesComponent implements OnInit {
       this.renderer2.appendChild(tr, td);
 
       td = this.renderer2.createElement('td');
-      texto = this.renderer2.createText(`${u.nombre}`);
-      this.renderer2.appendChild(td, texto);
-      this.renderer2.appendChild(tr, td);
-
-      td = this.renderer2.createElement('td');
-      texto = this.renderer2.createText(`${u.apellido}`);
-      this.renderer2.appendChild(td, texto);
-      this.renderer2.appendChild(tr, td);
-
-      td = this.renderer2.createElement('td');
       texto = this.renderer2.createText(`${u.puntaje_acumulado}`);
       this.renderer2.appendChild(td, texto);
       this.renderer2.appendChild(tr, td);

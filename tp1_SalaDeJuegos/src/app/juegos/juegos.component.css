@@ -55,18 +55,18 @@
 }
 
 
-.col-8{
+.descripcion-juego{
    border-left: 5px white solid;
    font-family: Arial, Helvetica, sans-serif;
 }
 
-.col-8 p:first-child{
+.descripcion-juego p:first-child{
     margin: 0;
     border-bottom: 5px white solid;
     border-radius: 0 5px 0 0;
     color: #fff;
     font-weight: bold;
-    font-size: large;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -87,12 +87,12 @@
     background-color: #318aac;
 }
 
-.col-8 p{
+.descripcion-juego p{
     margin-top: 20px;
     padding: 10px 50px;
     color: rgb(30, 30, 50);
     line-height: 40px;
-    font-size: large;
+    font-size: 1rem;
     
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -108,6 +108,56 @@ a{
     border-radius: 5px 0 0 5px;
 }
 
+@media screen and (max-width:1200px){
+    #contenedor{
+        height: 150vh;
+    }
 
+    .divJuego{
+        height: 60vh;
+    }
+}
 
+@media screen and (max-width:992px){
+    #contenedor{
+        margin-top: 0;
+        height: 300vh;
+        justify-content: flex-start;
+    }
+    
+    .row{
+        flex-direction: column;
+        height: 150vh;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .divJuego{
+        width: 99vw;
+        height: 65vh;
+    }
+
+    .descripcion-juego p{
+        font-size: 1.3rem;
+    }
+    
+}
+
+@media screen and (max-width:576px){
+    #contenedor{
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .row{
+        height: auto;
+        margin: 10px 0;
+        justify-content: center;
+    }
+
+    .divJuego{
+        height: auto;
+        margin: 20px 0;
+    }
+}
 

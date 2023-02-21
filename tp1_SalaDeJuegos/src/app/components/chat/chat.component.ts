@@ -79,7 +79,7 @@ export class ChatComponent implements OnInit {
         if(c.mailUsr == this.usuarioActivo?.mail)
         {
           c.color = '#fff';  
-          c.left = '500px';
+          c.left = '50%';
         }
         else
         {

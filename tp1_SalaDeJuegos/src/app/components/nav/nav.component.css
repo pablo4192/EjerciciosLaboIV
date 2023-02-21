@@ -11,7 +11,9 @@
     padding: 0;
     margin: 0;
     border-bottom: 2px rgba(0, 0, 0, .5) solid;
-    position: relative;
+    display: flex;
+    align-items: flex-end;
+   
 }
 
 .secciones{
@@ -30,7 +32,6 @@ nav{
 }
 
 .secciones a{
-    display: inline-block;
     width: 25%;
     text-decoration: none;
     margin: 10px;
@@ -68,6 +69,7 @@ nav{
 
 #logout{
     padding: 0;
+    height: fit-content;
 }
 
 @media screen and (max-width:1400px){
@@ -91,10 +93,16 @@ nav{
 }
 
 @media screen and (max-width:768px) {
-    
-
     .secciones a{
         margin: 5px;
+    }
+
+    #logout{
+        height: 8vh;
+    }
+
+    .container-fluid{
+        height: 30vh;
     }
 }
 
@@ -118,8 +126,15 @@ nav{
 
     .secciones a{
         width: 60%;
+        margin-top: 3px;
+    }
+
+    .container-fluid{
+        height: 35vh;
     }
 }
+
+
 
 
 

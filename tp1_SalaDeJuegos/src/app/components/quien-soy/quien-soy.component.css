@@ -39,7 +39,9 @@
     font-size: 2rem;
     display: flex;
     flex-direction: column;
-    
+    line-height: 50px;
+    text-align: start;
+   
  }
  
  .datosTitulo{
@@ -64,6 +66,7 @@
 
 #divJuegoPropio{
     margin-top: 20px;
+    padding-top: 20px;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -80,9 +83,8 @@
     letter-spacing: 5px;
     color: orangered;
     width: 80%;
-    padding: 15px;
+    padding-bottom: 20px;
     border-bottom: 1px solid white;
-   
 }
 
 #divJuegoPropio :nth-child(2){
@@ -287,6 +289,7 @@
 
     #imgPablo{
         width: 40%;
+        height: 45vh;
     }
 
     #divImagen{
@@ -317,5 +320,9 @@
 
     .reglasJuego{
         height: 190%;
+    }
+
+    #imgPablo{
+        height: 35vh;
     }
 }

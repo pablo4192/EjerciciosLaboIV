@@ -163,5 +163,23 @@
     color: #eee;
 }
 
+@media screen and (max-width:1200px){
+    .aside{
+        display: none;
+    }
+}
+
+@media screen and (max-width:768px){
+    .bajoAside{
+        display: none;
+    }
+}
+
+@media screen and (max-width:576px){
+    #mensaje{
+        max-width: 70%;
+    }
+}
+
 
 

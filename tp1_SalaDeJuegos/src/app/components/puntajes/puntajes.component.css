@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+
+
 .container-fluid{
     min-height: 80vh;
     background-color: #eef;
@@ -17,20 +19,24 @@
     font-family: 'Consolas';
 }
 
-.container-fluid>p{
-    font-size: xx-large;
+.container-fluid p{
+    font-size: 2rem;
     font-weight: bold;
     color: #eee;
     letter-spacing: 3px;
     padding: 20px 0;
     margin-bottom: 20px;
-    position: relative;
+   
     width: 70%;
     border-width: 4px;
     border-style: solid;
     border-radius: 5px;
     background-color: #272c47;
     animation: 2s ease-in-out  infinite fxTitulo;
+}
+
+.container-fluid p:nth-child(2){
+    display: none;
 }
 
 @keyframes fxTitulo{
@@ -56,6 +62,10 @@
     } 
 }
 
+table{
+    width: 80%;
+}
+
 table, tr, td{
     background-color: #eff;
     border: 3px #fff solid;
@@ -69,16 +79,34 @@ table, tr, td{
 thead td{
     background-color: #31333f;
     color: #eee;
-    font-size: large;
+    font-size: 1.2rem;
     letter-spacing: 2px;
+    
 }
 
 td{
     padding: 10px 30px;
 }
 
-img{
-    width: 25px;
-    height: 25px;
+@media screen and (max-width:1200px){
+    thead td{
+        font-size: .9rem;
+    }
+}
+
+@media screen and (max-width:768px){
+    td{
+        padding: 2px;
+    }
+}
+
+@media screen and (max-width:576px){
+    .container-fluid p:first-child{
+        display: none;
+    }
+
+    .container-fluid p:nth-child(2){
+        display: block;
+    } 
 }
 

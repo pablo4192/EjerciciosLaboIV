@@ -45,7 +45,6 @@ export class ChatComponent implements OnInit {
     setTimeout(() => {
       if(this.chatRef?.nativeElement != null)
         {
-          console.log(this.chatRef.nativeElement);
           this.renderer2.setProperty(this.chatRef.nativeElement, 'scrollTop', this.chatRef.nativeElement.scrollHeight);
           
         }
@@ -79,12 +78,22 @@ export class ChatComponent implements OnInit {
         if(c.mailUsr == this.usuarioActivo?.mail)
         {
           c.color = '#fff';  
-          c.left = '50%';
         }
         else
         {
           c.color = '#ccc';
           
+          let ancho:number = this.renderer2.selectRootElement(window).innerWidth;
+
+          if(ancho > 576)
+          {
+            c.left = '50%';
+          }
+          else
+          {
+            c.left = '15%';
+
+          }  
         }
       });
       

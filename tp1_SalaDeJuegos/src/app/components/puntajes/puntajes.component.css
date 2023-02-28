@@ -25,8 +25,7 @@
     color: #eee;
     letter-spacing: 3px;
     padding: 20px 0;
-    margin-bottom: 20px;
-   
+    margin: 20px 0 40px 0;
     width: 70%;
     border-width: 4px;
     border-style: solid;
@@ -81,7 +80,7 @@ thead td{
     color: #eee;
     font-size: 1.2rem;
     letter-spacing: 2px;
-    
+    padding: 0 5px;
 }
 
 td{
@@ -95,6 +94,10 @@ td{
 }
 
 @media screen and (max-width:768px){
+    .container-fluid p{
+        font-size: 1rem;
+    }
+
     td{
         padding: 2px;
     }
@@ -105,8 +108,23 @@ td{
         display: none;
     }
 
+    .container-fluid p{
+        width: 80%;
+    }
+
     .container-fluid p:nth-child(2){
         display: block;
+        font-size: 1rem;
     } 
+
+    table, thead td{
+        font-size: .7rem;
+    }
+}
+
+@media screen and (max-width:350px){
+    thead td{
+        font-size: .5rem;
+    }
 }
 

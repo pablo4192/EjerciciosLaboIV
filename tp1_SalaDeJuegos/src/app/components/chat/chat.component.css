@@ -153,6 +153,7 @@
     letter-spacing: 1px;
     font-weight: bold;
     text-align: start;
+    font-size: 1rem;
 }
 
 #pFecha{
@@ -167,17 +168,24 @@
     .aside{
         display: none;
     }
+
+    #mensaje p{
+        font-size: .7rem;
+    }
 }
 
 @media screen and (max-width:768px){
     .bajoAside{
         display: none;
     }
+
+    
 }
 
 @media screen and (max-width:576px){
+    
     #mensaje{
-        max-width: 70%;
+        max-width: 80%;
     }
 }
 

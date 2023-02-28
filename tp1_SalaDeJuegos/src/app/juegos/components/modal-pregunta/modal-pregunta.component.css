@@ -3,7 +3,7 @@
 }
 
 dialog{
-    width: 30%; 
+    width: 450px; 
     height: 85%;
     margin: auto;
     border: 2px solid black;
@@ -44,7 +44,7 @@ dialog::backdrop{
 
 .categoria{
     height: 10%;
-    font-size: xx-large;
+    font-size: 2rem;
     letter-spacing: 5px;
     color: #fff;
     border-bottom: 4px solid #eee;
@@ -60,7 +60,7 @@ dialog::backdrop{
     height: 20%;
     margin: 10px 20px;
     background-color: #fff;
-    font-size: large;
+    font-size: 1.2rem;
 }
 
 .opciones{
@@ -107,11 +107,11 @@ img{
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    font-size: x-large;
+    font-size: 1.5rem;
     font-weight: bolder;
     
     color: #fff;
-    width: 300px;
+    width: 80%;
     height: 60px;
 }
 
@@ -142,4 +142,24 @@ img{
 .resultado input:hover{
     background: linear-gradient(to right, rgb(30, 136, 229), rgb(30, 190, 229));
 
+}
+
+@media (max-width:576px){
+    dialog{
+       width: 350px;
+    }
+
+    .pregunta{
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:400px){
+    dialog{
+        width: 300px;
+    }
+
+    .resultado div{
+        font-size: 1rem;
+    }
 }

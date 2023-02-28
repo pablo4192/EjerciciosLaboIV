@@ -133,7 +133,7 @@ a{
     }
 
     .divJuego{
-        width: 99vw;
+        width: 90vw;
         height: 65vh;
     }
 
@@ -158,6 +158,14 @@ a{
     .divJuego{
         height: auto;
         margin: 20px 0;
+    }
+
+    .descripcion-juego p:first-child{
+        font-size: 1rem;
+    }
+
+    .descripcion-juego p{
+        font-size: 1rem;
     }
 }
 

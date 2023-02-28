@@ -6,14 +6,13 @@
     background-image: url('./../../../assets/img/fondo-de-juego-patrón-transparente-ilustración-vectorial-concepfondo2.jpg');
     background-position: center;
     background-size: contain;
-    height: 25vh;
+    min-height: 25vh;
     font-family: 'Consolas';
     padding: 0;
     margin: 0;
     border-bottom: 2px rgba(0, 0, 0, .5) solid;
     display: flex;
     align-items: flex-end;
-   
 }
 
 .secciones{
@@ -21,7 +20,7 @@
     align-items: flex-end;
     padding-bottom: 20px;
     padding: 0;
-    background-color: rgba(0,0,0,.03);   
+    
 }
 
 nav{
@@ -54,7 +53,7 @@ nav{
     justify-content: flex-end;
     align-items: flex-end;
     letter-spacing: 3px;
-    background-color: rgba(0,0,0,.03);
+    
 }
 
 
@@ -69,7 +68,7 @@ nav{
 
 #logout{
     padding: 0;
-    height: fit-content;
+    margin-top: 10px;
 }
 
 @media screen and (max-width:1400px){
@@ -80,6 +79,10 @@ nav{
 }
 
 @media screen and (max-width:1200px){
+    .container-fluid{
+        padding-top: 20px;
+    }
+    
     .titulo{
         justify-content: center;
         align-items: center;
@@ -98,39 +101,45 @@ nav{
     }
 
     #logout{
-        height: 8vh;
-    }
-
-    .container-fluid{
-        height: 30vh;
+        height: 12vh;
     }
 }
 
 @media screen and (max-width:576px){
+    .titulo{
+        letter-spacing: 0;
+        margin-bottom: 10px;
+    }
+    
     .titulo a{
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .secciones a{
-        font-size: .8rem;
         width: 30%;
     }
 }
 
-@media screen and (max-width:400px){
+@media screen and (max-width:500px){
     nav{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
     }
 
+    .titulo a{
+        font-size: 2.2rem;
+    }
+
     .secciones a{
-        width: 60%;
+        width: 80%;
         margin-top: 3px;
+        font-size: .9rem;
     }
 
     .container-fluid{
-        height: 35vh;
+    
+        align-items: center;
     }
 }
 

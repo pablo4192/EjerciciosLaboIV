@@ -4,128 +4,188 @@
     padding: 0;
 }
 
-.container{
+.contenedorPrincipal{
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.container-fluid{
-    background-color: #FAFAFA;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.col-3{
-    background-color: #FAFAFA ;
-}
-
-
-
-.col-8{
-    background-color: aliceblue;
-    padding: 0;
-    
-    
-}
-
-#divDatosJugador{
-    background-color: #4FC3F7;
-    border: 2px solid white;
-    color:#F5F5F5 ;
-    font-weight: lighter;
-    padding: 10px;
-}
-
-#divDatosJugador>p{
-    width: fit-content;
-}
-
-#divInfoPalabra{
-    height: 130px;
-    border: 2px solid white;
-    margin-top: 0;
-    padding: 10px;
-    background-color: #455A64 ;
-    color: white;
-}
-
-#divInfoPalabra>p{
-    width: fit-content;
-    
-}
-
-.col-9{
-    position: relative;
-}
-
-#divPalabra{
-    height: 120px;
-    font-size: 5em;
-    font-weight: bold;
-    letter-spacing: .3em;
-    background-color: #FFFDE7;
-    border: 2px solid white;
-    margin: 5px 0 5px 0;
-
-    position: absolute;
-    bottom: 0;
+.divAhorcado{
     width: 100%;
+    height: 65vh;
+    border-right: 5px solid white;
+    border-left: 5px solid white;
     
 }
 
-#divControles{
-    background-color: #8E44AD;
-    height: 140px;
-    padding: 10px;
-}
+ .imgAhorcado{
+    height: 100%;
+} 
 
-.col{
-    
-    height: 100px;
-}
-
-#divReiniciar>input{
-    width: 150px;
-    height: 50px;
-    font-size: large;
-    font-weight: bold;
-    border: #E1BEE7 solid 3px;
-    border-radius: 10px;
-    background-color: #566573 ;
-    color: white;
-    
-}
-
-#divReiniciar>input:hover{
-    background-color: #F5F5F5;
-    color: orangered;
-}
-
-#divReiniciar>p{
-    margin: 10px;
-    font-size: x-large;
-    font-weight: lighter;
-    color: #FAFAFA;
+.imgAhorcado img{
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
 }
 
 #divTimer{
-    height: 150px;
-    border: 1px solid black;
-    
-
+    height: 35%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    border: 1px solid black;
 }
 
-#divTimer>p{
-    font-size: 4em;
+#divTimer p{
+    font-size: 4rem;
     font-weight: bolder;
 }
 
 #divTimer img{
-    height: 150px;
+    height: 90%;
 }
+
+#divInfoPalabra{
+    height: 35%;
+    padding: 5px 10px;
+    background-color: #455A64 ;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    text-align: start;
+    border-right: 1px solid black;
+}
+
+#divInfoPalabra p:first-child{
+    color: #FFF;
+}
+
+#divInfoPalabra p{
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: yellow;
+}
+
+#divPalabra{
+    height: 30%;
+    font-size: 5rem;
+    font-weight: bold;
+    letter-spacing: 30px;
+    background-color: #FFFDE7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#divControles{
+    background-color: #8E44AD;
+    border-right: 5px solid #fff;
+    border-left: 5px solid #fff;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+@media screen and (max-width:1400px){
+    #divTimer{
+        height: 30%;
+    }  
+
+    #divInfoPalabra{
+        height: 40%;
+    }
+
+    #divInfoPalabra p{
+        font-size: .9rem;
+    }
+
+    #divPalabra{
+        font-size: 3rem;
+    }
+}
+    
+@media screen and (max-width:992px){
+   
+    
+    #divPalabra{
+        font-size: 2rem;
+        letter-spacing: 20px;
+    }
+    
+    #divTimer p{
+        font-size: 3rem;
+        font-weight: bolder;
+    }
+}
+
+@media (max-width:768px){
+
+    #divTimer p{
+        font-size: 2rem;
+    }
+
+    #divInfoPalabra p{
+        font-size: .8rem;
+    }
+
+    #divPalabra{
+        letter-spacing: 10px;
+    }
+      
+}
+
+@media (max-width:576px){
+    .divAhorcado{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+    }
+
+    .imgAhorcado{
+        height: 40%;
+    }
+
+    .imgAhorcado img{
+        width: 70%;
+        border: none;
+    }
+
+    .columnaPalabra{
+        height: 60%;
+    }
+
+    #divTimer{
+        height: 15%;
+    }
+
+    #divTimer p{
+        font-size: 1rem;
+    }
+
+    #divInfoPalabra{
+        height: 45%;
+    }
+
+    #divPalabra{
+        height: 40%;
+        font-size: 1.5rem;
+    }
+
+    #divInfoPalabra p{
+        letter-spacing: 0;
+    }
+    
+}
+
+
+
+
 
 
 

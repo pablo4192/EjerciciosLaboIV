@@ -6,12 +6,12 @@
         </div>
     </div> 
     <div class="col-12 col-xl-10 chat" #chat> 
-        <div *ngFor="let chat of this.chats">
-            <div id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
+        
+            <div *ngFor="let chat of this.chats" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
                 <p id="pFecha">{{chat.mailUsr}} [{{chat.fecha}} {{chat.hora}}]</p>  
                 <p [ngStyle]="{'background-color': chat.color}">{{chat.texto}}</p>
             </div>
-        </div>
+        
         <img src="assets/img/fantasmas.png" alt="fantasmas.png" id="fantasmas">
         <img src="assets/img/pacMan.png" alt="pacMan.png" id="pacMan">
     </div>

@@ -1,11 +1,10 @@
 *{
     box-sizing: border-box;
-    }
+}
 
-.container{
+.contenedor{
     height: 80vh;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin: 20px 10px;
     padding: 0;
     border: 2px solid black;
     border-radius: 5px;
@@ -23,8 +22,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: x-large;
-    font-weight:600;
+    font-size: 1.5rem;
+    font-weight: 600;
     letter-spacing: 3px;
     background-color: rgb(50, 50, 50) ;
     color: #fff;
@@ -66,19 +65,19 @@
    
 }
 
-.controles p{
-    font-size: x-large;
+.controles>p{
+    font-size: 1.5rem;
     color: #fff;
     text-shadow: 0 0 15px white;
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 10px 50px;
     border-radius: 5px;
     background-color: rgba(0,0,0,.6);
    
 }
 
 #divControles{
-    width: 60%;
+    width: 90%;
     height: 50%;
     display: flex;
     justify-content: space-around;
@@ -87,15 +86,18 @@
     background-color: rgba(0,0,0,.2);
 }
 
-input{
+.controles input{
     width: 20%;
     height: 50%;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: bold;
     transition: all .3s;
     color: #fff;
     background-color: rgb(255, 20, 50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 input:hover{
@@ -105,11 +107,55 @@ input:hover{
     
 }
 
-
-
 #imgCarta{
     border-radius: 10px;
-    width: 200px;
-    height: 250px;
+    width: 15%;
+    height: 35vh;
     margin: 5px;
 }
+
+@media (max-width:992px){
+    #imgCarta{
+        width: 20%;
+    }
+
+    .controles input{
+        width: 30%;
+    }
+}
+
+@media (max-width:576px){
+    #imgCarta{
+        width: 30%;
+    }
+
+    #puntaje{
+        font-size: 1rem;
+    }
+
+    .controles>p{
+        font-size: 1rem;
+        
+    }
+
+    #divControles{
+        flex-direction: column;
+        height: 60%;
+    }
+
+    .controles input{
+        height: 30%;
+        width: 50%;
+       
+    }
+}
+
+@media (max-width:450px){
+    #imgCarta{
+        width: 45%;
+        margin: 2px;
+    }
+
+    
+}
+

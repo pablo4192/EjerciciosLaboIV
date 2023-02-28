@@ -1,9 +1,9 @@
-<div class="container" id="divAhorcado"> 
-    <div class="row">
-        <div class="col-3" >
-            <img src={{rutaImgAhorcado}} class="img-fluid" alt="ahorcado0.jpg">
+<div class="container-fluid contenedorPrincipal">
+    <div class="row divAhorcado"> 
+        <div class="col-12 col-sm-4 imgAhorcado"> 
+            <img src={{rutaImgAhorcado}} alt="ahorcado0.jpg">
         </div>
-        <div class="col-9"> 
+        <div class="col-12 col-sm-8 columnaPalabra"> 
             <div id="divTimer">
                 <img src="./../../../../assets/img/timer.png" class="img-fluid" alt="imgTimer">
                 <p>00:00:{{timer}}</p>
@@ -17,14 +17,15 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container-fluid" id="divControles">
-    <div class="row">
-        <div class="col">
-            <app-teclado (valorBoton)="controlarEventoTeclado($event)"></app-teclado>
+    <div class="container-fluid" id="divControles">
+        <div class="row">
+            <div class="col">
+                <app-teclado (valorBoton)="controlarEventoTeclado($event)"></app-teclado>
+            </div>
         </div>
-        <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="controlarEventoReinicio()"></app-modal-derrota>
-        <app-modal-victoria *ngIf="flagVictoria" (reiniciarJuego)="controlarEventoReinicio()" [puntajeUsuario]="puntaje"></app-modal-victoria>
     </div>
+    <app-modal-derrota *ngIf="flagDerrota" (reiniciarJuego)="controlarEventoReinicio()"></app-modal-derrota>
+    <app-modal-victoria *ngIf="flagVictoria" (reiniciarJuego)="controlarEventoReinicio()" [puntajeUsuario]="puntaje"></app-modal-victoria>
 </div>
+
 

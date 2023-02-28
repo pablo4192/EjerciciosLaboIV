@@ -1,21 +1,21 @@
-.container{
-    margin-top: 20px;
+.contenedor{
+    margin: 20px 10px;
     background: radial-gradient(ellipse farthest-corner at 50px 50px, yellow 60%, #eee 40%);
     border: 2px solid black;
     border-radius: 10px;
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     position: relative;
     padding-top: 20px;
-    margin-bottom: 20px;
 }
 
-.container h2{
+.contenedor>p{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    font-size: 2rem;
 }
 
 #mano{
@@ -43,9 +43,7 @@
 
 
 img{
-    
     border-radius: 50%;
-    
 }
 
 #ruleta{
@@ -122,9 +120,31 @@ img{
     align-items: flex-start;
     margin-top: 10px;
     font-weight: bolder;
-    font-size: large;
+    font-size: 1.2rem;
 }
 
+@media (max-width:576px){
+    #ruleta{
+        width: 260px;
+        height: 260px;
+    }
+
+    .contenedor>p{
+        font-size: 1.5rem;
+    }
+
+}
+
+@media (max-width:450px){
+    .contenedor>p{
+        font-size: 1rem;
+    }
+
+    .intentos{
+        width: 70%;
+        font-size: 1rem;
+    }
+}
 
 
 

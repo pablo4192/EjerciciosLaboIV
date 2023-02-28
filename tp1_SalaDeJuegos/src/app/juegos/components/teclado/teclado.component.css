@@ -1,16 +1,21 @@
 .container{
-    
-   
-    font-size: large;
+    font-size: 1.5rem;
+    width: 80vw;
+}
 
+.container div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 input{
-    margin: 3px;
-    width: 3em;
+    margin: 2px;
+    width: 10%;
     background-color: #ECEFF1 ;
-    color: black;
-    border: 3px solid white;
+    border: 4px solid white;
     border-radius: 5px;
     font-style: italic;
     font-weight: bold;
@@ -18,4 +23,33 @@ input{
 
 input:hover{
     background-color: #FAFAFA;
+}
+
+.responsive{
+    display: none;
+}
+
+@media (max-width:768px){
+    .container{
+        width: 100vw;
+    }
+}
+
+@media (max-width:576px){
+    .container{
+       display: none;
+    }
+
+    .responsive{
+        display: block;
+        width: 100vw;
+    }
+
+    input{
+        width: 14%;
+        height: 7vh;
+        margin: 0;
+        font-size: 1rem;
+        border: 3px solid white;
+    }
 }

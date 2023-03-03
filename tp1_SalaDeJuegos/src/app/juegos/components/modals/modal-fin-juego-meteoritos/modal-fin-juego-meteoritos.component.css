@@ -33,7 +33,8 @@ dialog::backdrop{
 
 .title p{
     padding: 20px;
-    font-size: large;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
     font-weight: bolder;
 
 }
@@ -51,7 +52,7 @@ dialog::backdrop{
 
 .text p{
     line-height: 40px;
-    font-size: medium;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -83,4 +84,46 @@ dialog::backdrop{
     height: 20%;
     bottom: 0;
     background-color: transparent;
+}
+
+@media (max-width:768px){
+    dialog{
+        width: 90%;
+        height: 65%;
+    }
+}
+
+@media (max-width:576px){
+    dialog{
+        height: 80%;
+    }
+    
+    .title p{
+        font-size: 1rem;
+        color: #fff;
+        font-weight: lighter;
+    }
+}
+
+@media (max-width:450px){
+    .title{
+        height: 45%;
+    }
+
+    .text{
+        height: 35%;
+    }
+
+    .text p{
+        font-weight: lighter;
+    }
+
+    .buttons{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .buttons input{
+        width: 60%;
+    }
 }

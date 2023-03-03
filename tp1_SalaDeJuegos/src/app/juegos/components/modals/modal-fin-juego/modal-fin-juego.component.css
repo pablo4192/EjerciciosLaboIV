@@ -5,8 +5,8 @@
 
 
 dialog{
-    width: 35%;
-    height: 40%;
+    width: 550px;
+    height: 50%;
     margin-top: 120px;
     margin-left: auto;
     margin-right: auto;
@@ -69,15 +69,19 @@ dialog::backdrop{
     align-items: center;
     border-bottom: 4px solid white;
     background-color: #eee;
-    font-size: xx-large;
+    font-size: 2rem;
     font-weight: bolder;
     letter-spacing: 2px;
 }
 
 .text{
-    padding: 10px;
+    padding: 0 20px;
     height: 40%;
     border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 
@@ -89,7 +93,7 @@ dialog::backdrop{
     height: 30%;
 }
 
-input{
+.buttons input{
     width: 30%;
     height: 50%;
     padding: 5px;
@@ -108,11 +112,10 @@ input:hover{
 
 #divImagen{
     position: absolute;
-    bottom: -75%;
-    left: 5%;
-    width: 90%;
-    height: 70%;
-    
+    bottom: -55%;
+    left: 16%;
+    width: 70%;
+    height: 50%; 
  }
  
  img{
@@ -120,4 +123,48 @@ input:hover{
      height: 100%;
      border: 2px solid white;
      border-radius: 7px;
+ }
+
+ @media (max-width:600px){
+    dialog{
+        width: 90%;
+        height: 60%;
+    }
+
+    #divImagen{
+        display: none;
+    }
+
+    .titulo{
+        height: 20%;
+    }
+
+    .buttons{
+        flex-direction: column;
+        height: 40%;
+    }
+
+    .buttons input{
+        width: 60%;
+        height: 35%;
+    }
+
+ }
+
+ @media (max-width:450px){
+    dialog{
+        height: 70%;
+    }
+
+    .titulo{
+        font-size: 1.2rem;
+    }
+
+    .text{
+        height: 55%;
+    }
+
+    .buttons{
+        height: 25%;
+    }
  }

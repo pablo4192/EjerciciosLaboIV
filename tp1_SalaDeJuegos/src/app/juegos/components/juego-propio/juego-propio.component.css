@@ -118,7 +118,7 @@
     justify-content: center;
     align-items: center;
 }
-
+ 
 .gameOver{
     display: flex;
     flex-direction: column;
@@ -209,7 +209,6 @@
     border-radius: 50%;
 }
 
-
 .meteoritoGrande{
     width: 70px;
     height: 60px;
@@ -265,7 +264,7 @@
 .ovni{
     position: absolute;
     top: 50%;
-    left: -10%;
+    left: -20%;
     animation: 5s linear 1 trayectoriaOvni;
 }
 
@@ -291,9 +290,7 @@
 
     color: #eee;
     font-weight: bold;
-    font-size: x-large;
-    
-    
+    font-size: 1.5rem;    
 }
 
 .destruccionMasiva p:first-child{
@@ -304,11 +301,11 @@
 .destruccionMasiva :nth-child(3){
     color: yellow;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 4rem;
    
 }
 
-#juego img:first-child{
+#planetaImg{
     width: 100%;
     height: 40%;
 }
@@ -346,6 +343,28 @@
         transform: scale(1.2);
         top: 15%;
         left: 30%;
+    }
+}
+
+@keyframes trayectoriaGigante-450px{
+    0%{
+        transform: scale(.05);
+    }
+    100%{
+        transform: scale(1.2);
+        top: 40%;
+        left: 0;
+    }
+}
+
+@keyframes trayectoriaGigante-768px{
+    0%{
+        transform: scale(.05);
+    }
+    100%{
+        transform: scale(1.2);
+        top: 40%;
+        left: 20%;
     }
 }
 
@@ -494,6 +513,11 @@
     .gameOverInputs input{
         font-size: 1.5rem;
     }
+
+    .meteoritoGigante{
+        width: 400px;
+        height: 350px;
+    }
 }
 
 @media (max-width:768px){
@@ -526,6 +550,20 @@
         height: 40%;
         width: 70%;
     }
+
+    .meteoritoGigante{
+        width: 300px;
+        height: 250px;
+    }
+
+    .destruccionMasiva{
+        font-size: 1rem;
+    }
+
+    .destruccionMasiva :nth-child(3){
+        font-size: 2.5rem;
+    }
+    
 }
 
 @media (max-width:576px){
@@ -537,7 +575,7 @@
         height: 15%;
     }
 
-    #juego img:first-child{
+    #planetaImg{
         
         height: 30%;
     }
@@ -548,6 +586,11 @@
 
     .gameOverInputs input{
         font-size: 1.2rem;
+    }
+
+    .ovni>img{
+        width: 60px;
+        height: 30px;
     }
 }
 

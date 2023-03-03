@@ -1,4 +1,3 @@
-import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Palabra } from 'src/app/entidades/palabra';
 import { Usuario } from 'src/app/entidades/usuario';

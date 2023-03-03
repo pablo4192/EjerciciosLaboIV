@@ -4,7 +4,7 @@
 }
 
 dialog{
-    width: 30%; 
+    width: 450px; 
     height: 80%;
     margin: auto;
     display: flex;
@@ -19,7 +19,7 @@ dialog{
 }
 
 .titulo{
-    font-size: xx-large;
+    font-size: 2rem;
     letter-spacing: 2px;
     background-color: rgb(196, 16, 121);
     color: #fff;
@@ -34,9 +34,13 @@ dialog{
     height: 10%;
     width: 100%;
     padding: 10px;
-    font-size: large;
+    font-size: 1.2rem;
     letter-spacing: 1px;
     border-bottom: 5px solid #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .categorias{
@@ -52,7 +56,7 @@ dialog{
 .categorias input{
     height: 13%;
     width: 90%;
-    font-size: x-large;
+    font-size: 1.5rem;
     color: #fff;
     letter-spacing: 3px;
     font-weight: bold;
@@ -65,4 +69,33 @@ dialog{
     transition: all .3s;
     transform: scale(1.03);
     box-shadow: 0 0 10px rgba(0,0,0,.5);
+} 
+
+@media (max-width:576px){
+    dialog{
+        width: 90%;
+    }
+
+    .parrafo{
+        height: 15%;
+    }
+
+    .categorias{
+        height: 73%;
+    }
+
+    .categorias input{
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width:450px){
+    .titulo{
+        font-size: 1.5rem;
+    }
+
+    .parrafo{
+        font-size: .8rem;
+        font-weight: bold;
+    }
 }

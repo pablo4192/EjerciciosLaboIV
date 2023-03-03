@@ -91,6 +91,7 @@
     height: 50%;
     border: none;
     border-radius: 5px;
+    font-size: 1.2rem;
     font-weight: bold;
     transition: all .3s;
     color: #fff;
@@ -99,11 +100,11 @@
     justify-content: center;
     align-items: center;
 }
-
-input:hover{
+ 
+.controles input:hover{
   transition: all .3s;
-  background-color: orange;
-  transform: translate(0, 3px);
+  box-shadow: 0 3px 20px rgba(255,255,255,.9);
+  transform: translate(0, -3px);
     
 }
 
@@ -121,6 +122,7 @@ input:hover{
 
     .controles input{
         width: 30%;
+        font-size: 1rem;
     }
 }
 

@@ -6,7 +6,7 @@
         <div (click)="comenzarJuego()">Comenzar juego</div>
     </div>
     <div class="container-fluid" id="juego" #divContainer> 
-        <img src="./../../../../assets/img_juegoPropio/planetaTierra.png" alt="planetaTierra.png">
+        <img src="./../../../../assets/img_juegoPropio/planetaTierra.png" alt="planetaTierra.png" id="planetaImg">
         <div *ngIf="destruccionMasiva" class="destruccionMasiva">
             <p>DESTRUCCION MASIVA ACTIVADA</p> 
             <p>Pasa el cursor por los meteoritos y seran destruidos automaticamente</p>
@@ -14,7 +14,7 @@
         </div>
         <div *ngIf="flagDerrota" class="gameOver"> 
             <div class="row">
-                <div class="col-12 col-md-7 divGameOver">  
+                <div class="col-12 col-md-7 divGameOver">   
                     <p>GAME OVER</p>
                 </div>
                 <div class="col-12 col-md-5 gameOverInputs">

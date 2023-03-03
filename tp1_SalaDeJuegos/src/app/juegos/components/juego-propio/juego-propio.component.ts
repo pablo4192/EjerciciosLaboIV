@@ -324,6 +324,18 @@ export class JuegoPropioComponent implements OnInit {
 
   seleccionarTrayectoriaGigante(meteoritoGigante:HTMLDivElement):void{
     let random = this.numeroRandom(1,3);
+    let anchoVW:number = this.renderer2.selectRootElement(window).innerWidth;
+
+    if(anchoVW < 450)
+    {
+      this.renderer2.setStyle(meteoritoGigante, 'animation', '12s linear 1 trayectoriaGigante-450px');
+      return;
+    }
+    else if(anchoVW < 768)
+    {
+      this.renderer2.setStyle(meteoritoGigante, 'animation', '12s linear 1 trayectoriaGigante-768px');
+      return;
+    }
     
     switch(random)
     {

@@ -7,9 +7,9 @@ import { AhorcadoComponent } from './components/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
 import { TecladoComponent } from './components/teclado/teclado.component';
-import { ModalFinJuegoComponent } from './components/modal-fin-juego/modal-fin-juego.component';
-import { ModalDerrotaComponent } from './components/modal-derrota/modal-derrota.component';
-import { ModalVictoriaComponent } from './components/modal-victoria/modal-victoria.component';
+import { ModalFinJuegoComponent } from './components/modals/modal-fin-juego/modal-fin-juego.component';
+import { ModalDerrotaComponent } from './components/modals/modal-derrota/modal-derrota.component';
+import { ModalVictoriaComponent } from './components/modals/modal-victoria/modal-victoria.component';
 import { ModalPreguntaComponent } from './components/modal-pregunta/modal-pregunta.component';
 import { ModalCategoriaComponent } from './components/modal-categoria/modal-categoria.component';
 import { ColorCategoriaDirective } from './directives/color-categoria.directive';
@@ -38,7 +38,7 @@ import { ModalFinJuegoMeteoritosComponent } from './components/modals/modal-fin-
   ],
   imports: [
     CommonModule,
-    JuegosRoutingModule
+    JuegosRoutingModule,
   ]
 })
 export class JuegosModule { }

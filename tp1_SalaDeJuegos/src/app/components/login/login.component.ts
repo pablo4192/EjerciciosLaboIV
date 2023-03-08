@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/entidades/usuario';
 import { LoginService } from 'src/app/services/login.service';
-
+import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
 
 @Component({
@@ -13,24 +13,52 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   usuario:Usuario;
-  
   error:boolean = false;
-  autocompletado:boolean = false; //Ver!
+
+  autoCompletado:boolean = false;
+
+  @ViewChild('inputUsr') inputUsrRef:ElementRef|undefined;
+  @ViewChild('inputPass') inputPassRef:ElementRef|undefined;
+
+  public formulario:FormGroup|any; //Sirve de bindeo con el formulario en HTML
 
   constructor(
     private loginService:LoginService,
     private router:Router,
+    private renderer2:Renderer2,
+    private fb:FormBuilder  //Me da las funcionalidades para trabajar con el formGroup, fb.group() retorna un formGroup como objeto
     ){
      
       this.usuario = new Usuario();
+      
     }
 
   ngOnInit(): void {
     
     this.GetDatos();
+  
+    //Instancio
+    this.formulario = this.fb.group({
+      'usuario': ['', [Validators.required, Validators.email]], //Ya estan bindeados en el html con FormControlName
+      'contrasenia': ['', [Validators.required, this.spacesValidator]]
+    });
   }
 
-  public Ingresar(){
+  private spacesValidator(control:AbstractControl):object|null{
+
+    let text:string = <string>control.value;
+    let spaces:boolean = text.includes(' ');
+
+    return spaces ? {spaces: true} : null;
+  }
+
+  public ingresar(){
+    
+    if(!this.autoCompletado)
+    {
+      this.usuario.mail = this.formulario.getRawValue().usuario;
+      this.usuario.contrasenia = this.formulario.getRawValue().contrasenia;
+    }
     
     this.loginService.Login(this.usuario)
     .then(() => {
@@ -50,32 +78,16 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  /*
-  public IngresarConGoogle(){
-    this.loginService.LoginWithGoogle()
-    .then((response) => {
-      
-      this.error = false;
-      
-      console.log(response);
-      this.loginService.GuardarLogUsuario(this.mail);
-      
-      this.router.navigate(['/home']);
-    })
-    .catch(error => {
-      this.error = true;
-      console.log(error)}
-      );
-  }
-  */
+  public AutoCompletarLogin(){  
 
-  public AutoCompletarLogin(){  //Ver!!
-    
-    this.autocompletado = true;
+    this.autoCompletado = true;
+
+    this.renderer2.setProperty(this.inputUsrRef?.nativeElement, 'value', 'pascual@gmail.com');
+    this.renderer2.setProperty(this.inputPassRef?.nativeElement, 'value', 'asd123');
 
     this.usuario.mail = 'pascual@gmail.com';
     this.usuario.contrasenia = 'asd123';
-    
+      
   }
 
   private GetDatos(){

@@ -38,9 +38,29 @@ h1{
   margin: 10px;
 }
 
-button{
+form>input{
   margin-top: 15px;
   width: 25%;
+}
+
+.datosInvalidos{
+  
+  color: #fff;
+  display: block;
+  width: 100%;
+  text-align: start;
+  
+}
+
+.ingresoRapido{
+  background-color: #1E88E5;
+  color: #fff;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  width: 25%;
+  padding: 10px 5px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 @media screen and (max-width:1200px){
@@ -48,7 +68,7 @@ button{
     width: 60%;
   }
 
-  button{
+  form>input, .ingresoRapido{
     width: 50%;
   }
 }
@@ -58,7 +78,7 @@ button{
     width: 90%;
   }
 
-  button{
+  form>input, .ingresoRapido{
     width: 80%;
   }
 }

@@ -1,27 +1,41 @@
 <div class="container-fluid">
   <main class="form-signin">
-    <form name="Frm" class="formulario" autocomplete="off">
+    <form [formGroup]="formulario" (ngSubmit)="ingresar()" name="Frm" class="formulario" autocomplete="off">
       <h1 class="h3 mb-3 fw-normal">Login</h1>
-      <div class="form-floating" *ngIf="!autocompletado">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="usuario.mail" name="Frm">
-          <label for="floatingInput">Usuario</label>
-        </div>
-        <div class="form-floating" *ngIf="autocompletado">  <!--Ver!! Esto es por el autocompletado-->
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="pascual@gmail.com" name="Frm">
-          <label for="floatingInput">Usuario</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="usuario.contrasenia" name="Frm">
-          <label for="floatingPassword">Contraseña</label>
+      <div class="form-floating">
+        <input #inputUsr type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="usuario" name="Frm">  
+        <label for="floatingInput">Usuario</label>
+        <small class="datosInvalidos" 
+          *ngIf="formulario.controls.usuario.errors?.required &&
+                 formulario.controls.usuario.touched">
+          ¡El usuario es requerido!
+        </small>
+        <small class="datosInvalidos" 
+          *ngIf="formulario.controls.usuario.errors?.email && 
+                 formulario.controls.usuario.touched">
+          ¡El usuario debe ser un mail valido!
+        </small>
       </div>
-      <button class="btn btn-lg btn-primary" type="submit" (click)="Ingresar()">Ingresar</button>
-      <button class="btn btn-lg btn-primary" (click)="AutoCompletarLogin()">Ingreso rapido</button>
+      <div class="form-floating">
+        <input #inputPass type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="contrasenia" name="Frm">  
+        <label for="floatingPassword">Contraseña</label>
+        <small class="datosInvalidos" 
+        *ngIf="formulario.controls.contrasenia.errors?.required && 
+               formulario.controls.contrasenia.touched">
+        ¡La contraseña es requerida!
+        </small>
+        <small class="datosInvalidos"
+        *ngIf="formulario.controls.contrasenia.errors?.spaces">
+        ¡La contraseña no puede contener espacios!
+        </small>
+        <small *ngIf="error" class="datosInvalidos">
+          ¡Usuario no encontrado en nuestros registros!   
+        </small>
+      </div>
+      <input type="submit" value="Ingresar" class="btn btn-lg btn-primary" [disabled]="!autoCompletado && formulario.invalid">
+      <div (click)="AutoCompletarLogin()" class="ingresoRapido">Ingreso rapido</div>
     </form>
-   <!-- <button class="btn btn-info" (click)="IngresarConGoogle()">Ingresar con Google</button> -->
   </main>
-  <div *ngIf="error">
-    <p>Error en mail o contraseña</p> 
-  </div>
 </div>
 
   

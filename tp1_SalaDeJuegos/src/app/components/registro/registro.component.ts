@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/entidades/usuario';
 import { LoginService } from 'src/app/services/login.service';
+import { Validators, AbstractControl, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 
 
@@ -16,69 +16,35 @@ export class RegistroComponent implements OnInit{
 
   usuario:Usuario;
   verContrasenia:string = '';
-  
-  noExiste:boolean = false;
-  existe:boolean = false;
-  datosIncompletos:boolean = false;
-  errorContrasenia:boolean = false;
 
-  
-  constructor( 
-    private loginService:LoginService,
-    private router:Router)  //Inyeccion de dependencias
+  public formulario:FormGroup|any;
+    
+  constructor(private loginService:LoginService,
+              private router:Router,
+              private fb:FormBuilder
+    ) 
   {
     this.usuario = new Usuario();
   } 
 
   ngOnInit(): void {
       this.GetDatos();
+
+      this.formulario = this.fb.group({
+        'nombre': ['', [Validators.required, this.spacesValidator, Validators.pattern('[a-zA-Z]{1,20}')]],
+        'apellido': ['', [Validators.required, this.spacesValidator, Validators.pattern('[a-zA-Z]{1,20}')]],
+        'edad': ['', [Validators.required, Validators.pattern('[0-9]{1,2}')]],
+        'mail': ['', [Validators.required, Validators.email, this.spacesValidator]],
+        'contrasenia': ['', [Validators.required, this.spacesValidator]],
+        'verifContra': ['', [Validators.required]]
+      });
   }
 
-  private ReiniciarVariables(){
-    this.noExiste = false;
-    this.existe = false;
-    this.datosIncompletos = false;
-    this.errorContrasenia = false;
+  public registrarse():void{
+    this.usuario = this.formulario.getRawValue() as Usuario;
+    this.GuardarUsuario();
   }
 
-  public ValidarRegistro(){
-    
-    if(this.usuario.nombre == '' || this.usuario.apellido == '' || this.usuario.mail == '' || this.usuario.contrasenia == '' || this.verContrasenia == '')
-    {
-        this.ReiniciarVariables();
-        this.datosIncompletos = true;
-        return;
-    }
-    else
-    {
-        this.ReiniciarVariables();
-
-        this.loginService.usuariosRegistrados.forEach((u) => {
-          if(u.mail == this.usuario.mail || u.contrasenia == this.usuario.contrasenia)
-          {
-            this.existe = true;
-            return;
-          }
-        });
-    
-        if(!this.existe)
-        {
-          this.ReiniciarVariables();
-          
-          if(this.verContrasenia == this.usuario.contrasenia)
-          {
-            this.noExiste = true;
-            this.GuardarUsuario();
-          }
-          else
-          {
-            this.errorContrasenia = true;
-
-          }
-        }
-    }
-  }
- 
   private async GuardarUsuario(){
 
     this.loginService.Registro(this.usuario)  //Uso Auth de firebase
@@ -109,8 +75,15 @@ export class RegistroComponent implements OnInit{
 
     this.loginService.getUsuariosActivos().subscribe(usuarios_act => this.loginService.usuariosActivos = usuarios_act);
   }
-
  
+  private spacesValidator(control:AbstractControl):object|null{
+
+    let text:string = <string>control.value;
+    let spaces:boolean = text.includes(' ');
+
+    return spaces ? {spaces: true} : null;
+  }
+
 
   
 

@@ -1,32 +1,18 @@
 export class Usuario {
     nombre:string = '';
     apellido:string = '';
+    edad:number = 0;
     mail:string = '';
     contrasenia:string = '';
     id:string = '';
-    puntaje_acumulado:number = 0;
+    puntaje_acumulado:number;
     ultima_conexion:string = '';
-    puesto:number = 0;
-    perfo:number = 0;
-   
-   
-
-    /* 
-    public constructor(nombre:string, apellido:string, mail:string, contrasenia:string)
-    {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.mail = mail;
-        this.contrasenia = contrasenia;
-    }
-    */
-
-    public Mostrar()
-    {
-        console.log(this.nombre + ", " + this.apellido + ", " + this.mail + ", " + this.contrasenia);
-    }
-
+    puesto:number;
     
-  
-   
+    public constructor()
+    {
+        this.puntaje_acumulado = 0;
+        this.puesto = 0;
+    }
+    
 }

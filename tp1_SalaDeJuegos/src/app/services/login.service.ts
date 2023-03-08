@@ -59,11 +59,12 @@ export class LoginService{
     const usr = {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
+      edad: usuario.edad,
       mail: usuario.mail,
       contrasenia: usuario.contrasenia,
       puntaje_acumulado: 0,
-      puesto: usuario.puesto,
-      perfo: usuario.perfo
+      puesto: 0, 
+      
     };
     
     const usrRef = collection(this.firestore, 'usuarios');

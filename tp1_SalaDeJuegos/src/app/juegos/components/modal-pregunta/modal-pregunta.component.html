@@ -14,7 +14,7 @@
         <input type="button" value="{{opcion3}}" (click)="verificarRespuesta($event)">
         <input type="button" value="{{opcion4}}" (click)="verificarRespuesta($event)">
     </div>
-    <div class="resultado" *ngIf="mostrarResultado" >
+    <div class="resultado" *ngIf="mostrarResultado">
         <div #divResultado>{{resultado}}</div> 
         <input type="button" value="Siguiente pregunta" (click)="cerrarModal()">
         <audio *ngIf="respuestaCorrecta" autoplay src="./../../../../assets/img_preguntados/respuestaCorrecta.mp3"></audio>

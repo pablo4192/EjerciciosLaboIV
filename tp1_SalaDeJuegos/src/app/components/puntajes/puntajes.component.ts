@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -12,7 +13,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./puntajes.component.css']
 })
 export class PuntajesComponent implements OnInit {
-
+  
   usuarios:Usuario[] = [];
   @ViewChild('tableBody') tableBodyRef:ElementRef|undefined;
   flagSpinner:boolean = true;

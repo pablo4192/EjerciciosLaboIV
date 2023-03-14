@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
-import { Firestore, collection, addDoc,collectionData, doc, deleteDoc, updateDoc} from '@angular/fire/firestore';
-
+import { Firestore, collection, addDoc,collectionData, doc, deleteDoc, updateDoc, docData, setDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../entidades/usuario';
 
@@ -13,7 +12,7 @@ export class LoginService{
   usuario:Usuario|undefined;
   usuariosActivos:Usuario[];
   usuariosRegistrados:Usuario[];
-  
+  public logueado:boolean = false;
 
   constructor(private auth:Auth, private firestore:Firestore) {
     this.usuario = new Usuario();
@@ -40,18 +39,12 @@ export class LoginService{
     return signInWithEmailAndPassword(this.auth, usuario.mail, usuario.contrasenia);
   }
 
-  /*
-  LoginWithGoogle(){
-    
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
-  }*/
-
   Logout(){
     return signOut(this.auth);
   }
 
   GetUsuarioActivo(){
-    return this.auth.currentUser; //Retorno el usuario activo
+    return this.auth.currentUser;
   }
 
   addUsuario(usuario:Usuario){  
@@ -120,9 +113,14 @@ export class LoginService{
     return updateDoc(usrRef, {ultima_conexion: fecha});
   }
 
+  retornarDatosUsuario(usuario:Usuario):Usuario|undefined{
+    return this.usuariosRegistrados.find((u) => u.mail == usuario.mail); 
+  }
 
-  retornarDatosUsuario(usuario:Usuario){
-    return this.usuariosRegistrados.find((u) => u.mail == usuario.mail); //Retorno usuario con id de firebase
+  //Ver no lo estoy usando...
+  getUsuario(id:string):Observable<Usuario>{
+    const ref = doc(this.firestore, `usuarios/${id}`);
+    return docData(ref) as Observable<Usuario>;
   }
 
 }

@@ -9,6 +9,7 @@ export class Usuario {
     ultima_conexion:string = '';
     puesto:number;
     
+    
     public constructor()
     {
         this.puntaje_acumulado = 0;

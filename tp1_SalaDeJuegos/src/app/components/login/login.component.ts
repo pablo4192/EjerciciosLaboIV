@@ -4,7 +4,6 @@ import { Usuario } from 'src/app/entidades/usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,13 +19,13 @@ export class LoginComponent implements OnInit {
   @ViewChild('inputUsr') inputUsrRef:ElementRef|undefined;
   @ViewChild('inputPass') inputPassRef:ElementRef|undefined;
 
-  public formulario:FormGroup|any; //Sirve de bindeo con el formulario en HTML
+  public formulario:FormGroup|any;
 
   constructor(
     private loginService:LoginService,
     private router:Router,
     private renderer2:Renderer2,
-    private fb:FormBuilder  //Me da las funcionalidades para trabajar con el formGroup, fb.group() retorna un formGroup como objeto
+    private fb:FormBuilder
     ){
      
       this.usuario = new Usuario();
@@ -37,9 +36,8 @@ export class LoginComponent implements OnInit {
     
     this.GetDatos();
   
-    //Instancio
     this.formulario = this.fb.group({
-      'usuario': ['', [Validators.required, Validators.email]], //Ya estan bindeados en el html con FormControlName
+      'usuario': ['', [Validators.required, Validators.email]], 
       'contrasenia': ['', [Validators.required, this.spacesValidator]]
     });
   }
@@ -61,7 +59,9 @@ export class LoginComponent implements OnInit {
     }
     
     this.loginService.Login(this.usuario)
-    .then(() => {
+    .then((response) => {
+      this.loginService.logueado = true; 
+
       this.error = false;
 
       this.loginService.GuardarLogUsuario(this.usuario);
@@ -91,18 +91,10 @@ export class LoginComponent implements OnInit {
   }
 
   private GetDatos(){
-     
-    this.loginService.getUsuarios().subscribe(usuarios => {
-      this.loginService.usuariosRegistrados = usuarios;
-      this.loginService.usuario = this.loginService.retornarDatosUsuario(this.usuario); 
-      
-    });
-    
+    this.loginService.usuario = this.loginService.retornarDatosUsuario(this.usuario); 
     this.loginService.getUsuariosActivos().subscribe(usuarios_act => {
       this.loginService.usuariosActivos = usuarios_act;
     });
-
-      
   }
 
 

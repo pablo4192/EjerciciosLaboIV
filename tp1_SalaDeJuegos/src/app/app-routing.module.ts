@@ -6,17 +6,18 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { VistaPrincipalComponent } from './components/vista-principal/vista-principal.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { PuntajesComponent } from './components/puntajes/puntajes.component';
+import { UnauthorizedGuard } from './guards/unauthorized.guard';
 
 const routes: Routes = [
-  {path: 'registro', component:RegistroComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'quienSoy', component: QuienSoyComponent},
-  //{path: 'home', component:HomeComponent , ...canActivate(() => redirectUnauthorizedTo(['/registro']))}, //Hacer con guard, visto en clase
-  //{path: 'chat', component:ChatComponent, ...canActivate(() => redirectUnauthorizedTo(['/registro']))},
-  {path: 'chat', component:ChatComponent},
-  { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) },  //Cargado con lazy loading (lo trae solo cuando lo llama) Hacer con guard, visto en clase
-  {path: 'puntajes', component:PuntajesComponent},
-  {path: '**', component:VistaPrincipalComponent}
+  {path: 'home', title: 'Home principal' , component:VistaPrincipalComponent},
+  {path: 'registro', title: 'Registrarme' ,component:RegistroComponent},
+  {path: 'login', title: 'Login' , component: LoginComponent},
+  {path: 'quienSoy', title: 'Quien soy' , component: QuienSoyComponent},
+  {path: 'chat', title: 'Chat' , component:ChatComponent},
+  {path: 'juegos', title: 'Juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule), canActivate:[UnauthorizedGuard]},
+  {path: 'puntajes', title: 'Puntajes', component:PuntajesComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 
 ];
 

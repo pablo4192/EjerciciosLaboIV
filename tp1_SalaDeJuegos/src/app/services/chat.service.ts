@@ -20,7 +20,6 @@ export class ChatService {
     const chatObj = {
       texto: chat.texto,
       fecha: chat.fecha,
-      hora: chat.hora,
       mailUsr: chat.mailUsr
     }
     

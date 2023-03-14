@@ -34,6 +34,7 @@ export class LogoutComponent implements OnInit {
       });
 
       this.loginService.usuario = undefined;
+
       this.router.navigate(['/inicio']);
     })
     .catch(error => console.log(error));

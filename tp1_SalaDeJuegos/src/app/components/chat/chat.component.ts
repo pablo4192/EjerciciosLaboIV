@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit, Renderer2, ElementRef, ViewChild} from '@angular/core';
+import { Observable } from 'rxjs';
 import { Chat } from 'src/app/entidades/chat';
 import { Usuario } from 'src/app/entidades/usuario';
 import { ChatService } from 'src/app/services/chat.service';
@@ -13,29 +13,27 @@ import { LoginService } from 'src/app/services/login.service';
 export class ChatComponent implements OnInit {
 
   chats:Chat[];
-  usuarioActivo:Usuario|undefined;
-  arrayUsuariosActivos:Usuario[];
-
+  arrayUsuariosActivos$:Observable<Usuario[]>|undefined;
   textoMsj:string = '';
-  
+  flagFiltro:boolean = false;
+  anio:string = '';
+  mes:string = '';
+  dia:string = '';
+  fechaFiltro:number = 0;
+
   @ViewChild('chat') chatRef:ElementRef|undefined;
+ 
   
   constructor(private chatService:ChatService, 
               private loginService:LoginService, 
               private renderer2:Renderer2) 
   { 
     this.chats = [];
-    this.usuarioActivo = new Usuario();
-    this.arrayUsuariosActivos = [];
-    
   }
 
   ngOnInit(): void {
-    this.usuarioActivo = this.loginService.usuario;
-    
     this.ObtenerMensajes();
-    this.loginService.getUsuariosActivos().subscribe(data => this.arrayUsuariosActivos = data);
-
+    this.arrayUsuariosActivos$ = this.loginService.getUsuariosActivos();
   }
 
   ngAfterViewInit():void{
@@ -51,30 +49,26 @@ export class ChatComponent implements OnInit {
         }
       
     }, 2500);
+
+    
   }
 
   public EnviarMsj(){
 
     let fecha = Date.now();
-
-    let mailUsr = this.usuarioActivo?.mail;
-    
+    let mailUsr = this.loginService.usuario?.mail;
     let chat = new Chat(this.textoMsj, fecha, mailUsr);
-    
     this.chatService.AgregarMsj(chat);
-
     this.textoMsj = '';
-
-    
   }
 
-  public ObtenerMensajes(){ //Pipe async??
+  public ObtenerMensajes(){
 
     this.chatService.getMsjs().subscribe((data) => {
       this.chats = data;
       
       this.chats.forEach((c) => {
-        if(c.mailUsr == this.usuarioActivo?.mail)
+        if(c.mailUsr == this.loginService.usuario?.mail)
         {
           c.color = '#fff';  
         }
@@ -110,7 +104,15 @@ export class ChatComponent implements OnInit {
   }
 
   private ordenarMsjs(c1:Chat, c2:Chat):number{
-    return c2.fecha - c1.fecha;
+    return c1.fecha - c2.fecha;
   }
   
+  asignarFechaFiltro():void{
+    let fecha:string = `${this.anio}-${this.mes}-${this.dia}`;
+    this.fechaFiltro = Date.parse(fecha);
+  }
+
+  mostrarFiltrar():void{
+    this.flagFiltro = !this.flagFiltro;
+  }
 }

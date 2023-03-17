@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './services/login.service';
 import { Router } from '@angular/router';
 import { Usuario } from './entidades/usuario';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,7 +12,10 @@ import { Usuario } from './entidades/usuario';
 })
 export class AppComponent implements OnInit {
   title = 'tp1_SalaDeJuegos';
+  subscripcionUsrReg:Subscription|undefined;
+  subscripcionUsrAct:Subscription|undefined;
 
+  
   constructor(private loginService:LoginService,
               private router:Router){
 
@@ -19,16 +23,28 @@ export class AppComponent implements OnInit {
   
   /**
    * Obtengo los usuarios registrados en la DB y los asigno a propiedad loginService.usuariosRegistrados.
+   * Obtengo los usuarios activos desde la DB y los asigno a propiedad loginService.usuariosActivos.
    * Luego verifico si algun usuario se encuentra logueado.
    */
   ngOnInit(): void {
 
-    this.loginService.getUsuarios().subscribe((data) => {
+    this.subscripcionUsrReg = this.loginService.getUsuarios().subscribe((data) => {
       this.loginService.usuariosRegistrados = data;
-
+      
       this.checkLogin();
+      
     });
+    
+    this.subscripcionUsrAct = this.loginService.getUsuariosActivos().subscribe((data) => {
+      this.loginService.usuariosActivos = data;
+      
+    });
+    
+  }
 
+  ngOnDestroy():void{
+    this.subscripcionUsrReg?.unsubscribe();
+    this.subscripcionUsrAct?.unsubscribe();
   }
 
   /**
@@ -47,13 +63,12 @@ export class AppComponent implements OnInit {
       usr = this.obtenerDatosUsrActivo(usrAct?.email as string);
       
       usr ? this.asignarDatosUsrActivo(usr) : console.log('Problema al asignar los datos al usuario activo');
-      
+    
       this.router.navigate(['/juegos']);
     }
     else{
-      this.router.navigate(['/**']);
+      this.router.navigate(['/home']);
     }
-
     
   }
  
@@ -74,7 +89,7 @@ export class AppComponent implements OnInit {
    * @param usuario usuario logueado.
    */
   asignarDatosUsrActivo(usuario:Usuario):void{
-    this.loginService.usuario = usuario;
+    this.loginService.usuario = usuario; 
   }
   
   

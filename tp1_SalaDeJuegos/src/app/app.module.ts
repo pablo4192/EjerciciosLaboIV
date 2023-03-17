@@ -18,6 +18,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PuntajesComponent } from './components/puntajes/puntajes.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FiltroChatPipe } from './pipes/filtro-chat.pipe';
+import { AsignarFechaDirective } from './directives/asignar-fecha.directive';
 
 
 
@@ -33,7 +35,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ChatComponent,
     LogoutComponent,
     PuntajesComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    FiltroChatPipe,
+    AsignarFechaDirective
     
   ],
   imports: [

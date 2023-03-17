@@ -14,6 +14,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class PuntajesComponent implements OnInit {
   
+  titulo:string = 'tabla de pocisiones';
   usuarios:Usuario[] = [];
   @ViewChild('tableBody') tableBodyRef:ElementRef|undefined;
   flagSpinner:boolean = true;

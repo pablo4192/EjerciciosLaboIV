@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Palabra } from 'src/app/entidades/palabra';
 import { Usuario } from 'src/app/entidades/usuario';
@@ -21,7 +22,7 @@ export class AhorcadoComponent implements OnInit {
 
   flagDerrota = false;
   flagVictoria = false;
-
+  
   timer:number = 60;
   idInterval:any;
 

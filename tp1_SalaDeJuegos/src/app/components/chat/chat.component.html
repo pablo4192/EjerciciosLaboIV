@@ -1,12 +1,36 @@
+<div class="divBtnFiltrar">
+    <div (click)="mostrarFiltrar()">Filtrar chats</div>
+</div>
+<div *ngIf="flagFiltro" class="filtroChat">
+    <p>Se muestran mensajes desde fecha:</p> 
+    <select id="anio" appAsignarFecha [(ngModel)]="anio"></select>
+    <select id="mes" [(ngModel)]="mes">
+        <option value="" hidden></option>
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04">04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+    <select id="dia" appAsignarFecha [(ngModel)]="dia"></select>
+    <input type="button" value="Aplicar" (click)="asignarFechaFiltro()">
+</div>
 <div class="container-fluid row contenedor">  
     <div class="col-0 col-xl-2 aside">
         <p>Usuarios conectados:</p>
-        <div *ngFor="let usrAct of this.arrayUsuariosActivos"> 
+        <div *ngFor="let usrAct of this.arrayUsuariosActivos$ | async"> 
             <p>{{usrAct.mail}}</p>
         </div>
     </div> 
     <div class="col-12 col-xl-10 chat" #chat> 
-        <div *ngFor="let chat of this.chats" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
+        <div *ngFor="let chat of (this.chats | filtroChat:fechaFiltro)" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
             <p id="pFecha">{{chat.mailUsr}} [{{ chat.fecha | date:'dd/MM/yyy h:mm:ss a'}}]</p>
             <p [ngStyle]="{'background-color': chat.color}">{{chat.texto}}</p>
         </div>

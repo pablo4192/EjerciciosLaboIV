@@ -11,7 +11,7 @@ export class ColorCategoriaDirective {
      
   }
 
-  ngAfterViewInit():void{
+  ngAfterViewInit():void{ 
     this.asignarColor();
   }
 

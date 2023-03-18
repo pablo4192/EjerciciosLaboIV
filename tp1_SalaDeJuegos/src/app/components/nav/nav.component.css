@@ -5,7 +5,7 @@
 .container-fluid{
     background-image: url('./../../../assets/img/fondo-de-juego-patrón-transparente-ilustración-vectorial-concepfondo2.jpg');
     background-position: center;
-    background-size: contain;
+    background-size: contain; 
     min-height: 25vh;
     font-family: 'Consolas';
     padding: 0;

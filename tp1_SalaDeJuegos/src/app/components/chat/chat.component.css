@@ -64,9 +64,9 @@
     letter-spacing: 2px;
 }
 
-.filtroChat>input{
+.filtroChat input{
     margin-left: 10px;
-    width: 10%;
+    width: 100px;
     background-color: darkslateblue;
     color: #fff;
     font-weight: bold;
@@ -74,7 +74,7 @@
     border: 1px solid black;
 }
 
-.filtroChat>input:hover{
+.filtroChat input:hover{
     background-color: rgb(55, 43, 137);
 }
 
@@ -254,6 +254,13 @@ select{
     .bajoAside{
         display: none;
     }
+
+    .filtroChat{
+        height: 20vh;
+        padding: 5px 0;
+        flex-direction: column;
+        justify-content: space-between;
+    } 
 
     
 }

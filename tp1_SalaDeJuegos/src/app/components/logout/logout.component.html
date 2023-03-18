@@ -1,11 +1,10 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-9 col-md-11 columna" >
-            <p><em>Usuario en sesion: </em>{{loginService.usuario?.mail}}</p>
-            <p>Nombre: {{loginService.usuario?.nombre}}</p>
+    <div class="fila">
+        <div class="columnaDatos" >
+            <p>Usuario en sesion: {{loginService.usuario?.mail}}</p>
             <p>Puntaje acumulado: {{loginService.usuario?.puntaje_acumulado}}</p>
         </div>
-        <div class="col-3 col-md-1 columna">
+        <div class="columnaInput">
             <input type="button" value="Logout" (click)="logout()">
         </div>
     </div> 

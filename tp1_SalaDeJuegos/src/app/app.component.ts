@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './services/login.service';
-import { Router } from '@angular/router';
 import { Usuario } from './entidades/usuario';
 import { Subscription } from 'rxjs';
 
@@ -16,8 +15,7 @@ export class AppComponent implements OnInit {
   subscripcionUsrAct:Subscription|undefined;
 
   
-  constructor(private loginService:LoginService,
-              private router:Router){
+  constructor(private loginService:LoginService){
 
   }
   
@@ -64,12 +62,7 @@ export class AppComponent implements OnInit {
       
       usr ? this.asignarDatosUsrActivo(usr) : console.log('Problema al asignar los datos al usuario activo');
     
-      this.router.navigate(['/juegos']);
-    }
-    else{
-      this.router.navigate(['/home']);
-    }
-    
+    }   
   }
  
   /**

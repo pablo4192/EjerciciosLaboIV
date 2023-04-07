@@ -14,7 +14,7 @@ export class JuegoPropioComponent implements OnInit {
   flagModalReinicio:boolean = false;
   start:boolean = false;
 
-  lanzamientos:number = 80;
+  lanzamientos:number = 10;
   meteoritosALanzar:number = this.lanzamientos;
   
   meteoritos:HTMLDivElement[] = [];
@@ -226,20 +226,7 @@ export class JuegoPropioComponent implements OnInit {
     this.gameOver(gigante);
     
   } 
-  /*
-  crearPosiciones(min:number, max:number, cantidad:number):string[]{
-    let random:number;
-    let arrayRetorno:string[] = [];
-
-    for(let i = 0; i < cantidad; i++)
-    {
-      random = this.numeroRandom(min, max);
-      arrayRetorno.push(`${random}%`);
-    }
-    
-    return arrayRetorno;
-  }*/
-
+  
   crearPuntosClave(posicionesY:string[], posicionesX:string[]):HTMLDivElement[]{
     let divs:HTMLDivElement[] = [];
     let div:HTMLDivElement;

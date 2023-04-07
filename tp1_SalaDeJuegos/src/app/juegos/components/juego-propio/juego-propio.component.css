@@ -55,41 +55,6 @@
     text-shadow: 1px 1px 6px #fff;
 }
 
- /*EFECTOS BORDES ARRIBA Y ABAJO
-#comenzar>::before , #comenzar>div::after{
-    content: '';
-    display: block;
-    background-color: red;
-    position: absolute;
-    bottom: 0;
-    transition: all .3s;
-}
-
-#comenzar>div::before{
-    width: 0;
-    height: 3px;
-    left: 0;
-    box-shadow: 300px -88px red;
-}
-
-#comenzar>div:hover::before{
-    width: 100%;
-    box-shadow: 0 -88px red;
-}
-
-#comenzar>div::after{
-    width: 3px;
-    height: 0;
-    right: 0;
-    box-shadow: -297px -90px red;
-}
-
-#comenzar>div:hover::after{
-    height: 100%;
-    box-shadow: -297px 0 red;
-}
-*/
-
 #juego{ 
     height: 95vh;
     display: flex;
@@ -588,10 +553,26 @@
         font-size: 1.2rem;
     }
 
-    .ovni>img{
-        width: 60px;
-        height: 30px;
+    .ovni{
+        animation: none;
+        visibility: hidden;
     }
+
+    .meteorito{
+        width: 70px;
+        height: 60px;
+    }
+
+    .meteoritoGrande{
+        width: 90px;
+        height: 80px;
+    }
+
+    .divGigante div{
+        width: 45px;
+        height: 45px;
+    }
+    
 }
 
 @media (max-width:400px){

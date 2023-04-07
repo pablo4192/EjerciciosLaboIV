@@ -12,23 +12,14 @@
     
 }
 
-.row{
+#contDatos{
     margin-top: 20px;
-    width: 80%;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#divImagen{
-    height: 100%;
-    border-right: 4px white solid;
-    border-radius: 10px;
-    background-color: #eee;
-}
-
-#imgPablo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 55vh;
-    border-radius: 10px;
+    min-height: 55vh;
+   
 }
 
 #divDatosPersonales{
@@ -42,7 +33,8 @@
     flex-direction: column;
     line-height: 50px;
     text-align: start;
-   
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 45vh;
  }
  
  .datosTitulo{

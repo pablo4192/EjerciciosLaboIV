@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit {
   textoMsj:string = '';
   flagFiltro:boolean = false;
   anio:string = '';
-  mes:string = '';
+  mes:string = ''; 
   dia:string = '';
   fechaFiltro:number = 0;
 
@@ -37,20 +37,11 @@ export class ChatComponent implements OnInit {
   }
 
   ngAfterViewInit():void{
-    
     this.renderer2.selectRootElement(window).scroll({top:1000, behavior:'smooth'});
 
-    //Ver!!!!
     setTimeout(() => {
-      if(this.chatRef?.nativeElement != null)
-        {
-          this.renderer2.setProperty(this.chatRef.nativeElement, 'scrollTop', this.chatRef.nativeElement.scrollHeight);
-          
-        }
-      
-    }, 2500);
-
-    
+      this.renderer2.setProperty(this.chatRef?.nativeElement, 'scrollTop', this.chatRef?.nativeElement.scrollHeight);
+    }, 200);
   }
 
   public EnviarMsj(){
@@ -63,7 +54,6 @@ export class ChatComponent implements OnInit {
   }
 
   public ObtenerMensajes(){
-
     this.chatService.getMsjs().subscribe((data) => {
       this.chats = data;
       

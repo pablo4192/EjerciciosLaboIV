@@ -31,7 +31,7 @@ export class LogoutComponent implements OnInit {
       usuariosAEliminar.forEach(usr => {
         this.loginService.eliminarRegistroUsrActivo(usr); 
       });
-
+    
       this.loginService.usuario = undefined;
 
       this.router.navigate(['/inicio']);
